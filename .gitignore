@@ -1,0 +1,8 @@
+node_modules
+npm-debug.log
+platforms/*
+plugins/*
+www/index.html
+www/js/*
+www/css/index.css
+!.gitkeep

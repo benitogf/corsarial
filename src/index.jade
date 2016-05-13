@@ -1,0 +1,68 @@
+doctype html
+html(xmlns='http://www.w3.org/1999/xhtml')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    meta(http-equiv='Content-Security-Policy' content="style-src 'self' 'unsafe-inline'; media-src *; connect-src 'self' http://#{host} ws://#{host} https://#{host} wss://#{host}")
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+    title= title
+    base(href="/")
+    meta(name='author', content='#{author}')
+    meta(name='description', content='')
+    meta(name='keywords', content='')
+    meta(name='Resource-type', content='Document')
+    if enviroment == 'dev' && server == true
+       link(rel='stylesheet', type='text/css', href='scss/index.scss')
+    else
+       link(rel='stylesheet', type='text/css', href='css/index.css')
+    if enviroment == 'prod' && ganalytics != 'ganalytics'
+      script.
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', '#{ganalytics}', 'auto');
+        ga('send', 'pageview');
+  body(ng-app='SidenavDemo1', ng-cloak='')
+    #appData.hidden(data-host='#{host}', data-name='#{title}')
+    #loading.loading-cont 
+      .loading(layout="row" layout-align="center center")
+        md-progress-circular(md-mode="indeterminate", md-diameter="128")           
+    div(ng-controller='AppCtrl', layout='column', ng-cloak='')
+      section(layout='row', flex='')
+        md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id='left')
+          md-toolbar.md-theme-red
+            h1.md-toolbar-tools #{title}
+          md-content(layout-padding='', ng-controller='LeftCtrl')
+            .menuContent(layout='column')
+              md-button.md-primary(ng-href="#/" ng-click='close()') Home
+              md-button.md-primary(ng-href="#/services" ng-click='close()') Services
+        md-toolbar
+          .md-toolbar-tools
+            md-button.md-icon-button(ng-click='toggleLeft()', aria-label='Menu')
+              md-icon(md-svg-icon='img/icons/menu.svg')
+            img.menuLogo(src="img/logo.png")  
+            span(flex='')
+            md-fab-toolbar(md-open='false', count='2', md-direction='left')
+              md-fab-trigger
+                md-button.md-icon-button(aria-label='User')
+                  md-icon(md-svg-src='img/icons/more_vert.svg')
+              md-toolbar
+                md-fab-actions.md-toolbar-tools
+                  md-button.md-icon-button(ng-click='toggleRight()', aria-label='comment')
+                    md-icon(md-svg-src='img/icons/ic_comment_24px.svg')
+                  md-button.md-icon-button(ng-click='toggleRight()', aria-label='More')
+                    md-icon(md-svg-icon='img/icons/ic_email_24px.svg')
+        md-sidenav.md-sidenav-right.md-whiteframe-z2(md-component-id='right')
+          md-toolbar.md-theme-light
+            h1.md-toolbar-tools Sidenav
+          md-content(ng-controller='RightCtrl', layout-padding='')
+            section#auth           
+            md-button.md-primary(ng-click='close()') Close Sidenav
+      md-content(flex='')                      
+        div(layout='column', layout-fill='', layout-align='top center' layout-padding='' ng-view)
+        div(flex='')              
+    script(src="cordova.js")
+    if enviroment == 'prod'
+       script(src='js/index.min.js')
+    else
+       script(src='js/index.bundle.js')

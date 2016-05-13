@@ -1,0 +1,58 @@
+$text-color: rgb(0,0,0);
+$back-color: rgb(255,255,255);
+$navmenu-hover-color: #4d4d4d;
+//settings respond-to
+$break-small: 420px;
+$break-medium: 740px;
+$break-large: 944px;
+$break-xlarge: 1200px;
+
+@import 'mixins';
+@import './node_modules/angular-material/angular-material.scss';
+
+@include scrollbar(.5em, $navmenu-hover-color);
+
+body{
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	color: $text-color;
+	background-color: $back-color;
+}
+md-fab-trigger {
+  top: 0.6em;
+}
+md-fab-toolbar md-toolbar .md-toolbar-tools {
+  padding: 0 0;
+  @include respond-to(handhelds) { margin-top: 10px; }
+  @include respond-to(small-screens) { margin-top: 10px; }
+  @include respond-to(medium-screens) { margin-top: 10px; }
+  @include respond-to(wide-screens) { margin-top: 3px; }
+  @include respond-to(xwide-screens) { margin-top: 3px; }
+}
+md-backdrop, md-sidenav {
+  position: fixed;
+}
+
+.loading-cont {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:rgba(255, 255, 255, 1);
+  overflow: hidden;
+  z-index: 61;
+}
+.loading {
+  height: inherit;
+}
+.menuLogo {
+  height: inherit;
+  display: inline-block;
+}
+.content-ext {
+  width: inherit;
+}
+.video-ext {
+  width: -moz-available;
+  width: -webkit-fill-available;
+}
