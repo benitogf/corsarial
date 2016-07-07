@@ -10,7 +10,7 @@ var jade = require('jade'),
     sass = require('node-sass'),
     exec = require('child_process').exec;
 
-function readConf(cb){
+function readConf(platform, cb){
   fs.readFile('config.xml', function(err, data) {
     parser.parseString(data, function (err, data) {
         if (err) throw err;
@@ -21,15 +21,25 @@ function readConf(cb){
           host: data.widget.server[0].host[0],
           port: data.widget.server[0].port[0],
           gapi: data.widget.server[0].gapi[0],
-          ganalytics: data.widget.server[0].ganalytics[0]
+          ganalytics: data.widget.server[0].ganalytics[0],
+          html5Mode: false
         };
+        switch (platform) {
+            case 'android':
+                conf.base = 'file:///android_asset/www/'
+                conf.preUrl = 'index.html#'
+                break;
+            default:
+                conf.base = '/'
+                conf.preUrl = '#'
+        }
         console.log(util.inspect(conf, false, null));
         cb(conf);
     });
   });
 }
 
-function renderSass(conf, Q){
+function buildSass(conf, Q){
    var deferral = new Q.defer();
    sass.render({
         file: 'src/scss/index.scss',
@@ -44,7 +54,7 @@ function renderSass(conf, Q){
    return deferral.promise;
 }
 
-function renderJade(conf, Q){
+function buildJade(conf, Q){
   var deferral = new Q.defer();
   var render = jade.compileFile('src/index.jade');
   var html = render(conf);
@@ -67,16 +77,16 @@ function buildJs(Q){
 }
 
 module.exports = function(context) {
-    console.log('starting pre build');
+    console.log('starting pre build for ' + context.opts.platforms[0] + ' platform');
     var Q = context.requireCordovaModule('q');
     var deferral = new Q.defer();
-    readConf(function(conf){
+    readConf(context.opts.platforms[0], function(conf){
       Q.all([
-          renderJade(conf, Q),
-          renderSass(conf, Q),
+          buildJade(conf, Q),
+          buildSass(conf, Q),
           buildJs(Q)
         ]).then(function(){
-          console.log('pre build end');
+          console.log('pre build done');
           deferral.resolve();
         });
     });

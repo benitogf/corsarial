@@ -1,6 +1,6 @@
 $text-color: rgb(0,0,0);
 $back-color: rgb(255,255,255);
-$navmenu-hover-color: #4d4d4d;
+$highlight-color: rgb(183,28,28);
 //settings respond-to
 $break-small: 420px;
 $break-medium: 740px;
@@ -9,13 +9,15 @@ $break-xlarge: 1200px;
 
 @import 'mixins';
 @import './node_modules/angular-material/angular-material.scss';
+@import './lib/md-data-grid/md-data-grid';
+@import 'nav-menu';
 
-@include scrollbar(.5em, $navmenu-hover-color);
+@include scrollbar(.5em, $highlight-color);
 
 body{
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-	color: $text-color;
-	background-color: $back-color;
+  color: $text-color;
+  background-color: $back-color;
 }
 md-fab-trigger {
   top: 0.6em;
@@ -51,6 +53,9 @@ md-backdrop, md-sidenav {
 }
 .content-ext {
   width: inherit;
+}
+.text-frame p {
+    text-align: justify;
 }
 .video-ext {
   width: -moz-available;

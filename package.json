@@ -34,6 +34,7 @@
     "browserify": "^13.0.1",
     "express": "^4.13.3",
     "express-compile-sass": "^3.0.4",
+    "hammerjs": "^2.0.8",
     "jade": "^1.11.0",
     "jquery": "^2.1.4",
     "node-sass": "^3.4.2",

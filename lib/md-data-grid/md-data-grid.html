@@ -1,0 +1,65 @@
+<md-content flex>
+    <div layout="row" layout-align="space-between center" flex>
+      <div ng-if="vm.options.withSelector" layout="row" layout-align="end center" layout-padding>
+        <md-checkbox aria-label="Select All"
+                          ng-checked="isChecked()"
+                          md-indeterminate="isIndeterminate()"
+                          ng-click="toggleAll()"
+                          style="margin-bottom: 0"
+                          class="md-primary">
+          <span ng-if="isChecked()">Un-</span>Select All
+        </md-checkbox>
+        <md-button aria-label="Delete">Delete ({{selected.length}})</md-button>
+      </div>
+      <md-button ng-if="vm.options.withSearch" class="md-icon-button" ng-click="toggleFilters()" aria-label="Toggle filters">
+        <md-icon md-svg-icon='img/icons/menu.svg'></md-icon>
+      </md-button>
+    </div>
+    <md-content class="md-whiteframe-1dp" flex layout-padding ng-if="showFilters">
+       <label>Sort</label>
+       <md-select ng-model="sortOrder" aria-label="Sort order"></md-select>
+       <md-select ng-model="sortField" aria-label="Sort field"></md-select>
+       <label>Search</label>
+       <input type="text"></input>
+       <label>By</label>
+       <md-select ng-model="searchField" aria-label="Search field"></md-select>
+    </md-content>
+    <md-list>
+      <md-list-item ng-if="!items || items.length === 0" flex layout-padding>
+         <span>No data loaded</span>
+      </md-list-item>
+      <md-list-item ng-repeat="item in items" class="md-whiteframe-1dp">
+         <md-checkbox ng-if="vm.options.withSelector"
+           ng-checked="exists(item, selected)"
+           ng-click="toggle(item, selected)"
+           class="md-primary"
+           aria-label="Select item"></md-checkbox>
+         <div layout="row" layout-xs="column" layout-align-xs="space-between start" layout-align="space-between center" flex layout-padding>
+           <label>{{item[vm.options.shownFields.title]}}</label>
+           <div ng-repeat="description in vm.options.shownFields.description">
+             {{item[description]}}
+             <md-divider hide show-xs></md-divider>
+           </div>
+           <div>{{item[vm.options.shownFields.corner]}}</div>
+         </div>
+         <md-menu>
+           <md-button class="md-icon-button" aria-label="Open phone interactions menu" ng-click="$mdOpenMenu()">
+             <md-icon md-svg-icon='img/icons/more_vert.svg'></md-icon>
+           </md-button>
+           <md-menu-content width="4">
+             <md-menu-item>
+               <md-button ng-click="rowClick(item)">
+                 Edit
+               </md-button>
+             </md-menu-item>
+             <md-menu-divider></md-menu-divider>
+             <md-menu-item>
+               <md-button>
+                 details
+               </md-button>
+             </md-menu-item>
+           </md-menu-content>
+         </md-menu>
+      </md-list-item>
+    </md-list>
+</md-content>

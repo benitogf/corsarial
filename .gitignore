@@ -5,4 +5,11 @@ plugins/*
 www/index.html
 www/js/*
 www/css/index.css
+.vs/*
+bld/*
+taco.json
+*.jsproj
+*.jsproj.user
+*.sln
+info.txt
 !.gitkeep

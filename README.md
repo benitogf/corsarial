@@ -1,4 +1,4 @@
-# Corsa
+# Corsarial
 
 Cordova sample with angular material.
 
@@ -34,4 +34,4 @@ npm run test
 
 ## nwjs
 
-Some scripts to build for [nwjs](http://nwjs.io/) are included, be sure to change the path in those to your nw installation, also install and add to your path [7zip](http://www.7-zip.org/) for windows builds
+Some scripts to build for [nwjs](http://nwjs.io/) are included, be sure to change the path in those to your nw installation, and also to install and add to your path [7zip](http://www.7-zip.org/) for windows builds

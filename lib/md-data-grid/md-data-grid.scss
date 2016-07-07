@@ -1,0 +1,5 @@
+md-data-grid > md-content > md-list {
+  & > md-list-item > button > .md-list-item-inner > .md-data-grid-item-checkbox {
+    background-color: $highlight-color;
+  }
+}

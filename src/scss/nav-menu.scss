@@ -1,0 +1,167 @@
+/************
+ * DOCS MENU
+ ************/
+.site-sidenav {
+  md-content {
+    background: transparent;
+  }
+}
+
+.site-sidenav,
+.site-sidenav.md-locked-open-add-active,
+.site-sidenav.md-locked-open {
+  width:     272px;
+  min-width: 272px;
+  max-width: 272px;
+}
+.site-sidenav > * {
+  min-width: 218px;
+}
+
+.nav-menu,
+.nav-menu ul {
+  list-style: none;
+  padding: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+.nav-menu li {
+  margin: 0;
+}
+.nav-menu > li:nth-child(1) {
+  border-top: none;
+}
+.md-whiteframe-glow-z1 {
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14),
+              0px 0px 2px 2px rgba(0, 0, 0, 0.098),
+              0px 0px 5px 1px rgba(0, 0, 0, 0.084);
+}
+// .nav-menu > li {
+//   border-bottom: 1px solid #267ED5;
+// }
+
+.nav-menu .md-button {
+  border-radius: 0;
+  color: $highlight-color;
+  cursor: pointer;
+  display: block;
+  align-items: inherit;
+  line-height: 40px;
+  margin: 0;
+  max-height: 40px;
+  overflow: hidden;
+  padding: 0px 16px;
+  text-align: left;
+  text-decoration: none;
+  white-space: normal;
+  width: 100%;
+}
+
+html[dir=rtl] .nav-menu .md-button,
+body[dir=rtl] .nav-menu .md-button {
+  unicode-bidi: embed;
+  text-align: right;
+}
+
+
+// .nav-menu .md-button:hover,
+// .nav-menu .md-button:focus {
+//   background: #267ED5 !important;
+// }
+.nav-menu .md-button md-icon {
+  color: $highlight-color;
+}
+
+.nav-menu md-select {
+
+ /* Override md-select margins.  With margins the menu will look incorrect and causes mobile list
+    to not be scrollable.
+  */
+  margin: 0;
+  width: 100%;
+}
+
+.nav-menu md-select md-select-label {
+  justify-content: flex-end;
+  padding-top: 10px;
+}
+
+.nav-menu md-select md-select-label span {
+  margin-right: auto;
+  padding-left: 13px;
+}
+
+.nav-menu md-select .md-select-icon {
+  margin-right: 28px;
+}
+
+.nav-menu button.md-button::-moz-focus-inner {
+  padding: 0;
+}
+.nav-menu .md-button.active {
+  background: $highlight-color;
+  color: white;
+}
+.menu-heading {
+  display: block;
+  line-height: 32px;
+  margin: 0;
+  padding: 8px 16px 5px;
+  text-align: left;
+  width: 100%;
+  color: rgba(66, 66, 66, 0.84);;
+}
+
+
+html[dir=rtl] .menu-heading,
+body[dir=rtl] .menu-heading {
+  unicode-bidi: embed;
+  text-align: right;
+}
+
+
+.nav-menu li.parentActive,
+.nav-menu li.parentActive .menu-toggle-list {
+  /*background-color: #2C80D2 !important;*/
+}
+.menu-toggle-list {
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  -webkit-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+  -webkit-transition-property: height;
+  -moz-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+  -moz-transition-property: height;
+  transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+  transition-property: height;
+}
+.nav-menu .menu-toggle-list a.md-button {
+  display: block;
+  padding: 0 16px 0 32px;
+  text-transform: none;
+  text-rendering: optimizeLegibility;
+  font-weight: 500;
+}
+
+.parent-list-item:last-child {
+  margin-bottom: 20px;
+
+  /* Prevent the hidden License link from causing a double bottom-border */
+  border-bottom: none;
+}
+.md-button-toggle .md-toggle-icon {
+  display: block;
+  margin-left: auto;
+  speak: none;
+  vertical-align: middle;
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transition: transform 0.3s ease-in-out;
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+}
+.md-button-toggle .md-toggle-icon.toggled {
+  transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+}
+
+/* End Docs Menu */

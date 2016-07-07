@@ -1,0 +1,19 @@
+<md-button class="md-button-toggle"
+  ng-click="toggle()"
+  aria-controls="docs-menu-{{section.name}}"
+  aria-expanded="{{isOpen()}}">
+  <div flex layout="row">
+    {{section.name}}
+    <span flex></span>
+    <span aria-hidden="true" class="md-toggle-icon"
+    ng-class="{'toggled' : isOpen()}">
+      <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
+    </span>
+  </div>
+</md-button>
+
+<ul id="nav-menu-{{section.name}}" class="menu-toggle-list">
+  <li ng-repeat="page in section.pages">
+    <nav-link section="page"></nav-link>
+  </li>
+</ul>

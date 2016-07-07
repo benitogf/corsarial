@@ -25,7 +25,9 @@ function getConf(cb) {
         port: data.widget.server[0].port[0],
         gapi: data.widget.server[0].gapi[0],
         ganalytics: data.widget.server[0].ganalytics[0],
-        server: true
+        html5Mode: true,
+        preUrl: '',
+        base: '/'
       };
       process.title = conf.title;
       console.log(util.inspect(conf, false, null));
@@ -74,7 +76,7 @@ getConf(function(conf){
        app.use('/css', express.static(rootcss));
        app.use('/img', express.static(rootimg));
        app.use('/video', express.static(rootvideo));
-       app.get('/', function(req, res, next){
+       app.get('/*', function(req, res, next){
          res.render(__dirname +'/src/index.jade', conf, function(err, html){
            if (err) {
              console.log(err);
