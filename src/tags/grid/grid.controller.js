@@ -4,8 +4,6 @@
     .controller('GridController', GridController);
 
     function GridController($scope, $q) {
-      console.log('grid');
-      var vm = this;
 
       $scope.gridOptions = {
           withSelector: true, // pass true if you want to have a selector
@@ -19,14 +17,19 @@
               title: 'name', // should be same name with the actual data field from api
               description: ['productCategory', 'productFamily']
           },
+          labelFields: {
+              name: 'Name',
+              productCategory: 'Product category',
+              productFamily: 'Product family'
+          },
           format: {
-              toDate: {
+              date: {
                   field: ['createTime'],
               },
           },
           controllerAction: {
               rowClick: editItem,
-              addBtnClick: addItem,
+              newItem: addItem,
           },
       };
 

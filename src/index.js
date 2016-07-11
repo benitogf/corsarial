@@ -1,6 +1,9 @@
 'use strict';
 
 var $ = window.jQuery = window.$ = require('jquery');
+var _ =  window._ = require('lodash');
+var moment =  window.moment = require('moment');
+
 var angular = window.angular = require('angular');
 require('angular-aria');
 require('angular-animate');

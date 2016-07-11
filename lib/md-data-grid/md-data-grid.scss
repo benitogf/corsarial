@@ -1,5 +1,14 @@
-md-data-grid > md-content > md-list {
-  & > md-list-item > button > .md-list-item-inner > .md-data-grid-item-checkbox {
-    background-color: $highlight-color;
-  }
+md-data-grid {
+    md-select-value span .md-text md-icon {
+        vertical-align: inherit;
+    }
+    md-list-item md-divider {
+        position: inherit;
+    }
+    md-list-item {
+        margin: 1px 8px;
+    }
+}
+.dsc-arrow .md-text md-icon {
+    transform: rotate(180deg);
 }
