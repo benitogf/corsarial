@@ -64,7 +64,7 @@ html(xmlns='http://www.w3.org/1999/xhtml')
           md-content(ng-controller='NavRight', layout-padding='')
             md-button.md-primary(ng-click='close()') Close Sidenav
       md-content(flex='')
-        div(layout='column', layout-fill='', layout-align='top center' layout-padding='' ng-view)
+        div(layout='column', layout-fill='', layout-align='top center' ng-view)
     script(src="cordova.js")
     if enviroment == 'prod'
        script(src='js/index.min.js')

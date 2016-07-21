@@ -1,6 +1,18 @@
 md-data-grid {
-    md-select-value span .md-text md-icon {
-        vertical-align: inherit;
+    md-input-container:not(.md-has-icon) {
+        span .md-text {
+            padding-top: 6px;
+            padding-bottom: 11px;
+            display: inherit;
+        }
+    }
+    md-input-container.md-has-icon {
+        padding-left: 0;
+        md-select-value {
+            span .md-text md-icon {
+                vertical-align: super;
+            }
+        }
     }
     md-list-item md-divider {
         position: inherit;
