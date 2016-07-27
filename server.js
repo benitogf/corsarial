@@ -1,73 +1,39 @@
 'use strict';
 
-var express =  require('express'),
-    app = express(),
-    cp = require('child_process'),
-    fs = require('fs'),
-    util = require('util'),
-    compileSass = require('express-compile-sass'),
-    xml2js = require('xml2js'),
-    parser = new xml2js.Parser(),
-    watch;
+const express =  require('express')
+const app = express()
+const fs = require('fs')
+const chalk = require('chalk')
+const compileSass = require('./sass')
+const path = require('path')
+const prepend = require('prepend-file')
+const concat = require('concat-stream')
+const replace = require('replacestream')
+const server = require('http').createServer(app)
+const io = require('socket.io')(server)
+const getConfig = require('./config')
+const jade = require('jade').__express
 
-app.engine('jade', require('jade').__express);
-
-function getConf(cb) {
-  fs.readFile(__dirname + '/config.xml', function(err, data) {
-    if (err) throw err;
-    parser.parseString(data, function (err, data) {
-      if (err) throw err;
-      var conf = {
-        title: data.widget.name[0],
-        author: data.widget.author[0]._,
-        enviroment: data.widget.server[0].env[0],
-        host: data.widget.server[0].host[0],
-        port: data.widget.server[0].port[0],
-        gapi: data.widget.server[0].gapi[0],
-        ganalytics: data.widget.server[0].ganalytics[0],
-        html5Mode: true,
-        preUrl: '',
-        base: '/'
-      };
-      process.title = conf.title;
-      console.log(util.inspect(conf, false, null));
-      cb(conf);
-    });
-  });
-}
-function startWatch(){
-  watch = cp.exec('npm run watch',
-    function (error, stdout, stderr) {
-      console.log('watchout: ' + stdout);
-      console.log('watcherr: ' + stderr);
-      if (error !== null) {
-        console.log('watch exec error: ' + error);
-      }
-  });
-  watch.stdout.on('data', function (data) {
-    console.log('watchout: ' + data);
-  });
-}
-getConf(function(conf){
+function initServer(conf) {
+    app.engine('jade', jade);
     var srccss = __dirname + '/src/scss';
     var cordovajs = __dirname + '/platforms/browser/www/cordova.js';
     var cordovapluginsroot = __dirname + '/platforms/browser/www/plugins';
     var cordovaplugins = __dirname + '/platforms/browser/www/cordova_plugins.js';
-    var server = require('http').createServer(app);
 
     app.use('/scss', compileSass({
        root: srccss,
        sourceMap: true,
        sourceComments: true,
        watchFiles: true,
-       logToConsole: false
+       logToConsole: false,
+       io: io
     }));
     app.use('/cordova.js', express.static(cordovajs));
     app.use('/cordova_plugins.js', express.static(cordovaplugins));
     app.use('/plugins', express.static(cordovapluginsroot));
 
     if (conf.enviroment === 'dev') {
-       startWatch();
        var rootjs = __dirname + '/www/js';
        var rootcss = __dirname + '/www/css';
        var rootimg = __dirname + '/www/img';
@@ -91,6 +57,49 @@ getConf(function(conf){
        var root = __dirname + '/www';
        app.use(express.static(root));
     }
+}
+
+function start() {
+    //browserify-livereload
+    var b = this;
+    var outfile = arguments[0];
+    var conf = arguments[1];
+    initServer(conf);
+    if (conf.enviroment === 'dev') {
+        b.on('bundle', (stream) => {
+          //console.log('BUNDLE');
+          stream.on('end', reload)
+          function reload () {
+            //console.log('RELOAD');
+            fs.createReadStream(path.join(__dirname, 'socket.js'))
+              .pipe(replace(/PORT/g, conf.port))
+              .pipe(replace(/HOST/g, conf.host))
+              .pipe(concat(read))
+
+            function read (data) {
+              prepend(outfile, data, function (err) {
+                if (err) {
+                  throw err
+                }
+
+                io.emit('bundle')
+              })
+            }
+          }
+        })
+    }
+
     server.listen(conf.port);
-    console.log('server listening on port '+conf.port);
-});
+    console.log('server ['+conf.enviroment+'] ready on port '+conf.port);
+}
+
+module.exports = function (b, options) {
+  if (!b.argv && !options.outfile) {
+    throw new Error('outfile option must be specified if using the API directly')
+  }
+
+  var outfile = options.outfile || b.argv.outfile
+  var startBundle = start.bind(b, outfile);
+
+  getConfig(startBundle);
+}

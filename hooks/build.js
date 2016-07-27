@@ -7,7 +7,7 @@ var jade = require('jade'),
     util = require('util'),
     xml2js = require('xml2js'),
     parser = new xml2js.Parser(),
-    sass = require('node-sass'),
+    sass = require('node-sass-evergreen'),
     exec = require('child_process').exec;
 
 function readConf(platform, cb){
