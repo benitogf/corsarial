@@ -36,22 +36,18 @@
                 ]
             },
           ],
-          selectSection: function(section) {
-            self.openedSection = section;
+          toggleOpenSection: function(section) {
+            self.openSection = (self.openSection === section ? null : section);
           },
-          toggleSelectSection: function(section) {
-            self.openedSection = (self.openedSection === section ? null : section);
+          isSectionOpen: function(section) {
+            return self.openSection === section;
           },
-          isSectionSelected: function(section) {
-            return self.openedSection === section;
-          },
-
           selectPage: function(section, page) {
-            self.currentSection = section;
-            self.currentPage = page;
+            self.openSection = section;
+            self.selectedPage = page;
           },
           isPageSelected: function(page) {
-            return self.currentPage === page;
+            return self.selectedPage === page;
           }
       }
       return self;

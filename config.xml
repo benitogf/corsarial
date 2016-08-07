@@ -4,7 +4,6 @@
   <server>
     <host>localhost</host>
     <port>9000</port>
-    <env>dev</env>
     <gapi>gapi</gapi>
     <ganalytics>ganalytics</ganalytics>
   </server>

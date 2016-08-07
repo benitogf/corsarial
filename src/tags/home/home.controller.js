@@ -4,7 +4,7 @@
     .controller('HomeController', HomeController);
 
     function HomeController($scope, $log) {
-        console.log('home');
+        $log.info('home');
     }
 
 })();

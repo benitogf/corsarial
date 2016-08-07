@@ -11,7 +11,6 @@
         link: function($scope, $element) {
           $scope.isOpen = function() {
             return $scope.methods.isOpen($scope.section);
-            //return false;
           };
           $scope.toggle = function() {
             $scope.methods.toggleOpen($scope.section);

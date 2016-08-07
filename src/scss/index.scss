@@ -1,6 +1,6 @@
 $text-color: rgb(0,0,0);
 $back-color: rgb(255,255,255);
-$highlight-color: rgb(183,28,28);
+$highlight-color: rgb(33,33,33);
 //settings respond-to
 $break-small: 420px;
 $break-medium: 740px;
@@ -10,6 +10,7 @@ $break-xlarge: 1200px;
 @import 'mixins';
 @import './node_modules/angular-material/angular-material.scss';
 @import './lib/md-data-grid/md-data-grid';
+@import './lib/md-d3-graph/md-d3-graph';
 @import 'nav-menu';
 
 @include scrollbar(.5em, $highlight-color);
@@ -36,7 +37,6 @@ md-fab-toolbar md-toolbar .md-toolbar-tools {
 md-backdrop, md-sidenav {
   position: fixed;
 }
-
 .loading-cont {
   position: absolute;
   top: 0;

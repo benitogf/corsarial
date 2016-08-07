@@ -1,0 +1,38 @@
+md-d3-graph {
+    md-content {
+        overflow: hidden;
+    }
+    .graph {
+        -webkit-transform: perspective(400px) rotateX(45deg);
+        -webkit-transform-style: preserve-3d;
+         animation: flop 60s ease-in-out alternate infinite;
+        g .line{
+           fill: none;
+           stroke: #000;
+           stroke-width: 5px;
+           stroke-dasharray: 2000;
+           stroke-dashoffset: 2000;
+           animation: draw 3s linear alternate infinite;
+        }
+
+
+        @keyframes draw {
+          50% {
+            stroke-dashoffset: 0;
+            stroke-width: 3px;
+          }
+        }
+        @keyframes flop {
+            50% {
+              -webkit-transform: perspective(400px) rotateX(-180deg);
+            }
+            20% {
+              -webkit-transform: perspective(400px) rotateY(-180deg);
+            }
+            0% {
+              -webkit-transform: perspective(400px) rotateZ(-180deg);
+            }
+        }
+
+    }
+}

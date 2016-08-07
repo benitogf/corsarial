@@ -10,11 +10,12 @@ html(xmlns='http://www.w3.org/1999/xhtml')
     meta(name='description', content='')
     meta(name='keywords', content='')
     meta(name='Resource-type', content='Document')
+    link(rel="shortcut icon" href="img/logo.png") 
     if enviroment == 'dev' && html5Mode == true
        link(rel='stylesheet', type='text/css', href='scss/index.scss')
     else
        link(rel='stylesheet', type='text/css', href='css/index.css')
-    if enviroment == 'prod' && ganalytics != 'ganalytics'
+    if enviroment !== 'dev' && ganalytics != 'ganalytics'
       script.
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -34,12 +35,12 @@ html(xmlns='http://www.w3.org/1999/xhtml')
             h1.md-toolbar-tools #{title}    
           md-content(layout-padding='', ng-controller='NavLeft' flex role='navigation')
             ul(class='nav-menu')
-              li(ng-repeat="section in nav.sections" class="parent-list-item {{section.className || ''}}" ng-class="{'parentActive' : isSectionSelected(section)}")
+              li(ng-repeat="section in nav.sections" class="parent-list-item {{section.className || ''}}" ng-class="{'parentActive' : isSectionOpen(section)}")
                 h2(class="menu-heading md-subhead" ng-if="section.type === 'heading'" id="heading_{{ section.name }}") {{section.name}}
                 nav-link(section="section" ng-if="section.type === 'link'")
                 nav-toggle(section="section" methods="navMethods" ng-if="section.type === 'toggle'")
                 ul(ng-if="section.children" class="menu-nested-list")
-                  li(ng-repeat="child in section.children" ng-class="{'childActive' : isSectionSelected(child)}")
+                  li(ng-repeat="child in section.children" ng-class="{'childActive' : isSectionOpen(child)}")
                     nav-link(section="child" ng-if="child.type === 'link'")
                     nav-toggle(section="child" methods="navMethods" ng-if="child.type === 'toggle'")
         md-toolbar
@@ -66,7 +67,7 @@ html(xmlns='http://www.w3.org/1999/xhtml')
       md-content(flex='')
         div(layout='column', layout-fill='', layout-align='top center' ng-view)
     script(src="cordova.js")
-    if enviroment == 'prod'
+    if enviroment !== 'dev'
        script(src='js/index.min.js')
     else
        script(src='js/index.bundle.js')

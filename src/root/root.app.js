@@ -15,7 +15,7 @@ module.exports = {
       $timeout(function(){
          app.hideLoader();
          delay.resolve();
-      }, 1000);
+     }, 1000);
       return delay.promise;
     },
     errorConfirm: function () {

@@ -1,28 +1,36 @@
 'use strict';
 
-const cp = require('child_process')
+const exec = require('child_process').exec
 const getConfig = require('./config')
+const chalk = require('chalk');
 
 function startWatch() {
-  var watch = cp.exec('npm run watch',
-    function (error, stdout, stderr) {
-      console.log('watchout: ' + stdout);
-      console.log('watcherr: ' + stderr);
-      if (error !== null) {
-        console.log('watch exec error: ' + error);
-      }
+  var watch = exec('npm run watch');
+  watch.on('error', (err) => {
+    console.log(err);
   });
-  watch.stdout.on('data', function (data) {
-    console.log('watchout: ' + data);
+  watch.stdout.on('data', (data) => {
+    if ((data.indexOf('reading') !== -1) ||
+        (data.indexOf('ready on') !== -1)) {
+       console.log(chalk.blue(data));
+   } else {
+       if (data.indexOf('watch') !== -1) {
+           console.log(chalk.yellow(data));
+       } else {
+           console.log(chalk.green(data));
+       }
+   }
+  });
+  watch.stderr.on('data', (error) => {
+      console.log(chalk.red(error));
   });
 }
 
-function redirect(config) {
-    if (config.enviroment === 'dev') {
-        startWatch();
-    } else {
+function start() {
+    if (process.argv.slice(2)[0] === 'browser') {
         require('./server')();
+    } else {
+        startWatch();
     }
 }
-
-getConfig(redirect, true);
+start();

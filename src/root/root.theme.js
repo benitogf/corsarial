@@ -8,7 +8,7 @@ require('../../lib/svg-assets-cache');
     ])
     .config(function($mdThemingProvider) {
       $mdThemingProvider.theme('default')
-        .primaryPalette('red', {
+        .primaryPalette('grey', {
           'default': '900'
         });
     })

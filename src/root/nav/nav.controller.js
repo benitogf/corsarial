@@ -1,7 +1,7 @@
 (function() {
 
     angular.module('app.root.nav.controller',[])
-    .controller('NavController', function ($scope, $timeout, $mdSidenav, $log) {
+    .controller('NavController', function ($scope, $mdSidenav) {
       $scope.toggleLeft = buildToggler('left');
       $scope.toggleRight = buildToggler('right');
 
