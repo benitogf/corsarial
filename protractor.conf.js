@@ -1,5 +1,4 @@
 exports.config = {
-  seleniumPort: 4444,
 
   framework: 'mocha',
 
@@ -8,7 +7,7 @@ exports.config = {
   ],
 
   capabilities: {
-    'browserName': 'chrome',
+    'browserName': 'firefox',
   },
 
   directConnect: true,
