@@ -36,6 +36,6 @@ window.mocha = require('mocha');
 global.expect = chai.expect;
 global.beforeEach = window.beforeEach = window.mocha.beforeEach;
 global.afterEach = window.afterEach = window.mocha.afterEach;
-require('../www/js/index.min.js');
+require('../www/js/index.bundle.js');
 require('angular-mocks/angular-mocks');
 require('./specs/nav.service.spec.js');
