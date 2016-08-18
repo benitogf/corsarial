@@ -1,11 +1,12 @@
 md-d3-graph {
+    padding: 0 !important;
     md-content {
         overflow: hidden;
     }
     .graph {
-        -webkit-transform: perspective(400px) rotateX(45deg);
-        -webkit-transform-style: preserve-3d;
-         animation: flop 60s ease-in-out alternate infinite;
+        transform: perspective(400px) rotateX(45deg);
+        transform-style: preserve-3d;
+        animation: flop 60s ease-in-out alternate infinite;
         g .line{
            fill: none;
            stroke: #000;
@@ -24,13 +25,13 @@ md-d3-graph {
         }
         @keyframes flop {
             50% {
-              -webkit-transform: perspective(400px) rotateX(-180deg);
+              transform: perspective(400px) rotateX(-180deg);
             }
             20% {
-              -webkit-transform: perspective(400px) rotateY(-180deg);
+              transform: perspective(400px) rotateY(-180deg);
             }
             0% {
-              -webkit-transform: perspective(400px) rotateZ(-180deg);
+              transform: perspective(400px) rotateZ(-180deg);
             }
         }
 

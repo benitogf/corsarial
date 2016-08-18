@@ -1,4 +1,4 @@
-<md-content flex>
+<md-content>
     <md-content
         ng-if="vm.options.withSearch"
         layout="row"
@@ -17,10 +17,10 @@
         <md-input-container>
             <md-select ng-model="vm.sortOrder" aria-label="Sort order">
                 <md-option value="ASC">
-                    <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
+                    <md-icon md-svg-icon="img/icons/up-arrow.svg"></md-icon>
                 </md-option>
-                <md-option value="DSC" class="dsc-arrow">
-                    <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
+                <md-option value="DSC">
+                    <md-icon md-svg-icon="img/icons/down-arrow.svg"></md-icon>
                 </md-option>
             </md-select>
         </md-input-container>
@@ -36,12 +36,12 @@
               md-items="item in querySearch(searchText)"
               md-item-text="item[vm.options.shownFields.title]"
               md-min-length="2"
-              placeholder="Search items">
+              placeholder="{{'GRID.SEARCH_ITEMS' | translate}}">
               <md-item-template>
                 <span md-highlight-text="searchText" md-highlight-flags="^i">{{(vm.filterField) ? item[vm.options.shownFields.title] + ' - ' + item[vm.filterField] : item[vm.options.shownFields.title]}}</span>
               </md-item-template>
               <md-not-found>
-                <a ng-click="newItem(searchText)">No items matching "{{searchText}}" were found. Create a new one!</a>
+                <a ng-click="newItem(searchText)" translate translate-value-search="{{searchText}}">GRID.NO_ITEMS_FOUND</a>
               </md-not-found>
         </md-autocomplete>
     </md-content>
@@ -58,17 +58,18 @@
               ng-click="toggleAll()"
               style="margin-bottom: 0"
               class="md-primary">
-            <span ng-if="isChecked()">Un-</span>Select All
+            <span ng-if="isChecked()" translate>GRID.UNSELECT_ALL</span>
+            <span ng-if="!isChecked()" translate>GRID.SELECT_ALL</span>
           </md-checkbox>
         </md-input-container>
-        <md-button aria-label="Delete">Delete ({{vm.selected.length}})</md-button>
+        <md-button aria-label="Delete"><span translate>COMMON.DELETE</span> ({{vm.selected.length}})</md-button>
     </md-content>
     <md-list>
         <md-list-item
             ng-if="!vm.items || vm.items.length === 0"
             flex
             layout-padding>
-            <span>No data loaded</span>
+            <span translate>GRID.NO_DATA_FOUND</span>
         </md-list-item>
         <md-list-item
             ng-repeat="item in vm.items"
@@ -102,16 +103,16 @@
               </md-button>
               <md-menu-content width="4">
                 <md-menu-item>
-                  <md-button ng-click="rowClick(item)">
-                    Edit
+                  <md-button ng-click="editItem(item)">
+                    <spam translate>COMMON.EDIT</span>
                   </md-button>
                 </md-menu-item>
-                <md-menu-divider></md-menu-divider>
+                <!-- <md-menu-divider></md-menu-divider>
                 <md-menu-item>
                   <md-button>
-                    details
+                    <span translate>COMMON.DETAILS</span>
                   </md-button>
-                </md-menu-item>
+                </md-menu-item> -->
               </md-menu-content>
             </md-menu>
         </md-list-item>

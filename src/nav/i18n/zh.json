@@ -1,0 +1,15 @@
+{
+    "NAV": {
+        "NOTES": {
+            "NOTES": "笔记",
+            "NEW": "新",
+            "SEARCH": "搜索"
+        },
+        "OPTIONS": "选项",
+        "PREFERENCES": {
+            "PREFERENCES": "优先",
+            "LANGUAGE": "语言"
+        },
+        "NOTIFICATIONS": "通知"
+    }
+}

@@ -2,15 +2,17 @@ $text-color: rgb(0,0,0);
 $back-color: rgb(255,255,255);
 $highlight-color: rgb(33,33,33);
 //settings respond-to
-$break-small: 420px;
+$break-small: 430px;
 $break-medium: 740px;
-$break-large: 944px;
+$break-large: 960px;
 $break-xlarge: 1200px;
 
 @import 'mixins';
 @import './node_modules/angular-material/angular-material.scss';
 @import './lib/md-data-grid/md-data-grid';
 @import './lib/md-d3-graph/md-d3-graph';
+@import './src/root/loader/loader';
+@import './src/tags/notes/notes';
 @import 'nav-menu';
 
 @include scrollbar(.5em, $highlight-color);
@@ -25,10 +27,37 @@ md-fab-trigger {
 }
 md-toolbar {
     padding: 0px !important;
+    .md-toolbar-tools .error-msg {
+        font-size: 0.9em;
+    }
+    &.main-toolbar {
+        background: inherit;
+        md-icon {
+            width: 4em;
+            height: 5em;
+        }
+    }
+}
+md-nav {
+    height: inherit;
+    width: inherit;
+}
+.content {
+    margin: 0 auto;
+    @include respond-to(wide-screens) {
+        max-width: $break-large;
+    }
+    @include respond-to(xwide-screens) {
+        max-width: $break-xlarge;
+    }
+}
+.btn-text-low {
+    text-transform: none;
+    font-size: 0.9em;
 }
 md-fab-toolbar md-toolbar .md-toolbar-tools {
   padding: 0 0;
-  @include respond-to(handhelds) { margin-top: 10px; }
+  @include respond-to(handhelds) { margin-top: 3px; }
   @include respond-to(small-screens) { margin-top: 10px; }
   @include respond-to(medium-screens) { margin-top: 10px; }
   @include respond-to(wide-screens) { margin-top: 3px; }
@@ -37,28 +66,9 @@ md-fab-toolbar md-toolbar .md-toolbar-tools {
 md-backdrop, md-sidenav {
   position: fixed;
 }
-.loading-cont {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background:rgba(255, 255, 255, 1);
-  overflow: hidden;
-  z-index: 61;
-}
-.loading {
-  height: inherit;
-}
-.menuLogo {
-  height: inherit;
-  display: inline-block;
-}
+
 .content-ext {
   width: inherit;
-}
-.text-frame p {
-    text-align: justify;
 }
 .video-ext {
   width: -moz-available;

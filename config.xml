@@ -7,8 +7,8 @@
     <gapi>gapi</gapi>
     <ganalytics>ganalytics</ganalytics>
   </server>
-  <description>A sample Apache Cordova application.</description>
-  <author email="dev@cordova.apache.org" href="http://cordova.io">Apache Cordova Team</author>
+  <description>Cordova app sample with angular material.</description>
+  <author email="benitogf@outlook.com" href="http://cordova.io">Benito G F</author>
   <hook type="before_build" src="hooks/build.js" />
   <hook type="before_run" src="hooks/build.js" />
   <content src="index.html" />

@@ -1,0 +1,10 @@
+{
+    "GRID": {
+        "GRID": "Data grid",
+        "SELECT_ALL": "Select All",
+        "UNSELECT_ALL": "Unselect All",
+        "SEARCH_ITEMS": "Search items",
+        "NO_ITEMS_FOUND": "No items matching \"{{search}}\" were found. Create a new one!",
+        "NO_DATA_FOUND": "There seems to be no data on this table, sorry about that"
+    }
+}

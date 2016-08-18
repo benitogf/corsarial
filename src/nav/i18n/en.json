@@ -1,0 +1,15 @@
+{
+    "NAV": {
+        "NOTES": {
+            "NOTES": "Notes",
+            "NEW": "New",
+            "SEARCH": "Search"
+        },
+        "OPTIONS": "Options",
+        "PREFERENCES": {
+            "PREFERENCES": "Preferences",
+            "LANGUAGE": "Language"
+        },
+        "NOTIFICATIONS": "Notifications"
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "NOTES": {
+        "NOTES": "Notes",
+        "NEW": "New note",
+        "EDIT": "Edit note",
+        "TITLE": {
+            "TITLE": "Title",
+            "MAX_LENGTH": "The title has to be less than 20 characters long.",
+            "REQUIRED": "A name or title is required.",
+            "HINT": "Give your note a name to search it later."
+        },
+        "CONTENT": "Content"
+    }
+}

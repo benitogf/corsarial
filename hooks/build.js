@@ -2,10 +2,9 @@
 
 'use strict';
 
-var jade = require('jade'),
+var pug = require('pug'),
     fs = require('fs'),
-    util = require('util'),
-    getConfig = require('../config'),
+    getConfig = require('../server/config'),
     sass = require('node-sass-evergreen'),
     exec = require('child_process').exec;
 
@@ -24,9 +23,9 @@ function buildSass(conf, Q){
    return deferral.promise;
 }
 
-function buildJade(conf, Q){
+function buildPug(conf, Q){
   var deferral = new Q.defer();
-  var render = jade.compileFile('src/index.jade');
+  var render = pug.compileFile('src/index.pug');
   var html = render(conf);
   fs.writeFile('www/index.html', html, function (err) {
         if (err) throw err;
@@ -38,7 +37,7 @@ function buildJade(conf, Q){
 
 function buildJs(Q){
   var deferral = new Q.defer();
-  var child = exec('npm run build');
+  var child = exec('npm run buildjs');
   child.on('close', function(){
     console.log('js');
     deferral.resolve();
@@ -47,21 +46,33 @@ function buildJs(Q){
 }
 
 module.exports = function(context) {
-    console.log('starting pre build for ' + context.opts.platforms[0] + ' platform');
     var Q = context.requireCordovaModule('q');
-    var platform = context.opts.platforms[0];
+    if (context.opts.options.config !== 'nw') {
+       var platform = context.opts.platforms[0];
+    } else {
+       var platform = 'nw';
+    }
+    console.log('starting pre build for ' + platform + ' platform');
     var deferral = new Q.defer();
     getConfig(function(conf){
+        conf.environment = platform;
         switch (platform) {
             case 'android':
                 conf.base = 'file:///android_asset/www/';
                 conf.preUrl = 'index.html#';
-                conf.html5Mode = false;
-                conf.enviroment = platform;    
+                conf.html5Mode = 'false';
                 break;
+            case 'browser':
+               conf.preUrl = '';
+               conf.html5Mode = 'true';
+               break;
+            case 'nw':
+               conf.preUrl = 'index.html#';
+               conf.html5Mode = 'false';
+               break;
         }
         Q.all([
-            buildJade(conf, Q),
+            buildPug(conf, Q),
             buildSass(conf, Q),
             buildJs(Q)
           ]).then(function(){

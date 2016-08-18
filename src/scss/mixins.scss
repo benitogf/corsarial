@@ -60,13 +60,14 @@
     -ms-user-select: none;
     user-select: none;
 }
+
 //http://thesassway.com/intermediate/responsive-web-design-in-sass-using-media-queries-in-sass-32
 @mixin respond-to($media) {
   @if $media == handhelds {
     @media only screen and (max-width: $break-small) { @content; }
   }
   @else if $media == small-screens {
-    @media only screen and (min-width: $break-small + 1) and (max-width: $break-medium - 1) { @content; }
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-medium) { @content; }
   }
   @else if $media == medium-screens {
     @media only screen and (min-width: $break-medium + 1) and (max-width: $break-large - 1) { @content; }

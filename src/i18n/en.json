@@ -1,0 +1,14 @@
+{
+    "COMMON": {
+        "CANCEL": "Cancel",
+        "SAVE": "Save",
+        "CLOSE": "Close",
+        "DELETE": "Delete",
+        "EDIT": "Edit",
+        "DETAILS": "Details"
+    },
+    "LANGUAGES": {
+        "EN": "English",
+        "ZH": "Chinese"
+    }
+}

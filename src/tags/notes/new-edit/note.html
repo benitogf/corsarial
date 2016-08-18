@@ -1,0 +1,35 @@
+<md-content flex layout-fill layout-padding class="content">
+    <form name="noteForm" class="noteForm" novalidate>
+        <h2 translate>{{header}}</h2>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label translate>NOTES.TITLE</label>
+          <input md-maxlength="20"
+              tabindex="0"
+              name="title"
+              ng-model="note.title"
+              required/>
+          <div class="hint" ng-if="!noteForm.title.$dirty && !note.title" translate>NOTES.TITLE.HINT</div>
+          <div ng-messages="noteForm.title.$error" ng-if="noteForm.title.$dirty && noteForm.title.$error">
+            <div ng-if="noteForm.title.$error.required" ng-message="required" translate>NOTES.TITLE.REQUIRED</div>
+            <div ng-if="noteForm.title.$error['md-maxlength']" ng-message="md-maxlength" translate>NOTES.TITLE.MAX_LENGTH</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label translate>NOTES.CONTENT</label>
+          <textarea ng-model="note.content"
+              tabindex="1"
+              md-maxlength="150"
+              rows="5"
+              md-select-on-focus
+              required></textarea>
+        </md-input-container>
+        <div class="btn-container" layout="row" layout-align="end center">
+            <md-button ng-href="{{preUrl}}/notes" class="">
+                <span translate>COMMON.CANCEL</span>
+            </md-button>
+            <md-button class="md-raised md-primary">
+                <span translate>COMMON.SAVE</span>
+            </md-button>
+        </div>
+    </form>
+</md-content>

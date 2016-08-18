@@ -1,50 +1,110 @@
 # Corsarial
 
-`Cor`dova `s`ample `a`ngular mate`rial`
-
-## Requirements
-
-Install [cordova](http://cordova.apache.org/)
-
-```bash
-npm install -g cordova
-```
+[Cor](http://cordova.apache.org/) `s`ample `a`ngular mate`rial`
 
 ## Installation
 
 ```bash
-git clone https://github.com/benitogf/corsarial.git
-cd corsarial
+git clone https://github.com/benitogf/corsarial.git <your app name>
+cd <your app name>
 npm install
-cordova platform add browser
-cordova build browser
+npm run platform browser
+npm run build browser
 ```
-## Start dev server
+
+## Configuration
+
+The config.xml file contains a server object where you can define host/port and GA params, you can also change the app name in there.
+
+## Dev server
 
 ```bash
 npm start
 ```
-Or click on the start.bat for windows, it will load unit tests on {host}:{port}/specs
+Or click on the start.bat for windows, will load unit tests on {host}:{port}/specs
 
-## Start static server
+## Static server
 
 ```bash
-cordova build browser
+npm run build browser
 npm run server
 ```
 
-## Test
+## unit test
+
+After having used the dev server (it doesn't need to be active)
 
 ```bash
-npm start
+npm run specs
 ```
 
-while dev server is running
+## e2e test
+
+while dev or static server is running
 
 ```bash
 npm test
 ```
 
-## nwjs
+## Android
 
-Some scripts to build for [nwjs](http://nwjs.io/) are included, be sure to change the path in those to your nw installation, and also to install/add to your path [7zip](http://www.7-zip.org/) for windows builds
+See Requirements [here](http://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#installing-the-requirements) after installing them:
+
+```bash
+npm run platform android
+```
+
+```bash
+npm run build android
+```
+
+This should generate an APK if all the requirements where properly installed.
+
+## [NWJS](http://nwjs.io/)
+
+```bash
+npm run buildnw
+```
+
+windows:
+
+create NW_HOME environment variable with the path to your nw installation
+install/add to your path [7zip](http://www.7-zip.org/)
+
+```bash
+nwbuild.bat
+```
+
+linux:
+
+```bash
+nwbuild.sh
+```
+
+## [Docker](https://docs.docker.com/)
+
+### Install locally
+
+Follow the installation and configuration steps to build the browser platform.
+
+### Build the image
+
+In the installation folder
+
+```bash
+docker build -t <your username>/<your app name> .
+```
+
+### Verify
+
+```bash
+docker images
+```
+
+### Run the image
+
+```bash
+docker run -p 9001:9000 -d <your username>/<your app name>
+```
+
+And the app should be running on port 9001

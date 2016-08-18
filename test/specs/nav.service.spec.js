@@ -1,9 +1,10 @@
 describe('Route navigator service', function() {
     var nav;
     beforeEach(function () {
-      angular.mock.module('app.root.nav.service');
+      angular.mock.module('nav.service', mockUtils.translateProvider);
+      angular.mock.module('nav.service');
       angular.mock.inject(function ($injector) {
-        nav = $injector.get('nav');
+        nav = $injector.get('NavService');
       });
     });
     it('should select page and check page selected', function () {

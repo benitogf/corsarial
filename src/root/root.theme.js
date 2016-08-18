@@ -2,7 +2,7 @@ require('../../lib/svg-assets-cache');
 
 (function() {
 
-    angular.module('app.root.theme',[
+    angular.module('app.theme',[
         'ngMaterial',
         'material.svgAssetsCache'
     ])

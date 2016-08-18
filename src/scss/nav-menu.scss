@@ -64,12 +64,12 @@ body[dir=rtl] .nav-menu .md-button {
 }
 
 
-// .nav-menu .md-button:hover,
-// .nav-menu .md-button:focus {
-//   background: #267ED5 !important;
-// }
+.nav-menu .md-button.active:hover,
+.nav-menu .md-button.active:focus {
+    background: $highlight-color !important;
+}
 .nav-menu .md-button md-icon {
-  color: $highlight-color;
+    color: $highlight-color;
 }
 
 .nav-menu md-select {
@@ -100,7 +100,7 @@ body[dir=rtl] .nav-menu .md-button {
 }
 .nav-menu .md-button.active {
   background: $highlight-color;
-  color: white;
+  color: white !important;
 }
 .menu-heading {
   display: block;

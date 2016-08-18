@@ -1,14 +1,32 @@
 'use strict';
 
-var $ = window.jQuery = window.$ = require('jquery');
-var _ =  window._ = require('lodash');
-var moment =  window.moment = require('moment');
-var d3 = window.d3 = require('d3');
 
-var angular = window.angular = require('angular');
+window.jQuery = window.$ = require('jquery');
+window._ = require('lodash');
+window.moment = require('moment');
+window.d3 = require('d3');
+window.angular = require('angular');
+window.utils = require('./root/root.utils');
+
 require('angular-aria');
 require('angular-animate');
+require('angular-cookies');
 require('angular-material');
+require('angular-translate');
+require('angular-translate-storage-cookie');
+require('angular-translate-storage-local');
 require('./root/root.module');
-var app = window.app = require('./root/root.app');
-angular.module('app', ['app.root']);
+require('./tags/tags.module');
+
+(function() {
+
+    angular.module('app', [
+        'app.root',
+        'app.tags'
+        ]).
+        config(function ($compileProvider) {
+            // required for nwjs, android protocols
+            $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|http|file|chrome-extension):/);
+        });
+
+})();

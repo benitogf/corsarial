@@ -3,7 +3,7 @@ npm-debug.log
 platforms/*
 plugins/*
 www/index.html
-www/js/*
+www/js/*.js
 www/css/index.css
 .vs/*
 bld/*
@@ -14,3 +14,4 @@ taco.json
 *.sln
 info.txt
 !.gitkeep
+! www/js

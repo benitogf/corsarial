@@ -1,0 +1,14 @@
+{
+    "COMMON": {
+        "CANCEL": "取消",
+        "SAVE": "保存",
+        "CLOSE": "关",
+        "DELETE": "删除",
+        "EDIT": "编辑",
+        "DETAILS": "编辑"
+    },
+    "LANGUAGES": {
+        "EN": "英语",
+        "ZH": "中文"
+    }
+}
