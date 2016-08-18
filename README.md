@@ -1,5 +1,7 @@
 # Corsarial
 
+[![Build Status](https://img.shields.io/travis/benitogf/corsarial/master.svg?style=flat-square)](https://travis-ci.org/benitogf/corsarial)
+
 [Cor](http://cordova.apache.org/) `s`ample `a`ngular mate`rial`
 
 ## Installation
