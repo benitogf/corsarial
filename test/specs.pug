@@ -35,8 +35,10 @@ html(xmlns='http://www.w3.org/1999/xhtml')
     script(src="node_modules/chai-as-promised/lib/chai-as-promised.js")
     script(src="cordova.js")
     script(src='js/index.bundle.js')
-    script(src='tests/setup.js')
+    script(src='test/specs/utils.js')
+    script(src='test/specs/setup.js')
     script(src="node_modules/angular-mocks/angular-mocks.js")
-    script(src='tests/nav.service.spec.js')
+    /* Specs have to be added manually */
+    script(src='test/specs/nav.service.spec.js')
     script(type="text/javascript").
         mocha.run();

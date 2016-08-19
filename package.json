@@ -14,6 +14,7 @@
   "scripts": {
     "specs": "mocha",
     "buildjs": "browserify -t stringify -t require-globify ./src/index.js | uglifyjs > ./www/js/index.min.js",
+    "buildtest": "browserify -t stringify -t require-globify ./src/index.test.js > ./www/js/index.test.js",
     "buildnw": "cordova build browser --config=nw",
     "build": "cordova build",
     "platform": "cordova platform add",

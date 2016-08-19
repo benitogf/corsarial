@@ -32,7 +32,7 @@ function initServer(conf, log) {
         img: cwd + '/www/img',
         video: cwd + '/www/video',
         node_modules: cwd + '/node_modules',
-        specs: cwd + '/test/specs',
+        test: cwd + '/test',
     };
 
     app.use('/scss', require('./sass')({
@@ -49,7 +49,7 @@ function initServer(conf, log) {
     app.use('/img', express.static(dir.img));
     app.use('/video', express.static(dir.video));
     app.use('/node_modules', express.static(dir.node_modules));
-    app.use('/tests', express.static(dir.specs));
+    app.use('/test', express.static(dir.test));
     app.get('/specs', function(req, res, next){
         res.render(cwd +'/test/specs.pug', conf, function(err, html){
             if (err) {
