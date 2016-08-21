@@ -1,20 +1,10 @@
 module.exports = {
-    hideLoader: function() {
-      $('#content').css('opacity', '1');
-      $('header').css('opacity', '1');
-      $('#loading').css('display', 'none');
-    },
-    showLoader: function() {
-      $('#content').css('opacity', '0');
-      $('header').css('opacity', '0');
-      $('#loading').css('display', 'block');
-    },
-    delayLoad: function($q, $timeout, $mdSidenav) {
+    delayLoad: function($rootScope, $q, $timeout, $mdSidenav) {
       var delay = $q.defer();
-      utils.showLoader();
+      $rootScope.loading = true;
       $timeout(function(){
-          $mdSidenav('left').close().then(function () {
-              utils.hideLoader();
+          $q.all([$mdSidenav('right').close(), $mdSidenav('left').close()]).then(function () {
+              $rootScope.loading = false;
               delay.resolve();
           });
       }, 1000);

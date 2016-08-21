@@ -3,12 +3,16 @@
         "NOTES": "笔记",
         "NEW": "新的 笔记",
         "EDIT": "编辑 笔记",
-        "TITLE": {
-            "TITLE": "标题",
+        "NAME": {
+            "NAME": "标题",
             "MAX_LENGTH": "标题必须少于20个字符。",
             "REQUIRED": "需要名称或标题。",
             "HINT": "给你记录一个名字以后搜索。"
         },
-        "CONTENT": "内容"            
+        "CONTENT": {
+            "CONTENT": "内容",
+            "REQUIRED": "笔记的内容不能为空。",
+            "MAX_LENGTH": "注释内容被限制为 150 个字符。"
+        }
     }
 }

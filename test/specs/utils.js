@@ -16,6 +16,5 @@ function translateProvider($provide) {
 if (typeof module !== 'undefined') {
     module.exports = utils;
 } else {
-    console.log(utils);
     window.mockUtils = utils;
 }

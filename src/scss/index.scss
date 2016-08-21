@@ -27,9 +27,6 @@ md-fab-trigger {
 }
 md-toolbar {
     padding: 0px !important;
-    .md-toolbar-tools .error-msg {
-        font-size: 0.9em;
-    }
     &.main-toolbar {
         background: inherit;
         md-icon {
@@ -37,6 +34,10 @@ md-toolbar {
             height: 5em;
         }
     }
+}
+.error-msg {
+    font-size: 0.9em;
+    line-height: 2.8em;
 }
 md-nav {
     height: inherit;
@@ -54,6 +55,11 @@ md-nav {
 .btn-text-low {
     text-transform: none;
     font-size: 0.9em;
+    margin: 0;
+}
+.video-ext {
+  width: -moz-available;
+  width: -webkit-fill-available;
 }
 md-fab-toolbar md-toolbar .md-toolbar-tools {
   padding: 0 0;
@@ -65,12 +71,4 @@ md-fab-toolbar md-toolbar .md-toolbar-tools {
 }
 md-backdrop, md-sidenav {
   position: fixed;
-}
-
-.content-ext {
-  width: inherit;
-}
-.video-ext {
-  width: -moz-available;
-  width: -webkit-fill-available;
 }

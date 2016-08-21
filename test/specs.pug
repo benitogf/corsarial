@@ -38,7 +38,7 @@ html(xmlns='http://www.w3.org/1999/xhtml')
     script(src='test/specs/utils.js')
     script(src='test/specs/setup.js')
     script(src="node_modules/angular-mocks/angular-mocks.js")
-    /* Specs have to be added manually */
-    script(src='test/specs/nav.service.spec.js')
+    each spec in specs
+      != '<script src="test/specs/'+spec+'"></script>'
     script(type="text/javascript").
         mocha.run();

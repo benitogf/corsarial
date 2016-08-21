@@ -15,6 +15,7 @@ const replace = require('replacestream')
 const gaze = require('gaze')
 const compression = require('compression')
 const io = require('socket.io')(server)
+const shell = require('shelljs')
 
 function initServer(conf, log) {
 
@@ -51,6 +52,7 @@ function initServer(conf, log) {
     app.use('/node_modules', express.static(dir.node_modules));
     app.use('/test', express.static(dir.test));
     app.get('/specs', function(req, res, next){
+        conf.specs = listSpecs();
         res.render(cwd +'/test/specs.pug', conf, function(err, html){
             if (err) {
               log.warn(err);
@@ -80,10 +82,17 @@ function testWatch(log) {
         if (err) {
            log.warn(err);
         }
-        watcher.on('all', (event, filepath) => {
+        watcher.on('all', function(event, filepath) {
            io.emit('bundle');
         });
     });
+}
+
+function listSpecs(){
+  var tags = shell.ls(cwd + '/test/specs');
+  tags.splice(tags.indexOf('setup.js'), 1);
+  tags.splice(tags.indexOf('utils.js'), 1);
+  return tags;
 }
 
 function configLog(name) {

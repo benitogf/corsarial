@@ -1,37 +1,27 @@
 md-d3-graph {
+    width: inherit;
+    height: inherit;
     padding: 0 !important;
     md-content {
         overflow: hidden;
     }
     .graph {
-        transform: perspective(400px) rotateX(45deg);
-        transform-style: preserve-3d;
-        animation: flop 60s ease-in-out alternate infinite;
-        g .line{
-           fill: none;
-           stroke: #000;
-           stroke-width: 5px;
-           stroke-dasharray: 2000;
-           stroke-dashoffset: 2000;
-           animation: draw 3s linear alternate infinite;
-        }
-
-
-        @keyframes draw {
-          50% {
-            stroke-dashoffset: 0;
-            stroke-width: 3px;
-          }
-        }
+        // transform: perspective(0px) rotateX(0deg);
+        // transform-style: preserve-3d;
+        // animation: flop 60s ease-in-out alternate infinite;
+        position: fixed;
         @keyframes flop {
-            50% {
-              transform: perspective(400px) rotateX(-180deg);
+            25% {
+              transform: perspective(400px) rotateY(-15deg);
             }
-            20% {
-              transform: perspective(400px) rotateY(-180deg);
+            75% {
+              transform: perspective(400px) rotateY(15deg);
+            }
+            50% {
+              transform: perspective(0px) rotateY(0deg);
             }
             0% {
-              transform: perspective(400px) rotateZ(-180deg);
+              transform: perspective(0px) rotateY(0deg);
             }
         }
 
