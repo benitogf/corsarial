@@ -1,0 +1,35 @@
+<md-toolbar>
+    <div class="md-toolbar-tools"
+        md-swipe-left="show('right')"
+        md-swipe-right="show('left')">
+        <md-button ng-click="toggleLeft()"
+            hide-gt-md
+            aria-label="Menu"
+            class="md-icon-button">
+            <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+        </md-button>
+        <span flex=""></span>
+        <md-fab-toolbar count="2"
+            md-direction="left">
+            <md-fab-trigger>
+              <md-button aria-label="User" class="md-icon-button">
+                <md-icon md-svg-src="img/icons/more.svg"></md-icon>
+              </md-button>
+            </md-fab-trigger>
+            <md-toolbar>
+                <md-fab-actions class="md-toolbar-tools">
+                    <md-button ng-click="toggleRight('preferences')"
+                        aria-label="comment"
+                        class="md-icon-button">
+                        <md-icon md-svg-src="img/icons/wrench.svg"></md-icon>
+                    </md-button>
+                    <md-button ng-click="toggleRight('notifications')"
+                        aria-label="More"
+                        class="md-icon-button">
+                        <md-icon md-svg-icon="img/icons/message.svg"></md-icon>
+                    </md-button>
+                </md-fab-actions>
+            </md-toolbar>
+        </md-fab-toolbar>
+    </div>
+</md-toolbar>

@@ -1,0 +1,26 @@
+<md-content layout-padding="">
+    <section ng-if="(leftSection === 'preferences')">
+        <md-input-container class="md-block">
+            <label translate>NAV.PREFERENCES.LANGUAGE</label>
+            <md-select ng-model="vm.selectedLang" aria-label="Filter field">
+                <md-option
+                    ng-repeat="language in vm.languages"
+                    ng-value="language">{{ 'LANGUAGES.'+language | translate }}</md-option>
+            </md-select>
+        </md-input-container>
+    </section>
+    <section layout="row"
+        layout-align="center stretch">
+        <md-button ng-click="vm.close()" ng-if="leftSection" aria-label="cancel">
+            <span ng-if="(leftSection === 'preferences')"
+                translate>COMMON.CANCEL</span>
+            <span ng-if="(leftSection === 'notifications')"
+                translate>COMMON.CLOSE</span>
+        </md-button>
+        <md-button ng-if="(leftSection === 'preferences')"
+            ng-click="vm.savePreferences()"
+            class="md-raised md-primary">
+            <span translate>COMMON.SAVE</span>
+        </md-button>
+    </section>
+</md-content>

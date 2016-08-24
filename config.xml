@@ -3,10 +3,14 @@
   <name>Corsarial</name>
   <server>
     <host>localhost</host>
+    <port>9000</port>      
+  </server>
+  <client>
+    <host>localhost</host>
     <port>9000</port>
     <gapi>gapi</gapi>
     <ganalytics>ganalytics</ganalytics>
-  </server>
+  </client>
   <description>Cordova app sample with angular material.</description>
   <author email="benitogf@outlook.com" href="http://cordova.io">Benito G F</author>
   <hook type="before_build" src="hooks/build.js" />

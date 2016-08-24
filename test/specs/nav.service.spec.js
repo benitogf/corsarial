@@ -1,8 +1,8 @@
 describe('Route navigator service', function() {
     var nav;
     beforeEach(function () {
-        angular.mock.module('nav.service', mockUtils.translateProvider);
-        angular.mock.module('nav.service');
+        angular.mock.module('app.nav', mockUtils.translateProvider);
+        angular.mock.module('app.nav');
         angular.mock.inject(function ($injector) {
           nav = $injector.get('NavService');
         });

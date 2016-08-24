@@ -73,15 +73,15 @@
         </md-list-item>
         <md-list-item
             ng-repeat="item in vm.items"
-            class="md-whiteframe-1dp">
+            class="md-whiteframe-1dp"
+            ng-click="toggle(item, vm.selected)">
             <md-checkbox
                 ng-if="vm.options.withSelector"
                 ng-checked="exists(item, vm.selected)"
-                ng-click="toggle(item, vm.selected)"
                 class="md-primary"
+                ng-click="toggle(item, vm.selected)"
                 aria-label="Select item"></md-checkbox>
-            <div
-                layout="row"
+            <div layout="row"
                 layout-xs="column"
                 layout-align-xs="space-between start"
                 layout-align="space-between center"
@@ -94,6 +94,7 @@
                 </div>
                 <div ng-if="vm.options.shownFields.corner">{{item[vm.options.shownFields.corner]}}</div>
             </div>
+            <!-- <md-icon class="md-secondary" ng-click="editItem(item)" aria-label="Edit" md-svg-icon="img/icons/launch.svg"></md-icon> -->
             <md-menu>
               <md-button
                   ng-click="$mdOpenMenu()"
@@ -101,18 +102,12 @@
                   aria-label="Open row interactions menu">
                   <md-icon md-svg-icon='img/icons/more_vert.svg'></md-icon>
               </md-button>
-              <md-menu-content width="4">
+              <md-menu-content width="2">
                 <md-menu-item>
                   <md-button ng-click="editItem(item)">
                     <spam translate>COMMON.EDIT</span>
                   </md-button>
                 </md-menu-item>
-                <!-- <md-menu-divider></md-menu-divider>
-                <md-menu-item>
-                  <md-button>
-                    <span translate>COMMON.DETAILS</span>
-                  </md-button>
-                </md-menu-item> -->
               </md-menu-content>
             </md-menu>
         </md-list-item>

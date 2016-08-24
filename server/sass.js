@@ -1,21 +1,22 @@
+'use strict';
+
 // express-compile-sass
-const crypto = require('crypto')
-const Path = require('path')
-const fs = require('fs')
-const util = require('util')
-const Gaze = require('gaze').Gaze
-const csserror = require('csserror')
-const sass = require('node-sass-evergreen')
-const inlineSourceMapComment = require('inline-source-map-comment')
+const crypto = require('crypto');
+const Path = require('path');
+const fs = require('fs');
+const Gaze = require('gaze').Gaze;
+const csserror = require('csserror');
+const sass = require('node-sass-evergreen');
+const inlineSourceMapComment = require('inline-source-map-comment');
 
 function compileSass(options) {
     options = options || {};
-    var etagmap = {};
-    var cache = {};
-    var fileUrl;
-    var sassFileMap = {};
-    var log = options.log;
-    var fileWatcher = new Gaze('', {
+    let etagmap = {};
+    let cache = {};
+    let fileUrl;
+    let sassFileMap = {};
+    let log = options.log;
+    let fileWatcher = new Gaze('', {
         debounceDelay: 1,
         cwd: options.root
     });
@@ -53,7 +54,6 @@ function compileSass(options) {
                 fs.utimes(mainFile, new Date(), new Date());
             });
         } else {
-            // FIXME: This always triggers to late when others are file watching
             log.info('SASS: '+ path + 'was updated, busting cache');
             bustCache(fileUrl);
         }
@@ -65,7 +65,7 @@ function compileSass(options) {
             return;
         }
 
-        var importsToWatch = [main];
+        let importsToWatch = [main];
 
         imports.forEach(function (path) {
             if (path !== main) {
@@ -102,7 +102,7 @@ function compileSass(options) {
         }
 
         function sassError(err) {
-            var errStr = 'express-compile-sass:\n  Syntax error in ' + req.originalUrl + ':' + err.line;
+            let errStr = 'express-compile-sass:\n  Syntax error in ' + req.originalUrl + ':' + err.line;
 
             if (typeof err.column === 'number') {
               errStr += ':' + err.column;
@@ -133,7 +133,7 @@ function compileSass(options) {
             } else {
                 // Compile sass
                 log.info('SASS: '+ 'Compiling sass file:' + fileUrl);
-                var start = Date.now();
+                let start = Date.now();
 
                 sass.render({
                     file: fileUrl,
@@ -150,17 +150,17 @@ function compileSass(options) {
 
                     log.info('SASS: '+ 'Compile time:', (Date.now() - start) + 'ms', fileUrl);
 
-                    var css = result.css.toString('utf8');
+                    let css = result.css.toString('utf8');
 
                     if (result.map) {
-                      var comment = inlineSourceMapComment(result.map.toString('utf8'), {
+                      let comment = inlineSourceMapComment(result.map.toString('utf8'), {
                         block: true
                       });
 
                       css += '\n' + comment + '\n';
                     }
 
-                    var etag = crypto.createHash('md5').update(css).digest('hex').substr(0, 16) + '-compile-sass';
+                    let etag = crypto.createHash('md5').update(css).digest('hex').substr(0, 16) + '-compile-sass';
 
                     res.setHeader('ETag', '"' + etag + '"');
                     res.end(css);

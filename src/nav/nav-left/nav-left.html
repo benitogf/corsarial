@@ -1,0 +1,27 @@
+<md-content layout-padding
+    role="navigation">
+    <ul class="nav-menu">
+      <li ng-repeat="section in nav.sections"
+          ng-class="{'parentActive' : isSectionOpen(section)}"
+          class="parent-list-item {{section.className || ''}}">
+          <h2 ng-if="section.type === 'heading'"
+              id="heading_{{ section.name }}"
+              class="menu-heading md-subhead"
+              translate>{{section.name}}</h2>
+          <nav-link section="section"
+              ng-if="section.type === 'link'"></nav-link>
+          <nav-toggle section="section"
+              ng-if="section.type === 'toggle'"></nav-toggle>
+          <ul ng-if="section.children"
+              class="menu-nested-list">
+              <li ng-repeat="child in section.children"
+                  ng-class="{'childActive' : isSectionOpen(child)}">
+                  <nav-link section="child"
+                      ng-if="child.type === 'link'"></nav-link>
+                  <nav-toggle section="child"
+                      ng-if="child.type === 'toggle'"></nav-toggle>
+              </li>
+          </ul>
+      </li>
+    </ul>
+</md-content>

@@ -13,6 +13,11 @@
             "CONTENT": "Content",
             "REQUIRED": "The content of the note cannot be empty.",
             "MAX_LENGTH": "Note content is limited to 150 characters."
+        },
+        "TAGS": {
+            "TAGS": "Tags",
+            "HINT": "Tags can be usefull to categorize your notes.",
+            "MAX_LENGTH": "Note tags are limited to 3 per note"
         }
     }
 }

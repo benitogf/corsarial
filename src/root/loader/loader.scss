@@ -11,12 +11,13 @@ md-loader {
     background:rgba(255, 255, 255, 1);
     overflow: hidden;
     z-index: 110;
+    md-icon {
+        width: 70px;
+        height: 70px;
+    }
     md-progress-circular {
-        top: calc(50% - 64px);
-        left: calc(50% - 64px);
+        top: calc(50% - 50px);
+        left: calc(50% - 50px);
         position: absolute;
     }
-}
-.loading {
-  height: inherit;
 }

@@ -11,9 +11,11 @@ $break-xlarge: 1200px;
 @import './node_modules/angular-material/angular-material.scss';
 @import './lib/md-data-grid/md-data-grid';
 @import './lib/md-d3-graph/md-d3-graph';
+@import 'material-helper';
 @import './src/root/loader/loader';
+@import './src/nav/nav';
+@import './src/tags/error/error';
 @import './src/tags/notes/notes';
-@import 'nav-menu';
 
 @include scrollbar(.5em, $highlight-color);
 
@@ -21,27 +23,6 @@ body{
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   color: $text-color;
   background-color: $back-color;
-}
-md-fab-trigger {
-  top: 0.6em;
-}
-md-toolbar {
-    padding: 0px !important;
-    &.main-toolbar {
-        background: inherit;
-        md-icon {
-            width: 4em;
-            height: 5em;
-        }
-    }
-}
-.error-msg {
-    font-size: 0.9em;
-    line-height: 2.8em;
-}
-md-nav {
-    height: inherit;
-    width: inherit;
 }
 .content {
     margin: 0 auto;
@@ -52,23 +33,7 @@ md-nav {
         max-width: $break-xlarge;
     }
 }
-.btn-text-low {
-    text-transform: none;
-    font-size: 0.9em;
-    margin: 0;
-}
 .video-ext {
   width: -moz-available;
   width: -webkit-fill-available;
-}
-md-fab-toolbar md-toolbar .md-toolbar-tools {
-  padding: 0 0;
-  @include respond-to(handhelds) { margin-top: 3px; }
-  @include respond-to(small-screens) { margin-top: 10px; }
-  @include respond-to(medium-screens) { margin-top: 10px; }
-  @include respond-to(wide-screens) { margin-top: 3px; }
-  @include respond-to(xwide-screens) { margin-top: 3px; }
-}
-md-backdrop, md-sidenav {
-  position: fixed;
 }

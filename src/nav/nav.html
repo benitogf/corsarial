@@ -1,7 +1,6 @@
 <md-sidenav md-component-id="left"
     class="site-sidenav md-sidenav-left md-whiteframe-z2"
     md-is-locked-open="$mdMedia('gt-md')"
-    md-disable-backdrop
     md-swipe-left="hide('left')"
     md-swipe-up="hide('left')">
     <md-toolbar class="main-toolbar">
@@ -9,34 +8,7 @@
           <md-icon md-svg-icon="img/icons/corsarial.svg"></md-icon>
       </h1>
     </md-toolbar>
-    <md-content ng-controller="NavLeft"
-        layout-padding
-        role="navigation">
-        <ul class="nav-menu">
-          <li ng-repeat="section in nav.sections"
-              ng-class="{'parentActive' : isSectionOpen(section)}"
-              class="parent-list-item {{section.className || ''}}">
-              <h2 ng-if="section.type === 'heading'"
-                  id="heading_{{ section.name }}"
-                  class="menu-heading md-subhead"
-                  translate>{{section.name}}</h2>
-              <nav-link section="section"
-                  ng-if="section.type === 'link'"></nav-link>
-              <nav-toggle section="section"
-                  ng-if="section.type === 'toggle'"></nav-toggle>
-              <ul ng-if="section.children"
-                  class="menu-nested-list">
-                  <li ng-repeat="child in section.children"
-                      ng-class="{'childActive' : isSectionOpen(child)}">
-                      <nav-link section="child"
-                          ng-if="child.type === 'link'"></nav-link>
-                      <nav-toggle section="child"
-                          ng-if="child.type === 'toggle'"></nav-toggle>
-                  </li>
-              </ul>
-          </li>
-        </ul>
-    </md-content>
+    <nav-left></nav-left>
 </md-sidenav>
 <md-sidenav md-component-id="right"
     class="md-sidenav-right md-whiteframe-z2"
@@ -45,70 +17,10 @@
     <md-toolbar class="md-theme-light">
         <h1 class="md-toolbar-tools" translate>{{header}}</h1>
     </md-toolbar>
-    <md-content ng-controller="NavRight"
-        layout-padding="">
-        <section ng-if="(leftSection === 'preferences')">
-            <md-input-container class="md-block">
-                <label translate>NAV.PREFERENCES.LANGUAGE</label>
-                <md-select ng-model="vm.selectedLang" aria-label="Filter field">
-                    <md-option
-                        ng-repeat="language in languages"
-                        ng-value="language">{{ 'LANGUAGES.'+language | translate }}</md-option>
-                </md-select>
-            </md-input-container>
-        </section>
-        <section layout="row"
-            layout-align="center stretch">
-            <md-button ng-click="vm.close()" ng-if="leftSection" aria-label="cancel">
-                <span ng-if="(leftSection === 'preferences')"
-                    translate>COMMON.CANCEL</span>
-                <span ng-if="(leftSection === 'notifications')"
-                    translate>COMMON.CLOSE</span>
-            </md-button>
-            <md-button ng-if="(leftSection === 'preferences')"
-                ng-click="vm.savePreferences()"
-                class="md-raised md-primary">
-                <span translate>COMMON.SAVE</span>
-            </md-button>
-        </section>
-    </md-content>
+    <nav-right></nav-right>
 </md-sidenav>
 <md-content layout-fill>
-    <md-toolbar>
-        <div class="md-toolbar-tools"
-            md-swipe-left="show('right')"
-            md-swipe-right="show('left')">
-            <md-button ng-click="toggleLeft()"
-                hide-gt-md
-                aria-label="Menu"
-                class="md-icon-button">
-                <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-            </md-button>
-            <span flex=""></span>
-            <md-fab-toolbar count="2"
-                md-direction="left">
-                <md-fab-trigger>
-                  <md-button aria-label="User" class="md-icon-button">
-                    <md-icon md-svg-src="img/icons/more.svg"></md-icon>
-                  </md-button>
-                </md-fab-trigger>
-                <md-toolbar>
-                    <md-fab-actions class="md-toolbar-tools">
-                        <md-button ng-click="toggleRight('preferences')"
-                            aria-label="comment"
-                            class="md-icon-button">
-                            <md-icon md-svg-src="img/icons/wrench.svg"></md-icon>
-                        </md-button>
-                        <md-button ng-click="toggleRight('notifications')"
-                            aria-label="More"
-                            class="md-icon-button">
-                            <md-icon md-svg-icon="img/icons/message.svg"></md-icon>
-                        </md-button>
-                    </md-fab-actions>
-                </md-toolbar>
-            </md-fab-toolbar>
-        </div>
-    </md-toolbar>
+    <nav-toolbar ></nav-toolbar>
     <div layout='column'
         layout-align='top center'
         ng-view></div>

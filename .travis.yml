@@ -6,8 +6,9 @@ install:
   - npm install
 
 script:
-  - npm test
+  - npm run hint
   - npm run specs
+  - npm test
 
 before_script:
   - "export DISPLAY=:99.0"
@@ -15,4 +16,4 @@ before_script:
   - sleep 3 # give xvfb some time to start
   - npm start &
   - sleep 3 # give Web server some time
-  - npm run buildspecs
+  - npm run build-specs

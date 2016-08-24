@@ -1,9 +1,8 @@
-(function() {
+'use strict';
 
-    angular.module('app.home',[])
+angular.module('app.home',[])
     .controller('HomeController', HomeController);
 
-    function HomeController($scope, $log) {
-    }
+function HomeController() {
 
-})();
+}

@@ -1,6 +1,6 @@
 # Corsarial
 
-[![Build Status](https://img.shields.io/travis/benitogf/corsarial/master.svg?style=flat-square)](https://travis-ci.org/benitogf/corsarial)
+[![Build Status](https://img.shields.io/travis/benitogf/corsarial/master.svg?style=flat-square)](https://travis-ci.org/benitogf/corsarial) [![Coverage Status](https://coveralls.io/repos/github/benitogf/corsarial/badge.svg?branch=master)](https://coveralls.io/github/benitogf/corsarial?branch=master)
 
 [Cor](http://cordova.apache.org/) `s`ample `a`ngular mate`rial`
 
@@ -65,7 +65,7 @@ This should generate an APK if all the requirements where properly installed.
 ## [NWJS](http://nwjs.io/)
 
 ```bash
-npm run buildnw
+npm run build-nw
 ```
 
 windows:

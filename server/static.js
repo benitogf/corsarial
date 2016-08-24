@@ -1,28 +1,25 @@
 'use strict';
 
-const express =  require('express')
-const app = express()
-const fs = require('fs')
-const path = require('path')
-const server = require('http').createServer(app)
-const bole = require('bole')
-const bistre = require('bistre')({ time: true })
+const express =  require('express');
+const app = express();
+const server = require('http').createServer(app);
+const bole = require('bole');
+const bistre = require('bistre')({ time: true });
 const cwd = process.cwd();
-const getConfig = require('./config')
-const compression = require('compression')
+const getConfig = require('./config');
+const compression = require('compression');
 
-function initServer(conf, log) {
+function initServer(conf) {
 
     app.use(compression({ threshold: 0 }));
-    var log = configLog(conf.title);
+    let log = configLog(conf.title);
     app.use(function (req, res, next) {
         log.info(req);
         next();
     });
 
-    //var root = path.join(cwd + '/platforms/browser/www');
-    var platform = cwd + '/platforms/browser/www/';
-    var dir = {
+    let platform = cwd + '/platforms/browser/www/';
+    let dir = {
         cordova: platform + 'cordova.js',
         plugins: platform + 'plugins',
         cordovaplugins: platform + 'cordova_plugins.js',
@@ -47,7 +44,7 @@ function initServer(conf, log) {
 }
 
 function configLog(name) {
-    var log = bole(name);
+    let log = bole(name);
     bole.output([{
       level: 'info',
       stream: bistre
@@ -63,4 +60,4 @@ function configLog(name) {
 
 module.exports = function () {
     getConfig(initServer, 'server');
-}
+};

@@ -1,21 +1,21 @@
 'use strict';
 
-const express =  require('express')
-const app = express()
-const fs = require('fs')
-const path = require('path')
-const server = require('http').createServer(app)
-const bole = require('bole')
-const bistre = require('bistre')({ time: true })
-const cwd = process.cwd()
-const getConfig = require('./config')
-const prepend = require('prepend-file')
-const concat = require('concat-stream')
-const replace = require('replacestream')
-const gaze = require('gaze')
-const compression = require('compression')
-const io = require('socket.io')(server)
-const shell = require('shelljs')
+const express =  require('express');
+const app = express();
+const fs = require('fs');
+const path = require('path');
+const server = require('http').createServer(app);
+const bole = require('bole');
+const bistre = require('bistre')({ time: true });
+const cwd = process.cwd();
+const getConfig = require('./config');
+const prepend = require('prepend-file');
+const concat = require('concat-stream');
+const replace = require('replacestream');
+const gaze = require('gaze');
+const compression = require('compression');
+const io = require('socket.io')(server);
+const shell = require('shelljs');
 
 function initServer(conf, log) {
 
@@ -23,16 +23,16 @@ function initServer(conf, log) {
     app.engine('pug', require('pug').renderFile);
     app.use(compression({ threshold: 0 }));
 
-    var platform = cwd + '/platforms/browser/www/';
-    var dir = {
+    let platform = cwd + '/platforms/browser/www/';
+    let dir = {
         cordova: platform + 'cordova.js',
         plugins: platform + 'plugins',
-        cordovaplugins: platform + 'cordova_plugins.js',
+        cordovaPlugins: platform + 'cordova_plugins.js',
         js:  cwd + '/www/js',
         scss: cwd + '/src/scss',
         img: cwd + '/www/img',
         video: cwd + '/www/video',
-        node_modules: cwd + '/node_modules',
+        nodeModules: cwd + '/node_modules',
         test: cwd + '/test',
     };
 
@@ -44,14 +44,14 @@ function initServer(conf, log) {
        io: io
     }));
     app.use('/cordova.js', express.static(dir.cordova));
-    app.use('/cordova_plugins.js', express.static(dir.cordovaplugins));
+    app.use('/cordova_plugins.js', express.static(dir.cordovaPlugins));
     app.use('/plugins', express.static(dir.plugins));
     app.use('/js', express.static(dir.js));
     app.use('/img', express.static(dir.img));
     app.use('/video', express.static(dir.video));
-    app.use('/node_modules', express.static(dir.node_modules));
+    app.use('/node_modules', express.static(dir.nodeModules));
     app.use('/test', express.static(dir.test));
-    app.get('/specs', function(req, res, next){
+    app.get('/specs', function(req, res){
         conf.specs = listSpecs();
         res.render(cwd +'/test/specs.pug', conf, function(err, html){
             if (err) {
@@ -63,7 +63,7 @@ function initServer(conf, log) {
             }
         });
     });
-    app.get('/*', function(req, res, next){
+    app.get('/*', function(req, res){
         res.render(cwd +'/src/index.pug', conf, function(err, html){
           if (err) {
             log.warn(err);
@@ -77,26 +77,26 @@ function initServer(conf, log) {
 }
 
 function testWatch(log) {
-    var testDir =  cwd + '/test/specs/*.js';
+    let testDir =  cwd + '/test/specs/*.js';
     gaze(testDir, (err, watcher) => {
         if (err) {
            log.warn(err);
         }
-        watcher.on('all', function(event, filepath) {
+        watcher.on('all', function() {
            io.emit('bundle');
         });
     });
 }
 
 function listSpecs(){
-  var tags = shell.ls(cwd + '/test/specs');
+  let tags = shell.ls(cwd + '/test/specs');
   tags.splice(tags.indexOf('setup.js'), 1);
   tags.splice(tags.indexOf('utils.js'), 1);
   return tags;
 }
 
 function configLog(name) {
-    var log = bole(name);
+    let log = bole(name);
     bole.output([{
       level: 'info',
       stream: bistre
@@ -110,38 +110,36 @@ function configLog(name) {
     return log;
 }
 
-function start() {
-
-    //browserify-livereload
-    var b = this;
-    var outfile = arguments[0];
-    var conf = arguments[1];
-    var firstBundle = true;
-    var log = configLog(conf.title);
+function BrowserifyLivereload() {
+    let b = this;
+    let outfile = arguments[0];
+    let conf = arguments[1];
+    let firstBundle = true;
+    let log = configLog(conf.title);
     initServer(conf, log);
     testWatch(log);
     b.on('bundle', function(stream) {
-      stream.on('end', reload)
-      function reload () {
-        fs.createReadStream(path.join(__dirname, 'socket.js'))
-          .pipe(replace(/PORT/g, conf.port))
-          .pipe(replace(/HOST/g, conf.host))
-          .pipe(concat(read))
+        stream.on('end', reload);
+        function reload () {
+            fs.createReadStream(path.join(__dirname, 'socket.js'))
+              .pipe(replace(/PORT/g, conf.port))
+              .pipe(replace(/HOST/g, conf.host))
+              .pipe(concat(read));
 
-        function read (data) {
-          prepend(outfile, data, function (err) {
-            if (err) {
-              throw err
+            function read (data) {
+                prepend(outfile, data, function (err) {
+                    if (err) {
+                      throw err;
+                    }
+                    if (!firstBundle) {
+                        io.emit('bundle');
+                    } else {
+                        firstBundle = false;
+                        require('opn')('http://' + conf.host + ':' + conf.port);
+                    }
+                });
             }
-            if (!firstBundle) {
-               io.emit('bundle')
-           } else {
-               firstBundle = false;
-               require('opn')('http://' + conf.host + ':' + conf.port);
-           }
-          })
         }
-      }
     });
 
     server.listen(conf.port);
@@ -150,11 +148,11 @@ function start() {
 }
 
 module.exports = function (b, options) {
-  if (b && options && (b.argv || options.outfile)) {
-      var outfile = options.outfile || b.argv.outfile
-      var startBundle = start.bind(b, outfile);
-      getConfig(startBundle);
-  } else {
-      throw 'no outfile arg detected';
-  }
-}
+    if (b && options && (b.argv || options.outfile)) {
+        let outfile = options.outfile || b.argv.outfile;
+        let StartBundle = BrowserifyLivereload.bind(b, outfile);
+        getConfig(StartBundle);
+    } else {
+        throw 'no outfile arg detected';
+    }
+};

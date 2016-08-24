@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
     delayLoad: function($rootScope, $q, $timeout, $mdSidenav) {
       var delay = $q.defer();
@@ -24,7 +26,7 @@ module.exports = {
         console.log('error ' + message);
         navigator.notification.alert(
              message, // message
-             app.errorConfirm, // callback to invoke with index of button pressed
+             utils.errorConfirm, // callback to invoke with index of button pressed
              'Error', // title
              'Restart' // buttonLabels
         );

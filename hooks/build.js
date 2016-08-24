@@ -2,20 +2,24 @@
 
 'use strict';
 
-var pug = require('pug'),
-    fs = require('fs'),
-    getConfig = require('../server/config'),
-    sass = require('node-sass-evergreen'),
-    exec = require('child_process').exec;
+const pug = require('pug');
+const fs = require('fs');
+const getConfig = require('../server/config');
+const sass = require('node-sass-evergreen');
+const exec = require('child_process').exec;
 
 function buildSass(conf, Q){
    var deferral = new Q.defer();
    sass.render({
         file: 'src/scss/index.scss',
       }, function(err, result) {
-         if (err) throw err;
+         if (err) {
+             throw err;
+         }
          fs.writeFile('www/css/index.css', result.css, function (err) {
-           if (err) throw err;
+           if (err) {
+               throw err;
+           }
            console.log('css');
            deferral.resolve();
          });
@@ -28,7 +32,9 @@ function buildPug(conf, Q){
   var render = pug.compileFile('src/index.pug');
   var html = render(conf);
   fs.writeFile('www/index.html', html, function (err) {
-        if (err) throw err;
+        if (err) {
+            throw err;
+        }
         console.log('html');
         deferral.resolve();
   });
@@ -47,10 +53,9 @@ function buildJs(Q){
 
 module.exports = function(context) {
     var Q = context.requireCordovaModule('q');
-    if (context.opts.options.config !== 'nw') {
-       var platform = context.opts.platforms[0];
-    } else {
-       var platform = 'nw';
+    var platform = context.opts.platforms[0];
+    if (context.opts.options.config === 'nw') {
+        platform = 'nw';
     }
     console.log('starting pre build for ' + platform + ' platform');
     var deferral = new Q.defer();
