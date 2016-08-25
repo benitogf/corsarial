@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 
 angular.module('app.notes')
-    .controller('EditNoteController', EditNoteController);
+    .controller('EditNoteController', EditNoteController)
 
-function EditNoteController($scope) {
-        $scope.header = 'NOTES.EDIT';
+function EditNoteController ($scope) {
+  $scope.header = 'NOTES.EDIT'
 }

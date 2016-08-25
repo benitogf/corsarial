@@ -53,13 +53,13 @@
         class="md-whiteframe-1dp">
         <md-input-container>
           <md-checkbox aria-label="Select All"
-              ng-checked="isChecked()"
+              ng-checked="allChecked()"
               md-indeterminate="isIndeterminate()"
               ng-click="toggleAll()"
               style="margin-bottom: 0"
               class="md-primary">
-            <span ng-if="isChecked()" translate>GRID.UNSELECT_ALL</span>
-            <span ng-if="!isChecked()" translate>GRID.SELECT_ALL</span>
+            <span ng-if="allChecked()" translate>GRID.UNSELECT_ALL</span>
+            <span ng-if="!allChecked()" translate>GRID.SELECT_ALL</span>
           </md-checkbox>
         </md-input-container>
         <md-button aria-label="Delete"><span translate>COMMON.DELETE</span> ({{vm.selected.length}})</md-button>
@@ -77,9 +77,9 @@
             ng-click="toggle(item, vm.selected)">
             <md-checkbox
                 ng-if="vm.options.withSelector"
-                ng-checked="exists(item, vm.selected)"
+                ng-checked="exists(item)"
                 class="md-primary"
-                ng-click="toggle(item, vm.selected)"
+                ng-click="toggle(item)"
                 aria-label="Select item"></md-checkbox>
             <div layout="row"
                 layout-xs="column"

@@ -1,7 +1,20 @@
 {
   "name": "Corsarial",
   "version": "1.1.0",
-  "description": "Cordova app sample with angular material.",
+  "description": "Cordova app boilerplate. Using MaterialAngularJs, Cordova, Pug, SASS and Browserify",
+  "keywords": [
+    "cordova",
+    "angular",
+    "material",
+    "express",
+    "browserify",
+    "sass",
+    "pug",
+    "mocha",
+    "jsdom",
+    "protractor",
+    "boilerplate"
+  ],
   "license": "MIT",
   "repository": "benitogf/corsarial",
   "main": "index.html",
@@ -10,6 +23,24 @@
     "icon": "img/logo.png",
     "min_width": 960,
     "min_height": 700
+  },
+  "standard": {
+    "globals": [
+      "angular",
+      "$",
+      "_",
+      "d3",
+      "utils",
+      "mockUtils",
+      "chai",
+      "expect"
+    ],
+    "env": {
+      "browser": true,
+      "node": true,
+      "mocha": true,
+      "protractor": true
+    }
   },
   "scripts": {
     "hint": "standard --verbose | snazzy",
@@ -26,7 +57,7 @@
     "start": "npm run watch",
     "server": "node index.js"
   },
-  "author": "",
+  "author": "benitogf",
   "dependencies": {
     "bistre": "^1.0.1",
     "bole": "^3.0.1",

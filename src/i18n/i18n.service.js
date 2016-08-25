@@ -1,17 +1,17 @@
-'use strict';
+'use strict'
 
-angular.module('i18n',['pascalprecht.translate', 'ngCookies']).
-factory('i18nService', function() {
+angular.module('i18n', ['pascalprecht.translate', 'ngCookies'])
+.factory('i18nService', function () {
   var service = {
-     languages: ['EN', 'ZH']
-  };
+    languages: ['EN', 'ZH']
+  }
 
-  return service;
-}).
-config(translateConfig);
+  return service
+})
+.config(translateConfig)
 
-function translateConfig($translateProvider) {
-    $translateProvider
+function translateConfig ($translateProvider) {
+  $translateProvider
       .translations('EN',
           utils.getTranslation(_.merge(
               require('../../lib/*/i18n/en.json', {mode: 'hash'}),
@@ -32,5 +32,5 @@ function translateConfig($translateProvider) {
       )
       .preferredLanguage('EN')
       .useSanitizeValueStrategy(null)
-      .useLocalStorage();
+      .useLocalStorage()
 }

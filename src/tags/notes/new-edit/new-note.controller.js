@@ -1,19 +1,19 @@
-'use strict';
+'use strict'
 
 angular.module('app.notes')
-    .controller('NewNoteController', NewNoteController);
+    .controller('NewNoteController', NewNoteController)
 
-function NewNoteController($rootScope, $scope, $log, $routeParams) {
-    $scope.header = 'NOTES.NEW';
-    $scope.saveNote = saveNote;
-    $scope.note = {
-        tags: []
-    };
-    if ($routeParams.name) {
-        $scope.note.name = $routeParams.name;
-    }
+function NewNoteController ($rootScope, $scope, $log, $routeParams) {
+  $scope.header = 'NOTES.NEW'
+  $scope.saveNote = saveNote
+  $scope.note = {
+    tags: []
+  }
+  if ($routeParams.name) {
+    $scope.note.name = $routeParams.name
+  }
 
-    function saveNote() {
-        $rootScope.$broadcast('show-form-errors');
-    }
+  function saveNote () {
+    $rootScope.$broadcast('show-form-errors')
+  }
 }

@@ -1,16 +1,14 @@
-'use strict';
+'use strict'
 
-require('./root/root.module');
+require('./root/root.module')
 require('./tags/tags.module');
 
-(function() {
+(function () {
+  angular.module('app', [
+    'app.root',
+    'app.tags'
+  ])
+})()
 
-    angular.module('app', [
-        'app.root',
-        'app.tags'
-        ]);
-
-})();
-
-require('angular-mocks/angular-mocks');
-require('../test/specs/*.spec.js', { mode: 'expand' });
+require('angular-mocks/angular-mocks')
+require('../test/specs/*.spec.js', { mode: 'expand' })

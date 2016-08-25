@@ -1,14 +1,14 @@
-'use strict';
+'use strict'
 
-require('../../lib/svg-assets-cache');
+require('../../lib/svg-assets-cache')
 
-angular.module('app.theme',[
-    'ngMaterial',
-    'material.svgAssetsCache'
+angular.module('app.theme', [
+  'ngMaterial',
+  'material.svgAssetsCache'
 ])
-.config(function($mdThemingProvider) {
+.config(function ($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('grey', {
       'default': '900'
-    });
-});
+    })
+})

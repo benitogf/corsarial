@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 
-angular.module('app.home',[])
-    .controller('HomeController', HomeController);
+angular.module('app.home', [])
+    .controller('HomeController', HomeController)
 
-function HomeController() {
+function HomeController () {
 
 }

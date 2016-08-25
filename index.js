@@ -1,1 +1,1 @@
-require('./server/static')();
+require('./server/static')()

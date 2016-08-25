@@ -7,7 +7,7 @@ exports.config = {
   ],
 
   capabilities: {
-    'browserName': 'firefox',
+    'browserName': 'firefox'
   },
 
   directConnect: true,
@@ -16,4 +16,4 @@ exports.config = {
     reporter: 'spec',
     timeout: 4000
   }
-};
+}

@@ -1,12 +1,12 @@
-'use strict';
+'use strict'
 
 angular.module('app.nav')
-    .directive('navToolbar', navToolbar);
+    .directive('navToolbar', navToolbar)
 
-function navToolbar() {
-    var directive = {
-        restrict: 'E',
-        template: require('./nav-toolbar.html')
-    };
-    return directive;
+function navToolbar () {
+  var directive = {
+    restrict: 'E',
+    template: require('./nav-toolbar.html')
+  }
+  return directive
 }

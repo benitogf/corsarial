@@ -1,180 +1,178 @@
-'use strict';
+'use strict'
 
 // express-compile-sass
-const crypto = require('crypto');
-const Path = require('path');
-const fs = require('fs');
-const Gaze = require('gaze').Gaze;
-const csserror = require('csserror');
-const sass = require('node-sass-evergreen');
-const inlineSourceMapComment = require('inline-source-map-comment');
+const crypto = require('crypto')
+const Path = require('path')
+const fs = require('fs')
+const Gaze = require('gaze').Gaze
+const csserror = require('csserror')
+const sass = require('node-sass-evergreen')
+const inlineSourceMapComment = require('inline-source-map-comment')
 
-function compileSass(options) {
-    options = options || {};
-    let etagmap = {};
-    let cache = {};
-    let fileUrl;
-    let sassFileMap = {};
-    let log = options.log;
-    let fileWatcher = new Gaze('', {
-        debounceDelay: 1,
-        cwd: options.root
-    });
+function compileSass (options) {
+  options = options || {}
+  let etagmap = {}
+  let cache = {}
+  let fileUrl
+  let sassFileMap = {}
+  let log = options.log
+  let fileWatcher = new Gaze('', {
+    debounceDelay: 1,
+    cwd: options.root
+  })
 
-    fileWatcher.on('all', function (event, path) {
-        if (event === 'deleted' || event === 'renamed') {
+  fileWatcher.on('all', function (event, path) {
+    if (event === 'deleted' || event === 'renamed') {
             // OSX combined with editors that do atomic file replacements
             // will not emit 'change' events: https://github.com/joyent/node/issues/2062
             // Remove the file watch and assume it will be re-added when the main file is requested again
-            this.remove(path);
-            fileChanged(path);
-            delete sassFileMap[path];
-            return;
-        }
-
-        if (event === 'changed') {
-            fileChanged(path);
-        }
-    });
-
-    function bustCache(path) {
-        delete etagmap[path];
-        delete cache[path];
+      this.remove(path)
+      fileChanged(path)
+      delete sassFileMap[path]
+      return
     }
 
-    function fileChanged(path) {
-        if (Array.isArray(sassFileMap[path])) {
+    if (event === 'changed') {
+      fileChanged(path)
+    }
+  })
+
+  function bustCache (path) {
+    delete etagmap[path]
+    delete cache[path]
+  }
+
+  function fileChanged (path) {
+    if (Array.isArray(sassFileMap[path])) {
             // A sass import was updated, trigger update on main file
-            sassFileMap[path].forEach(function (mainFile) {
-                log.info('SASS: '+ path + 'was updated --> busting cache and updating' + mainFile);
-                bustCache(mainFile);
+      sassFileMap[path].forEach(function (mainFile) {
+        log.info('SASS: ' + path + 'was updated --> busting cache and updating' + mainFile)
+        bustCache(mainFile)
 
                 // This is a hack.
                 // Would be better to emit an event to the middleware communicating with the browser
-                fs.utimes(mainFile, new Date(), new Date());
-            });
-        } else {
-            log.info('SASS: '+ path + 'was updated, busting cache');
-            bustCache(fileUrl);
-        }
-        options.io.emit('bundle');
+        fs.utimes(mainFile, new Date(), new Date())
+      })
+    } else {
+      log.info('SASS: ' + path + 'was updated, busting cache')
+      bustCache(fileUrl)
+    }
+    options.io.emit('bundle')
+  }
+
+  function watchImports (main, imports) {
+    if (!Array.isArray(imports)) {
+      return
     }
 
-    function watchImports(main, imports) {
-        if (!Array.isArray(imports)) {
-            return;
+    let importsToWatch = [main]
+
+    imports.forEach(function (path) {
+      if (path !== main) {
+        if (!Array.isArray(sassFileMap[path])) {
+          sassFileMap[path] = []
+          importsToWatch.push(path)
         }
 
-        let importsToWatch = [main];
+        if (sassFileMap[path].indexOf(main) === -1) {
+          sassFileMap[path].push(main)
+        }
+      }
+    })
 
-        imports.forEach(function (path) {
-            if (path !== main) {
-                if (!Array.isArray(sassFileMap[path])) {
-                    sassFileMap[path] = [];
-                    importsToWatch.push(path);
-                }
-
-                if (sassFileMap[path].indexOf(main) === -1) {
-                    sassFileMap[path].push(main);
-                }
-            }
-        });
-
-        fileWatcher.add(importsToWatch, function (error) {
-            if (error) {
-                log.warn('Error setting up file watches');
-                log.warn(error);
-            }
+    fileWatcher.add(importsToWatch, function (error) {
+      if (error) {
+        log.warn('Error setting up file watches')
+        log.warn(error)
+      }
             // else {
             //     log.info('SASS: '+ 'Watching sass @imports:\t', importsToWatch.join('\t'));
             // }
-        });
+    })
+  }
+
+  return function (req, res, next) {
+    function sendErrorResponse (err) {
+      res.removeHeader('Content-Length')
+      res.removeHeader('ETag')
+      res.setHeader('Content-Type', 'text/css; charset=UTF-8')
+      log.warn(err)
+      res.end(csserror(err))
     }
 
-    return function (req, res, next) {
+    function sassError (err) {
+      let errStr = 'express-compile-sass:\n  Syntax error in ' + req.originalUrl + ':' + err.line
 
-        function sendErrorResponse(err) {
-            res.removeHeader('Content-Length');
-            res.removeHeader('ETag');
-            res.setHeader('Content-Type', 'text/css; charset=UTF-8');
-            log.warn(err);
-            res.end(csserror(err));
-        }
+      if (typeof err.column === 'number') {
+        errStr += ':' + err.column
+      }
 
-        function sassError(err) {
-            let errStr = 'express-compile-sass:\n  Syntax error in ' + req.originalUrl + ':' + err.line;
+      errStr += '\n' + err.message
 
-            if (typeof err.column === 'number') {
-              errStr += ':' + err.column;
-            }
+      sendErrorResponse(errStr)
+    }
 
-            errStr += '\n' + err.message;
+    if (/\.(?:scss|sass)$/.test(req.path)) {
+      fileUrl = Path.join(Path.resolve(options.root), req.path)
 
-            sendErrorResponse(errStr);
-        }
+      res.set({
+        'Content-Type': 'text/css; charset=UTF-8',
+        'ETag': '"' + etagmap[fileUrl] + '"'
+      })
 
-        if (/\.(?:scss|sass)$/.test(req.path)) {
-
-            fileUrl = Path.join(Path.resolve(options.root), req.path);
-
-            res.set({
-                'Content-Type': 'text/css; charset=UTF-8',
-                'ETag': '"' + etagmap[fileUrl] + '"'
-            });
-
-            if (req.fresh) {
+      if (req.fresh) {
                 // Leverage browser cache
-                log.info('SASS: '+ 'Browser cache hit:' + fileUrl);
-                res.sendStatus(304);
-            } else if (cache[fileUrl]) {
+        log.info('SASS: ' + 'Browser cache hit:' + fileUrl)
+        res.sendStatus(304)
+      } else if (cache[fileUrl]) {
                 // Leverage server cache
-                log.info('SASS: '+ 'Server cache hit:' + fileUrl);
-                res.end(cache[fileUrl]);
-            } else {
+        log.info('SASS: ' + 'Server cache hit:' + fileUrl)
+        res.end(cache[fileUrl])
+      } else {
                 // Compile sass
-                log.info('SASS: '+ 'Compiling sass file:' + fileUrl);
-                let start = Date.now();
+        log.info('SASS: ' + 'Compiling sass file:' + fileUrl)
+        let start = Date.now()
 
-                sass.render({
-                    file: fileUrl,
-                    outFile: fileUrl,
-                    includePaths: [Path.dirname(fileUrl), Path.resolve(options.root)],
-                    sourceComments: !!options.sourceComments,
-                    sourceMap: !!options.sourceMap,
-                    omitSourceMapUrl: !!options.sourceMap,
-                    sourceMapContents: !!options.sourceMap
-                }, function (err, result) {
-                    if (err) {
-                      return sassError(err);
-                    }
+        sass.render({
+          file: fileUrl,
+          outFile: fileUrl,
+          includePaths: [Path.dirname(fileUrl), Path.resolve(options.root)],
+          sourceComments: !!options.sourceComments,
+          sourceMap: !!options.sourceMap,
+          omitSourceMapUrl: !!options.sourceMap,
+          sourceMapContents: !!options.sourceMap
+        }, function (err, result) {
+          if (err) {
+            return sassError(err)
+          }
 
-                    log.info('SASS: '+ 'Compile time:', (Date.now() - start) + 'ms', fileUrl);
+          log.info('SASS: ' + 'Compile time:', (Date.now() - start) + 'ms', fileUrl)
 
-                    let css = result.css.toString('utf8');
+          let css = result.css.toString('utf8')
 
-                    if (result.map) {
-                      let comment = inlineSourceMapComment(result.map.toString('utf8'), {
-                        block: true
-                      });
+          if (result.map) {
+            let comment = inlineSourceMapComment(result.map.toString('utf8'), {
+              block: true
+            })
 
-                      css += '\n' + comment + '\n';
-                    }
+            css += '\n' + comment + '\n'
+          }
 
-                    let etag = crypto.createHash('md5').update(css).digest('hex').substr(0, 16) + '-compile-sass';
+          let etag = crypto.createHash('md5').update(css).digest('hex').substr(0, 16) + '-compile-sass'
 
-                    res.setHeader('ETag', '"' + etag + '"');
-                    res.end(css);
+          res.setHeader('ETag', '"' + etag + '"')
+          res.end(css)
 
-                    etagmap[fileUrl] = etag;
-                    cache[fileUrl] = css;
+          etagmap[fileUrl] = etag
+          cache[fileUrl] = css
 
-                    watchImports(fileUrl, result.stats.includedFiles);
-                });
-            }
-        } else {
-            next();
-        }
-    };
+          watchImports(fileUrl, result.stats.includedFiles)
+        })
+      }
+    } else {
+      next()
+    }
+  }
 }
 
-module.exports = compileSass;
+module.exports = compileSass
