@@ -5,36 +5,38 @@ angular.module('app.nav')
 
 function navToggle ($timeout, $mdUtil, NavService) {
   return {
+    restrict: 'E',
     scope: {
       section: '='
     },
     template: require('./nav-toggle.html'),
-    link: function ($scope, $element) {
-      $scope.isOpen = function () {
-        return NavService.isSectionOpen($scope.section)
-      }
-      $scope.toggle = function () {
-        NavService.toggleOpenSection($scope.section)
-      }
-
-      $mdUtil.nextTick(function () {
-        $scope.$watch(
-                function () {
-                  return NavService.isSectionOpen($scope.section)
-                },
-                function (open) {
-                  var $ul = $element.find('ul')
-                  var targetHeight = open ? getTargetHeight() : 0
-                  $timeout(function () {
-                    $ul.css({height: targetHeight})
-                  })
-                  function getTargetHeight () {
-                    var clientHeight = $ul.prop('childElementCount') * 40
-                    return clientHeight + 'px'
-                  }
-                }
-              )
-      })
+    link: navToggleLink
+  }
+  function navToggleLink (scope, element) {
+    scope.getTargetHeight = getTargetHeight
+    scope.isOpen = function () {
+      return NavService.isSectionOpen(scope.section)
     }
+    scope.toggle = function () {
+      NavService.toggleOpenSection(scope.section)
+    }
+    scope.menu = element.find('ul')
+    $mdUtil.nextTick(function () {
+      scope.$watch(
+              function () {
+                return scope.isOpen()
+              },
+              function (open) {
+                var targetHeight = open ? scope.getTargetHeight(scope.menu) : 0
+                $timeout(function () {
+                  scope.menu.css({height: targetHeight})
+                })
+              }
+            )
+    })
+  }
+  function getTargetHeight (list) {
+    var clientHeight = list.prop('childElementCount') * 40
+    return clientHeight + 'px'
   }
 }

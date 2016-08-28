@@ -4,14 +4,14 @@ angular.module('app.nav')
     .factory('NavService', NavService)
 
 function NavService ($rootScope) {
-  var preUrl = $rootScope.preUrl = angular.element('#appData').data('preurl')
+  var preUrl = $rootScope.preUrl = angular.element('#appData').data('preurl') || ''
   var self = {
     sections: [
-        // {
-        //     name: 'NAV.HOME',
-        //     url: preUrl+'/',
-        //     type: 'link'
-        // },
+      {
+        name: 'NAV.HOME',
+        url: preUrl + '/',
+        type: 'link'
+      },
       {
         name: 'NAV.NOTES',
         type: 'heading',
@@ -19,16 +19,18 @@ function NavService ($rootScope) {
           {
             name: 'NAV.OPTIONS',
             type: 'toggle',
-            pages: [{
-              name: 'NAV.NOTES.NEW',
-              url: preUrl + '/notes/new',
-              type: 'link'
-            },
+            pages: [
+              {
+                name: 'NAV.NOTES.NEW',
+                url: preUrl + '/notes/new',
+                type: 'link'
+              },
               {
                 name: 'NAV.NOTES.SEARCH',
                 url: preUrl + '/notes',
                 type: 'link'
-              }]
+              }
+            ]
           }
         ]
       }

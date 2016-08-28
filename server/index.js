@@ -77,12 +77,18 @@ function initServer (conf, log) {
 
 function testWatch (log) {
   let testDir = cwd + '/test/specs/*.js'
-  gaze(testDir, function (err, watcher) {
+  gaze(testDir, function (err) {
     if (err) {
       log.warn(err)
     }
-    watcher.on('all', function () {
+    var watcher = this
+    watcher.on('all', function (event, filepath) {
       io.emit('bundle')
+      if (event === 'added') {
+        // not firing
+        // https://github.com/shama/gaze/issues/121
+        log.info(filepath + ' was ' + event)
+      }
     })
   })
 }

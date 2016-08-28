@@ -1,10 +1,10 @@
 'use strict'
 
-require('../../lib/svg-assets-cache')
+require('./icons.module')
 
 angular.module('app.theme', [
   'ngMaterial',
-  'material.svgAssetsCache'
+  'app.icons'
 ])
 .config(function ($mdThemingProvider) {
   $mdThemingProvider.theme('default')

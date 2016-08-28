@@ -2,7 +2,6 @@ describe('Data grid', function () {
   var grid
   var element
   var scope
-  var controller
   var $rootScope
   var $compile
   var options = {
@@ -45,11 +44,7 @@ describe('Data grid', function () {
     element = angular.element('<md-data-grid options="options"></md-data-grid>')
     $compile(element)(scope)
     $rootScope.$digest()
-    controller = element.controller('mdDataGrid')
     grid = element.isolateScope()
-  })
-  it('should have a controller', function () {
-    expect(controller).to.eq(grid.vm)
   })
   it('should be in descendent order', function () {
     expect(grid.vm.sortOrder).to.eq('DSC')
@@ -57,6 +52,12 @@ describe('Data grid', function () {
   it('should select an item', function () {
     grid.toggle(items[0])
     expect(grid.exists(items[0])).to.eq(true)
+    expect(grid.isIndeterminate()).to.eq(true)
+  })
+  it('should deselect an item', function () {
+    grid.toggle(items[0])
+    grid.toggle(items[0])
+    expect(grid.exists(items[0])).to.eq(false)
   })
   it('should select all items', function () {
     grid.toggleAll()

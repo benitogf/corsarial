@@ -6,6 +6,7 @@ platforms/*
 plugins/*
 www/index.html
 www/js/*.js
+www/js/localStorageTemp
 www/css/index.css
 .vs/*
 bld/*

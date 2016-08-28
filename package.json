@@ -16,6 +16,7 @@
     "boilerplate"
   ],
   "license": "MIT",
+  "author": "Benito Gomez <benitogf@outlook.com>",
   "repository": "benitogf/corsarial",
   "main": "index.html",
   "window": {
@@ -44,20 +45,20 @@
   },
   "scripts": {
     "hint": "standard --verbose | snazzy",
-    "build-specs": "browserify -t stringify -t require-globify ./src/index.test.js > ./www/js/index.test.js",
-    "specs": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec",
+    "build-specs": "browserify -t stringify -t require-globify ./src/index.specs.js -d > ./www/js/index.specs.js",
+    "cov-specs": "remap-istanbul -i coverage/coverage.json -o coverage/lcov-report -t html --exclude node_modules,^.spec.js,^.json,^.html,^.module.js",
+    "specs": "istanbul cover --print none node_modules/mocha/bin/_mocha -- -R spec",
     "pretest": "webdriver-manager update",
     "test": "protractor protractor.conf.js",
-    "cov": "cat ./coverage/lcov.info | coveralls",
+    "cov": "remap-istanbul -i coverage/coverage.json --type text-lcov --exclude node_modules,^.spec.js,^.json,^.html,^.module.js | coveralls",
     "build-js": "browserify -t stringify -t require-globify ./src/index.js | uglifyjs > ./www/js/index.min.js",
     "build-nw": "cordova build browser --config=nw",
     "build": "cordova build",
     "platform": "cordova platform add",
-    "watch": "watchify -t stringify -t require-globify -p [ ./server ] ./src/index.js -o ./www/js/index.bundle.js",
+    "watch": "watchify -t stringify -t require-globify -p [ ./server ] -d ./src/index.js -o ./www/js/index.bundle.js",
     "start": "npm run watch",
     "server": "node index.js"
   },
-  "author": "benitogf",
   "dependencies": {
     "bistre": "^1.0.1",
     "bole": "^3.0.1",
@@ -106,6 +107,7 @@
     "prepend-file": "^1.3.0",
     "protractor": "^4.0.2",
     "pug": "^2.0.0-beta5",
+    "remap-istanbul": "^0.6.4",
     "replacestream": "^4.0.2",
     "require-globify": "^1.4.1",
     "sha.js": "^2.4.5",

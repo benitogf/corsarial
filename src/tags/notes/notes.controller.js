@@ -4,7 +4,7 @@ angular.module('app.notes', [])
     .controller('NotesController', NotesController)
 
 function NotesController ($scope, $q, $location) {
-  $scope.gridOptions = {
+  $scope.options = {
     withSelector: true,
     withSearch: true,
     withDelete: true,

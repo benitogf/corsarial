@@ -1,11 +1,22 @@
-describe('Route navigator service', function () {
+describe('Navigator service', function () {
   var nav
   beforeEach(function () {
-    angular.mock.module('app.nav', mockUtils.translateProvider)
     angular.mock.module('app.nav')
     angular.mock.inject(function ($injector) {
       nav = $injector.get('NavService')
     })
+  })
+  it('should get a nested page by url', function () {
+    nav.getPageByUrl('/notes')
+    expect(nav.selectedPage.url).to.eq('/notes')
+  })
+  it('should get a section page by url', function () {
+    nav.getPageByUrl('/')
+    expect(nav.selectedPage.url).to.eq('/')
+  })
+  it('should fail selecting a nonexistent page by url', function () {
+    nav.getPageByUrl('/nonexistent')
+    expect(nav.selectedPage).to.eq(null)
   })
   it('should select page and check page selected', function () {
     nav.selectPage('route', 'test')

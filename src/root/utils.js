@@ -12,13 +12,6 @@ module.exports = {
     }, 1000)
     return delay.promise
   },
-  getTranslation: function (files) {
-    var translation = {}
-    _.forEach(files, function (value) {
-      _.extend(translation, value)
-    })
-    return translation
-  },
   errorConfirm: function () {
     document.location.reload()
   },

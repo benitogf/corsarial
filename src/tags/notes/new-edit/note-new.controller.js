@@ -14,6 +14,11 @@ function NewNoteController ($rootScope, $scope, $log, $routeParams) {
   }
 
   function saveNote () {
-    $rootScope.$broadcast('show-form-errors')
+    if ($scope.noteForm.$invalid) {
+      $rootScope.$broadcast('show-form-errors')
+      return false
+    } else {
+      return true
+    }
   }
 }

@@ -11,6 +11,14 @@ angular.module('app.tags', [
 .config(function ($routeProvider, $locationProvider) {
   $routeProvider
     .when('/', {redirectTo: '/notes'})
+    // .when('/', {
+    //   template: require('./home/home.html'),
+    //   controller: 'HomeController',
+    //   resolve: {
+    //       // cause a 1 second delay
+    //     delay: utils.delayLoad
+    //   }
+    // })
     .when('/404', {
       template: require('./error/404.html'),
       controller: 'ErrorController',

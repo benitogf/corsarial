@@ -2,15 +2,14 @@ var chai = require('chai')
 var chaiAsPromised = require('chai-as-promised')
 chai.use(chaiAsPromised)
 var fs = require('fs')
-var jquery = fs.readFileSync('./node_modules/jquery/dist/jquery.js', 'utf-8')
 var angular = fs.readFileSync('./node_modules/angular/angular.js', 'utf-8')
 var jsdom = require('jsdom').jsdom
 var LocalStorage = require('node-localstorage').LocalStorage
 global.localStorage = new LocalStorage('./www/js/localStorageTemp')
 global.document = jsdom('<html><head></head><body><script></script></body></html>')
-global.window = document.defaultView;
-
-(new Function('window', 'document', jquery + angular))(window, document) // eslint-disable-line
+global.window = document.defaultView
+global.$ = global.window.$ = global.window.jQuery = require('jquery');
+(new Function('window', 'document', angular))(window, document); // eslint-disable-line
 global.angular = window.angular
 global._ = require('lodash')
 global.d3 = require('d3')
@@ -20,4 +19,4 @@ global.window.localStorage = global.localStorage
 global.expect = chai.expect
 global.beforeEach = window.beforeEach = window.mocha.beforeEach
 global.afterEach = window.afterEach = window.mocha.afterEach
-require('../www/js/index.test.js')
+require('../www/js/index.specs.js')

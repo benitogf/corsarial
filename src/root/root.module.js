@@ -1,4 +1,4 @@
-require('./root.theme')
+require('./theme/theme.module')
 require('../i18n/i18n.service')
 require('../nav/nav.module')
 require('./loader/loader.directive')
