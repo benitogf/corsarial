@@ -17,4 +17,3 @@ taco.json
 *.sln
 info.txt
 !.gitkeep
-! www/js

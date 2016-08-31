@@ -1,6 +1,15 @@
 # Corsarial
 
-[![Build Status](https://img.shields.io/travis/benitogf/corsarial/master.svg?style=flat-square)](https://travis-ci.org/benitogf/corsarial) [![Coverage Status](https://coveralls.io/repos/github/benitogf/corsarial/badge.svg?branch=master)](https://coveralls.io/github/benitogf/corsarial?branch=master) [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+[![Build Status][build-image]]][build-url]
+[![CoverageStatus][coverage-image]][coverage-url]
+[![standardjs][standardjs-image]][standardjs-url]
+
+[build-url]: https://travis-ci.org/benitogf/corsarial
+[build-image]: https://img.shields.io/travis/benitogf/corsarial/master.svg?style=flat-square
+[coverage-image]: https://coveralls.io/repos/github/benitogf/corsarial/badge.svg?branch=master
+[coverage-url]: https://coveralls.io/github/benitogf/corsarial?branch=master
+[standardjs-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square
+[standardjs-url]: http://standardjs.com/
 
 [Cor](http://cordova.apache.org/) `s`ample `a`ngular mate`rial`
 
@@ -10,6 +19,7 @@
 git clone https://github.com/benitogf/corsarial.git <your app name>
 cd <your app name>
 npm install
+npm run copy-hook
 npm run platform browser
 npm run build browser
 ```
@@ -34,11 +44,13 @@ npm run server
 
 ## unit test
 
-After having used the dev server (it doesn't need to be active)
-
 ```bash
+npm run build-specs
 npm run specs
+npm run specs-cov
 ```
+
+Coverage report will be generated on coverage/lcov-report/index.html
 
 ## e2e test
 
