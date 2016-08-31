@@ -1,6 +1,6 @@
 # Corsarial
 
-[![Build Status][build-image]]][build-url]
+[![Build Status][build-image]][build-url]
 [![CoverageStatus][coverage-image]][coverage-url]
 [![standardjs][standardjs-image]][standardjs-url]
 
