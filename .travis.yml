@@ -11,6 +11,7 @@ before_script:
   - sleep 3 # give xvfb some time to start
   - npm start &
   - sleep 3 # give Web server some time
+  - PATH=${PATH//:\.\/node_modules\/\.bin/} #https://github.com/travis-ci/travis-ci/issues/4862
   - npm run specs-build
 
 script:
