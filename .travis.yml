@@ -3,8 +3,6 @@ sudo: false
 node_js: node
 
 install:
-  - npm install -g cordova
-  - npm install -g hotpot
   - npm install
 
 before_script:
