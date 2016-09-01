@@ -3,12 +3,9 @@ sudo: false
 node_js: node
 
 install:
+  - npm install -g cordova
+  - npm install -g hotpot
   - npm install
-
-script:
-  - npm run hint
-  - npm run specs
-  - npm test
 
 before_script:
   - "export DISPLAY=:99.0"
@@ -16,4 +13,12 @@ before_script:
   - sleep 3 # give xvfb some time to start
   - npm start &
   - sleep 3 # give Web server some time
-  - npm run build-specs
+  - npm run specs-build
+
+script:
+  - npm run hint
+  - npm run specs
+  - npm test
+
+after_script:
+  - npm run coverage

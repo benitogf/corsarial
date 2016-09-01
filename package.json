@@ -1,7 +1,7 @@
 {
   "name": "Corsarial",
   "version": "1.1.0",
-  "description": "Cordova app boilerplate for angular material using hotpot livereload",
+  "description": "Cordova app boilerplate for angular material",
   "keywords": [
     "cordova",
     "angular",
@@ -42,22 +42,17 @@
   },
   "scripts": {
     "hint": "standard --verbose | snazzy",
-    "build-specs": "hotpot build-specs",
-    "specs-cov": "remap-istanbul -i coverage/coverage.json --exclude node_modules,^.spec.js,^.json,^.html,^.module.js -o coverage/lcov-report -t html",
+    "specs-build": "hotpot specs",
+    "specs-coverage": "remap-istanbul -i coverage/coverage.json --exclude node_modules,^.spec.js,^.json,^.html,^.module.js -o coverage/lcov-report -t html",
     "specs": "istanbul cover --print none node_modules/mocha/bin/_mocha -- -R spec",
     "pretest": "webdriver-manager update",
     "test": "protractor protractor.conf.js",
-    "cov": "remap-istanbul -i coverage/coverage.json --exclude node_modules,^.spec.js,^.json,^.html,^.module.js --type text-lcov | coveralls",
-    "copy-hook": "hotpot copy-hook",
-    "build-js": "hotpot build-js",
+    "coverage": "remap-istanbul -i coverage/coverage.json --exclude node_modules,^.spec.js,^.json,^.html,^.module.js --type text-lcov | coveralls",
     "build-nw": "cordova build browser --config=nw",
     "build": "cordova build",
     "platform": "cordova platform add",
     "start": "hotpot",
     "server": "node index.js"
-  },
-  "dependencies": {
-    "hotpot": "^1.1.18"
   },
   "devDependencies": {
     "angular": "^1.5.5",
@@ -75,7 +70,6 @@
     "chai": "^3.5.0",
     "chai-as-promised": "^5.3.0",
     "clipboard": "^1.5.12",
-    "cordova": "^6.3.1",
     "coveralls": "^2.11.12",
     "d3": "^4.2.2",
     "istanbul": "^0.4.5",

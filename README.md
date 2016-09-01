@@ -13,22 +13,25 @@
 
 [Cor](http://cordova.apache.org/) `s`ample `a`ngular mate`rial`
 
-## Installation
+## installation
+
+Set [NODE_PATH](http://nodejs.org/api/modules.html#modules_loading_from_the_global_folders) environment variable
 
 ```bash
+npm install -g cordova
+npm install -g hotpot
 git clone https://github.com/benitogf/corsarial.git <your app name>
 cd <your app name>
 npm install
-npm run copy-hook
 npm run platform browser
 npm run build browser
 ```
 
-## Configuration
+## configuration
 
 The config.xml file contains a server object where you can define host/port and GA params, you can also change the app name in there.
 
-## Dev server
+## dev server
 
 ```bash
 npm start
@@ -60,7 +63,7 @@ while dev or static server is running
 npm test
 ```
 
-## Android
+## android
 
 See Requirements [here](http://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#installing-the-requirements) after installing them:
 
@@ -74,7 +77,7 @@ npm run build android
 
 This should generate an APK if all the requirements where properly installed.
 
-## [NWJS](http://nwjs.io/)
+## [nwjs](http://nwjs.io/)
 
 ```bash
 npm run build-nw
@@ -95,13 +98,13 @@ linux:
 nwbuild.sh
 ```
 
-## [Docker](https://docs.docker.com/)
+## [docker](https://docs.docker.com/)
 
-### Install locally
+install locally
 
 Follow the installation and configuration steps to build the browser platform.
 
-### Build the image
+build the image
 
 In the installation folder
 
@@ -109,13 +112,13 @@ In the installation folder
 docker build -t <your username>/<your app name> .
 ```
 
-### Verify
+verify
 
 ```bash
 docker images
 ```
 
-### Run the image
+Run the image
 
 ```bash
 docker run -p 9001:9000 -d <your username>/<your app name>
