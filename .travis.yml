@@ -15,6 +15,7 @@ before_script:
   - npm start &
   - sleep 3 # give Web server some time
   - echo $PATH # https://github.com/travis-ci/travis-ci/issues/4862
+  - cordova -v
   - hotpot help
   - npm run specs-build
 
