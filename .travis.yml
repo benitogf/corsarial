@@ -4,6 +4,8 @@ node_js:
   - "4"
 
 install:
+  - npm install -g cordova
+  - npm install -g hotpot
   - npm install
 
 before_script:
@@ -12,7 +14,8 @@ before_script:
   - sleep 3 # give xvfb some time to start
   - npm start &
   - sleep 3 # give Web server some time
-  #- PATH=${PATH//:\.\/node_modules\/\.bin/} https://github.com/travis-ci/travis-ci/issues/4862
+  - echo $PATH # https://github.com/travis-ci/travis-ci/issues/4862
+  - hotpot help
   - npm run specs-build
 
 script:

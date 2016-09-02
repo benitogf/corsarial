@@ -7,10 +7,10 @@ WORKDIR /usr/src/corsarial
 
 # Install app dependencies
 COPY package.json /usr/src/corsarial/
-RUN npm install --production
+RUN npm install -g hotpot
+
 
 # Bundle app source
-COPY server /usr/src/corsarial/server
 COPY platforms/browser /usr/src/corsarial/platforms/browser
 COPY www /usr/src/corsarial/www
 COPY config.xml /usr/src/corsarial
