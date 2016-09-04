@@ -10,6 +10,8 @@ describe('Warehouse service', function () {
     content: content
   }
   var testKey = 'testnotes'
+  var testBucketKey = 'testBucket'
+  var newTestBucketKey = 'newtestBucket'
   var testId = '6e6a5910ea9537a7d02e44975f4765726c4a0237c7132d3ea4cf33be76ce678b'
   var newTestId = '3941b238daab168b5b742ef81603cd2c71fb83aa75b0a8044cc414561d7bf81a'
   var wh
@@ -19,6 +21,29 @@ describe('Warehouse service', function () {
       $rootScope = $injector.get('$rootScope')
       wh = $injector.get('Warehouse')
     })
+  })
+  it('should create a bucket', function () {
+    wh.removeBuckets([testBucketKey])
+    var newKey = wh.createBucket(testBucketKey)
+    expect(newKey).to.eq(testBucketKey)
+  })
+  it('should fail to create the same bucket', function () {
+    var sameKey = wh.createBucket(testBucketKey)
+    var newKey = wh.createBucket(newTestBucketKey)
+    expect(sameKey).to.eq(false)
+    expect(newKey).to.eq(newTestBucketKey)
+  })
+  it('should get a list of buckets', function () {
+    var buckets = wh.getBuckets()
+    expect(buckets.length).to.eq(2)
+  })
+  it('should remove buckets', function () {
+    var removedKey = wh.removeBuckets([testBucketKey])
+    var otherRemovedKey = wh.removeBuckets([newTestBucketKey])
+    var buckets = wh.getBuckets()
+    expect(removedKey[0]).to.eq(testBucketKey)
+    expect(otherRemovedKey[0]).to.eq(newTestBucketKey)
+    expect(buckets.length).to.eq(0)
   })
   it('should set an item', function () {
     wh.removeItems(testKey, [testId, newTestId])

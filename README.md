@@ -29,7 +29,12 @@ npm run build browser
 
 ## configuration
 
-The config.xml file contains a server object where you can define host/port and GA params, you can also change the app name in there.
+The config.xml file contains a client object where you can define:
+- host/port
+- GA params
+- app name
+
+And a server object with the host and port to allow an external connection.
 
 ## dev server
 

@@ -32,7 +32,8 @@ angular.module('app.tags', [
       controller: 'NotesController',
       resolve: {
           // cause a 1 second delay
-        delay: utils.delayLoad
+        delay: utils.delayLoad,
+        keyword: utils.keywordCheck
       }
     })
     .when('/notes/new', {
@@ -40,7 +41,8 @@ angular.module('app.tags', [
       controller: 'NewNoteController',
       resolve: {
           // cause a 1 second delay
-        delay: utils.delayLoad
+        delay: utils.delayLoad,
+        keyword: utils.keywordCheck
       }
     })
     .when('/notes/edit:noteId', {
@@ -48,7 +50,8 @@ angular.module('app.tags', [
       controller: 'EditNoteController',
       resolve: {
           // cause a 1 second delay
-        delay: utils.delayLoad
+        delay: utils.delayLoad,
+        keyword: utils.keywordCheck
       }
     })
 

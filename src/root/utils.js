@@ -12,6 +12,12 @@ module.exports = {
     }, 1000)
     return delay.promise
   },
+  keywordCheck: function ($rootScope, $location) {
+    // if (!$rootScope.keyword) {
+    //   $location.path('/')
+    // }
+    return $rootScope.keyword
+  },
   errorConfirm: function () {
     document.location.reload()
   },
