@@ -2,6 +2,7 @@
 
 [![Build Status][build-image]][build-url]
 [![CoverageStatus][coverage-image]][coverage-url]
+[![daviddep][david-dep-image]][david-dep-url]
 [![standardjs][standardjs-image]][standardjs-url]
 
 [build-url]: https://travis-ci.org/benitogf/corsarial
@@ -10,6 +11,8 @@
 [coverage-url]: https://coveralls.io/github/benitogf/corsarial?branch=master
 [standardjs-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square
 [standardjs-url]: http://standardjs.com/
+[david-dep-image]: https://david-dm.org/benitogf/corsarial/master/dev-status.svg
+[david-dep-url]: https://david-dm.org/benitogf/corsarial/master?type=dev
 
 [Cor](http://cordova.apache.org/) `s`ample `a`ngular mate`rial`
 
