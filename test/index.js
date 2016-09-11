@@ -15,6 +15,11 @@ global._ = require('lodash')
 global.d3 = require('d3')
 global.mockUtils = require('./specs/utils')
 global.window.mocha = require('mocha')
+global.navigator = { platform: 'jsdom' }
+global.Node = global.window.Node
+global.Text = global.window.Text
+global.HTMLElement = global.window.HTMLElement
+global.MutationObserver = mockUtils.MutationObserver
 global.window.localStorage = global.localStorage
 global.expect = chai.expect
 global.beforeEach = window.beforeEach = window.mocha.beforeEach

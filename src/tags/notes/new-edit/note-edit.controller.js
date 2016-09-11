@@ -7,6 +7,11 @@ function EditNoteController ($rootScope, $scope, $routeParams) {
   $scope.header = 'NOTES.EDIT'
   $scope.saveNote = saveNote
   $scope.note = {
+    name: '',
+    content: {
+      text: '',
+      contents: []
+    },
     tags: []
   }
   if ($routeParams.name) {

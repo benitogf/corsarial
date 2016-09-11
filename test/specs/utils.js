@@ -5,7 +5,15 @@ var utils = {
   i18nServiceProvider: i18nServiceProvider,
   timeoutProvider: timeoutProvider,
   mdUtilProvider: mdUtilProvider,
-  canvasGetCtx: canvasGetCtx
+  canvasGetCtx: canvasGetCtx,
+  MutationObserver: MutationObserver,
+}
+function MutationObserver() {
+  //https://github.com/tmpvar/jsdom/issues/639
+  return {
+    observe: function() { return [] },
+    takeRecords: function() { return [] },
+  }
 }
 function canvasGetCtx () {
   return function () {

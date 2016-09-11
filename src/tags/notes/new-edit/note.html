@@ -14,28 +14,28 @@
           <div ng-messages="noteForm.name.$error"
               ng-if="noteForm.name.$touched">
               <div ng-if="noteForm.name.$error.required"
+                  class="md-input-message-animation"
                   ng-message="required"
                   translate>NOTES.NAME.REQUIRED</div>
               <div ng-if="noteForm.name.$error['md-maxlength']"
+                  class="md-input-message-animation"
                   ng-message="md-maxlength"
                   translate>NOTES.NAME.MAX_LENGTH</div>
           </div>
         </md-input-container>
         <md-input-container class="md-block" md-form-error>
-          <label translate>NOTES.CONTENT</label>
-          <textarea ng-model="note.content"
-              tabindex="1"
-              name="content"
-              md-maxlength="150"
-              rows="5"
-              md-select-on-focus
-              required></textarea>
+          <md-quill name="content"
+              ng-model="note.content"
+              maxlength="150"
+              required></md-quill>
           <div ng-messages="noteForm.content.$error"
               ng-if="noteForm.content.$touched">
               <div ng-if="noteForm.content.$error.required"
+                  class="md-input-message-animation"
                   ng-message="required"
                   translate>NOTES.CONTENT.REQUIRED</div>
               <div ng-if="noteForm.content.$error['md-maxlength']"
+                  class="md-input-message-animation"
                   ng-message="md-maxlength"
                   translate>NOTES.CONTENT.MAX_LENGTH</div>
           </div>
@@ -44,7 +44,7 @@
             <label translate>NOTES.TAGS</label>
             <md-chips class="custom-chips"
                  name="tags"
-                 secondary-placeholder="{{ NOTES.TAGS.PLUS | translate }}"
+                 secondary-placeholder="+"
                  readonly="false"
                  md-removable="true"
                  md-max-chips="3"
@@ -59,13 +59,14 @@
                </button>
             </md-chips>
             <div class="hint"
-                ng-if="noteForm.tags.$pristine && (note.tags.length === 0)"
+                ng-if="noteForm.tags.$pristine || (note.tags.length === 0)"
                 translate>NOTES.TAGS.HINT</div>
             <div ng-messages="noteForm.tags.$error"
                 ng-if="!noteForm.tags.$pristine">
                 <div ng-if="noteForm.tags.$error['md-max-chips']"
+                    class="hint-warn"
                     ng-message="md-max-chips"
-                    translate>NOTES.TAGS.MAX_LENGHT</div>
+                    translate>NOTES.TAGS.MAX_LENGTH</div>
             </div>
         </md-input-container>
         <div class="btn-container" layout="row" layout-align="end center">

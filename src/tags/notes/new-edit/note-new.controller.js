@@ -7,6 +7,10 @@ function NewNoteController ($rootScope, $scope, $log, $routeParams) {
   $scope.header = 'NOTES.NEW'
   $scope.saveNote = saveNote
   $scope.note = {
+    content: {
+      text: '',
+      contents: []
+    },
     tags: []
   }
   if ($routeParams.name) {
