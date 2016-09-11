@@ -6,13 +6,13 @@ var utils = {
   timeoutProvider: timeoutProvider,
   mdUtilProvider: mdUtilProvider,
   canvasGetCtx: canvasGetCtx,
-  MutationObserver: MutationObserver,
+  MutationObserver: MutationObserver
 }
-function MutationObserver() {
-  //https://github.com/tmpvar/jsdom/issues/639
+function MutationObserver () {
+  // https://github.com/tmpvar/jsdom/issues/639
   return {
-    observe: function() { return [] },
-    takeRecords: function() { return [] },
+    observe: function () { return [] },
+    takeRecords: function () { return [] }
   }
 }
 function canvasGetCtx () {
