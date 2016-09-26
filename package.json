@@ -85,7 +85,7 @@
     "quill": "^1.0.3",
     "remap-istanbul": "^0.6.4",
     "sha.js": "^2.4.5",
-    "snazzy": "^4.0.1",
+    "snazzy": "^5.0.0",
     "standard": "^8.0.0"
   }
 }
