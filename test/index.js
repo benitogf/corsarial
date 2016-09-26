@@ -20,6 +20,7 @@ global.Node = global.window.Node
 global.Text = global.window.Text
 global.HTMLElement = global.window.HTMLElement
 global.MutationObserver = mockUtils.MutationObserver
+global.document.getSelection = mockUtils.getSelection
 global.window.localStorage = global.localStorage
 global.expect = chai.expect
 global.beforeEach = window.beforeEach = window.mocha.beforeEach
