@@ -87,6 +87,6 @@
     "remap-istanbul": "^0.6.4",
     "sha.js": "^2.4.5",
     "snazzy": "^5.0.0",
-    "standard": "^8.0.0"
+    "standard": "^8.3.0"
   }
 }
