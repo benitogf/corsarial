@@ -1,5 +1,28 @@
 md-data-grid {
     display: inherit;
+    .date-filter-container {
+      .md-datepicker-input-container {
+        margin-left: 35px;
+        margin-right: -2px;
+        display: block;
+      }
+      .md-datepicker-input {
+        width: 100%;
+      }
+      .md-datepicker-button {
+        margin: -6px -5px;
+        padding: 0;
+        position: absolute;
+      }
+      md-datepicker {
+        margin-right: 0px;
+        padding-right: 0;
+        line-height: 27px;
+        .md-datepicker-triangle-button.md-button.md-icon-button {
+          right: 9px;
+        }
+      }
+    }
     md-input-container:not(.md-has-icon) {
         span .md-text {
             padding-top: 6px;
@@ -20,5 +43,15 @@ md-data-grid {
     }
     md-list-item {
         margin: 1px 8px;
+        md-checkbox:last-of-type {
+          margin-bottom: 0;
+          pointer-events: none;
+        }
+    }
+    .md-chips {
+      box-shadow: 0 0;
+      md-chip {
+        height: auto;
+      }
     }
 }

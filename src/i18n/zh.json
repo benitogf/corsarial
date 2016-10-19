@@ -3,8 +3,10 @@
         "CANCEL": "取消",
         "SAVE": "保存",
         "CLOSE": "关",
-        "DELETE": "删除",
+        "SELECT": "选择",
+        "CREATE": "创建",
         "EDIT": "编辑",
+        "DELETE": "删除",
         "DETAILS": "编辑"
     },
     "LANGUAGES": {

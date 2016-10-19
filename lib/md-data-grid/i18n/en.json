@@ -5,6 +5,11 @@
         "UNSELECT_ALL": "Unselect All",
         "SEARCH_ITEMS": "Search items",
         "NO_ITEMS_FOUND": "No items matching \"{{search}}\" were found. Create a new one!",
-        "NO_DATA_FOUND": "There seems to be no data on this table, sorry about that"
+        "NO_DATA_FOUND": "There seems to be no data on this table, sorry about that",
+        "DATE": {
+          "DATE": "Select date",
+          "FROM": "From",
+          "TO": "To"
+        }
     }
 }

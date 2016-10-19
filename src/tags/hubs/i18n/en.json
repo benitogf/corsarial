@@ -1,0 +1,30 @@
+{
+    "HUB": {
+        "HUB": "Hub",
+        "HUBS": "Hubs",
+        "CREATE": "Create hub",
+        "EDIT": "Edit hub",
+        "SELECT": "Select hub",
+        "DELETE": "Delete hub",
+        "CREATED": "hub created!",
+        "SELECTED": "hub selected!",
+        "UPDATED": "hub updated!",
+        "DELETED": "hub deleted!",
+        "NAME": {
+            "NEW": "New name",
+            "NAME": "Name",
+            "MAX_LENGTH": "Has to be less than 20 characters long.",
+            "REQUIRED": "A name is required.",
+            "HINT": "Should be related to the content.",
+            "DUPLICATED": "Hub name already exists, try with a different name."
+        },
+        "KEYWORD": {
+            "KEYWORD": "Keyword",
+            "MAX_LENGTH": "Has to be less than 20 characters long.",
+            "REQUIRED": "A keyword is required.",
+            "PATTERN": "Use: A-a, 0-9 !@#$%^&+=_-",
+            "HINT": "Keywords cannot be recovered.",
+            "WRONG": "Wrong keyword, please try again."
+        }
+    }
+}

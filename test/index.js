@@ -1,11 +1,10 @@
 var chai = require('chai')
-var chaiAsPromised = require('chai-as-promised')
-chai.use(chaiAsPromised)
 var fs = require('fs')
 var angular = fs.readFileSync('./node_modules/angular/angular.js', 'utf-8')
 var jsdom = require('jsdom').jsdom
 var LocalStorage = require('node-localstorage').LocalStorage
 global.localStorage = new LocalStorage('./www/js/localStorageTemp')
+global.sessionStorage = new LocalStorage('./www/js/sessionStorageTemp')
 global.document = jsdom('<html><head></head><body><script></script></body></html>')
 global.window = document.defaultView
 global.$ = global.window.$ = global.window.jQuery = require('jquery');
@@ -22,6 +21,7 @@ global.HTMLElement = global.window.HTMLElement
 global.MutationObserver = mockUtils.MutationObserver
 global.document.getSelection = mockUtils.getSelection
 global.window.localStorage = global.localStorage
+global.window.sessionStorage = global.sessionStorage
 global.expect = chai.expect
 global.beforeEach = window.beforeEach = window.mocha.beforeEach
 global.afterEach = window.afterEach = window.mocha.afterEach

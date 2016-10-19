@@ -3,11 +3,12 @@
         "NOTES": "笔记",
         "NEW": "新的 笔记",
         "EDIT": "编辑 笔记",
+        "CREATED": "创建",
         "NAME": {
             "NAME": "标题",
             "MAX_LENGTH": "标题必须少于20个字符。",
             "REQUIRED": "需要名称或标题。",
-            "HINT": "给你记录一个名字以后搜索。"
+            "HINT": "应该与内容相关。"
         },
         "CONTENT": {
             "CONTENT": "内容",

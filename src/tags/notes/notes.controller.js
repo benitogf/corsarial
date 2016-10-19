@@ -3,20 +3,29 @@
 angular.module('app.notes', [])
     .controller('NotesController', NotesController)
 
-function NotesController ($scope, $q, $location) {
+function NotesController ($scope, $q, $location, $translate) {
   $scope.options = {
     withSelector: true,
     withSearch: true,
     withDelete: true,
     getData: getItems,
-    shownFields: {
+    layout: {
       title: 'name',
-      description: ['productCategory', 'productFamily']
-    },
-    labelFields: {
-      name: 'Name',
-      productCategory: 'Product category',
-      productFamily: 'Product family'
+      description: ['content', 'tags', 'created'],
+      labels: {
+        name: 'NOTES.NAME',
+        tags: 'NOTES.TAGS',
+        content: 'NOTES.CONTENT',
+        created: 'NOTES.CREATED'
+      },
+      formats: {
+        tags: 'tags',
+        created: 'date'
+      },
+      menu: [{
+        label: 'COMMON.EDIT',
+        action: 'editItem'
+      }]
     },
     controllerAction: {
       editItem: editItem,
@@ -37,34 +46,25 @@ function NotesController ($scope, $q, $location) {
       {
         'id': 'A01DB120438D226B48257B2C000BC2BB',
         'name': 'Hexcore strings',
-        'productCategory': 'Accessories',
-        'productFamily': 'Musical Instruments',
-        'productCategoryId': '001',
-        'productFamilyId': '001',
-        'creator': 'Stephen Zhong',
-        'createTime': 1459247899,
+        'tags': ['Accessories', 'Musical Instruments'],
+        'content': 'This is the content of a note, is not too long so you can read it quickly and engage with more important activities',
+        'created': 1459247899,
         'status': '0'
       },
       {
         'id': '1F59E627B5D56E9E48257B2C000BC2E2',
         'name': 'Silk strings',
-        'productCategory': 'Accessories',
-        'productFamily': 'Musical Instruments',
-        'productCategoryId': '001',
-        'productFamilyId': '001',
-        'creator': 'Solon Long',
-        'createTime': 1459247899,
+        'tags': ['Accessories', 'Musical Instruments'],
+        'content': 'This is the content of a note, is not too long so you can read it quickly and engage with more important activities',
+        'created': 1459257093,
         'status': '0'
       },
       {
         'id': 'A58049C0A6A4C0FB48257B2C000BC34E',
         'name': 'Nickel-plated strings',
-        'productCategory': 'Accessories',
-        'productFamily': 'Musical Instruments',
-        'productCategoryId': '001',
-        'productFamilyId': '001',
-        'creator': 'Anson Cai',
-        'createTime': 1459247899,
+        'tags': ['Accessories', 'Musical Instruments'],
+        'content': 'This is the content of a note, is not too long so you can read it quickly and engage with more important activities',
+        'created': 1459241348,
         'status': '0'
       }
     ]

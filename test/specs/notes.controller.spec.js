@@ -4,6 +4,7 @@ describe('Notes', function () {
   var scope
   beforeEach(function () {
     angular.mock.module('app.notes')
+    angular.mock.module('app.notes', mockUtils.translateProvider)
     angular.mock.inject(function ($injector) {
       $rootScope = $injector.get('$rootScope')
       $controller = $injector.get('$controller')
@@ -16,7 +17,7 @@ describe('Notes', function () {
     })
   })
   it('should have a getData method', function () {
-    expect(scope.options.getData()).to.eventually.be.an.instanceOf(Array)
+    expect(scope.options.getData).to.be.an.instanceOf(Function)
   })
   it('should have new and edit methods', function () {
     scope.options.controllerAction.newItem({ id: '1' })

@@ -3,8 +3,10 @@
         "CANCEL": "Cancel",
         "SAVE": "Save",
         "CLOSE": "Close",
-        "DELETE": "Delete",
+        "SELECT": "Select",
+        "CREATE": "Create",
         "EDIT": "Edit",
+        "DELETE": "Delete",
         "DETAILS": "Details"
     },
     "LANGUAGES": {

@@ -8,16 +8,16 @@ function NavService ($rootScope) {
   var self = {
     sections: [
       {
-        name: 'NAV.HOME',
+        name: 'NAV.HUBS',
         url: preUrl + '/',
         type: 'link'
       },
       {
-        name: 'NAV.NOTES',
+        name: '',
         type: 'heading',
         children: [
           {
-            name: 'NAV.OPTIONS',
+            name: 'NAV.NOTES',
             type: 'toggle',
             pages: [
               {

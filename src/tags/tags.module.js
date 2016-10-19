@@ -1,24 +1,25 @@
 'use strict'
 
-require('./*/*.controller.js', { mode: 'expand' })
-require('./*/*/*.controller.js', { mode: 'expand' })
+require('./*/*.js', { mode: 'expand' })
+require('./*/*/*.js', { mode: 'expand' })
 
 angular.module('app.tags', [
   require('angular-route'),
   'app.error',
+  'app.hubs',
   'app.notes'
 ])
 .config(function ($routeProvider, $locationProvider) {
   $routeProvider
-    .when('/', {redirectTo: '/notes'})
-    // .when('/', {
-    //   template: require('./home/home.html'),
-    //   controller: 'HomeController',
-    //   resolve: {
-    //       // cause a 1 second delay
-    //     delay: utils.delayLoad
-    //   }
-    // })
+    // .when('/', {redirectTo: '/notes'})
+    .when('/', {
+      template: require('./hubs/hubs.html'),
+      controller: 'HubsController',
+      resolve: {
+          // cause a 1 second delay
+        delay: utils.delayLoad
+      }
+    })
     .when('/404', {
       template: require('./error/404.html'),
       controller: 'ErrorController',

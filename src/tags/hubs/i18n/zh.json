@@ -1,0 +1,29 @@
+{
+    "HUB": {
+        "HUB": "枢纽",
+        "HUBS": "集线器",
+        "CREATE": "创建桶",
+        "EDIT": "编辑桶",
+        "SELECT": "选择集线器",
+        "DELETE": "除去桶",
+        "CREATED": "中心创建！",
+        "SELECTED": "集线器选择！",
+        "UPDATED": "集线器更新！",
+        "DELETED": "集线器已删除！",
+        "NAME": {
+            "NEW": "新名称",
+            "NAME": "标题",
+            "MAX_LENGTH": "标题必须少于20个字符。",
+            "REQUIRED": "需要名称。",
+            "HINT": "应该与内容相关。"
+        },
+        "KEYWORD": {
+            "KEYWORD": "关键词",
+            "MAX_LENGTH": "必须小于20个字符长。",
+            "REQUIRED": "需要一个关键字。",
+            "PATTERN": "使用：A-a，0-9！@＃$％^＆+ = _-",
+            "HINT": "无法恢复关键字",
+            "WRONG": "关键字错误，请重试。"
+        }
+    }
+}

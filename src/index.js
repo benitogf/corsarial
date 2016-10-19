@@ -10,6 +10,7 @@ window.utils = require('./root/utils')
 require('angular-aria')
 require('angular-animate')
 require('angular-material')
+require('angular-moment')
 require('./root/root.module')
 require('./tags/tags.module')
 

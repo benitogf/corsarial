@@ -5,6 +5,11 @@
         "UNSELECT_ALL": "取消所有",
         "SEARCH_ITEMS": "搜索项目",
         "NO_ITEMS_FOUND": "没有项目匹配 \"{{search}}\" 发现。 创建一个新的 ！",
-        "NO_DATA_FOUND": "抱歉， 没有找到数据"
+        "NO_DATA_FOUND": "抱歉， 没有找到数据",
+        "DATE": {
+          "DATE": "输入日期",
+          "FROM": "从",
+          "TO": "至"
+        }
     }
 }

@@ -5,7 +5,7 @@ describe('Data grid', function () {
   var $rootScope
   var $compile
   var options = {
-    shownFields: {
+    layout: {
       title: 'name',
       description: ['content']
     }
@@ -69,6 +69,8 @@ describe('Data grid', function () {
     expect(grid.vm.selected.length).to.eq(0)
   })
   it('should find an item', function () {
-    expect(grid.querySearch('cub')).to.eventually.eq(items[1])
+    grid.querySearch('cub').then(function (res) {
+      expect(grid.querySearch('cub')).to.eq(items[1])
+    })
   })
 })

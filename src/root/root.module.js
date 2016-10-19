@@ -9,6 +9,7 @@ require('../../lib/md-data-grid/md-data-grid')
 require('../../lib/md-d3-graph/md-d3-graph')
 
 angular.module('app.root', [
+  'angularMoment',
   'i18n',
   'app.nav',
   'app.theme',

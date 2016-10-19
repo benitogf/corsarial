@@ -1,0 +1,102 @@
+<md-dialog aria-label="Hub (select)">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2 translate>{{'HUB.' + action}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/close.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+          <form name="hubForm" class="md-inline-form" ng-submit="submit()" novalidate>
+            <input type="submit" value="submit" ng-show="false">
+            <md-input-container class="md-block" md-form-error>
+              <label translate>HUB.NAME</label>
+              <input md-maxlength="20"
+                  tabindex="0"
+                  name="name"
+                  ng-model="hub.name"
+                  ng-disabled="disabledName"
+                  required/>
+              <div class="hint"
+                  ng-if="!hubForm.name.$touched && !hub.name"
+                  translate>HUB.NAME.HINT</div>
+              <div ng-messages="hubForm.name.$error"
+                  ng-if="hubForm.name.$touched">
+                  <div ng-if="hubForm.name.$error.required"
+                      class="md-input-message-animation"
+                      ng-message="required"
+                      translate>HUB.NAME.REQUIRED</div>
+                  <div ng-if="hubForm.name.$error['md-maxlength']"
+                      class="md-input-message-animation"
+                      ng-message="md-maxlength"
+                      translate>HUB.NAME.MAX_LENGTH</div>
+              </div>
+            </md-input-container>
+            <md-input-container ng-if="(action === 'EDIT')" class="md-block" md-form-error>
+              <label translate>HUB.NAME.NEW</label>
+              <input md-maxlength="20"
+                  tabindex="0"
+                  name="newName"
+                  ng-model="hub.newName"
+                  required/>
+              <div class="hint"
+                  ng-if="!hubForm.newName.$touched && !hub.newName"
+                  translate>HUB.NAME.HINT</div>
+              <div ng-messages="hubForm.newName.$error"
+                  ng-if="hubForm.newName.$touched">
+                  <div ng-if="hubForm.newName.$error.required"
+                      class="md-input-message-animation"
+                      ng-message="required"
+                      translate>HUB.NAME.REQUIRED</div>
+                  <div ng-if="hubForm.newName.$error['md-maxlength']"
+                      class="md-input-message-animation"
+                      ng-message="md-maxlength"
+                      translate>HUB.NAME.MAX_LENGTH</div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block" md-form-error>
+              <label translate>HUB.KEYWORD</label>
+              <!-- https://regex101.com/r/fZ5eP6/1 -->
+              <input md-maxlength="20"
+                  type="password"
+                  ng-pattern="/^(?=.{8,})(?=.*\d)(?![.\n])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=_-]).*$/"
+                  tabindex="0"
+                  name="keyword"
+                  ng-model="hub.keyword"
+                  required/>
+              <div class="hint"
+                  ng-if="!hubForm.keyword.$touched && !hub.keyword"
+                  translate>HUB.KEYWORD.HINT</div>
+              <div ng-messages="hubForm.keyword.$error">
+                  <div ng-if="hubForm.keyword.$error.required"
+                      class="md-input-message-animation"
+                      ng-message="required"
+                      translate>HUB.KEYWORD.REQUIRED</div>
+                  <div ng-if="hubForm.keyword.$error['md-maxlength']"
+                      class="md-input-message-animation"
+                      ng-message="md-maxlength"
+                      translate>HUB.KEYWORD.MAX_LENGTH</div>
+                  <div ng-if="hubForm.keyword.$error['pattern']"
+                      class="md-input-message-animation"
+                      ng-message="pattern"
+                      translate>HUB.KEYWORD.PATTERN</div>
+              </div>
+            </md-input-container>
+          </form>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button ng-click="cancel()">
+        <span translate>COMMON.CANCEL</span>
+      </md-button>
+      <span flex></span>
+      <md-button ng-click="submit()" class="md-raised md-primary">
+        <span translate>{{'COMMON.' + action}}</span>
+      </md-button>
+    </md-dialog-actions>
+</md-dialog>

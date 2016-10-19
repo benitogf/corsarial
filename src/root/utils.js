@@ -12,17 +12,16 @@ module.exports = {
     }, 1000)
     return delay.promise
   },
-  keywordCheck: function ($rootScope, $location) {
-    // if (!$rootScope.keyword) {
-    //   $location.path('/')
-    // }
-    return $rootScope.keyword
+  keywordCheck: function (Warehouse, $location) {
+    if (!Warehouse.getHub()) {
+      $location.path('/')
+    }
+    return Warehouse.getHub()
   },
   errorConfirm: function () {
     document.location.reload()
   },
   errorHandler: function (message) {
-    console.log('error ' + message)
     navigator.notification.alert(
              message, // message
              utils.errorConfirm, // callback to invoke with index of button pressed
