@@ -5,8 +5,9 @@ describe('Navigator left', function () {
   var $rootScope
   var $compile
   beforeEach(function () {
-    angular.mock.module('app.nav', mockUtils.mdSidenavProvider)
     angular.mock.module('app.nav', mockUtils.mdUtilProvider)
+    angular.mock.module('app.nav', mockUtils.mdSidenavProvider)
+    angular.mock.module('app.nav', mockUtils.warehouseProvider)
     angular.mock.inject(function ($injector) {
       $rootScope = $injector.get('$rootScope')
       $compile = $injector.get('$compile')

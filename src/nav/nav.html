@@ -1,8 +1,7 @@
 <md-sidenav md-component-id="left"
     class="site-sidenav md-sidenav-left md-whiteframe-z2"
     md-is-locked-open="$mdMedia('gt-md')"
-    md-swipe-left="hide('left')"
-    md-swipe-up="hide('left')">
+    md-swipe-left="hide('left')">
     <md-toolbar class="main-toolbar">
       <h1 class="md-toolbar-tools">
           <md-icon md-svg-icon="img/icons/corsarial.svg"></md-icon>
@@ -12,14 +11,15 @@
 </md-sidenav>
 <md-sidenav md-component-id="right"
     class="md-sidenav-right md-whiteframe-z2"
-    md-swipe-right="hide('right')"
-    md-swipe-up="hide('right')">
+    md-swipe-right="hide('right')">
     <md-toolbar class="md-theme-light">
         <h1 class="md-toolbar-tools" translate>{{header}}</h1>
     </md-toolbar>
     <nav-right></nav-right>
 </md-sidenav>
-<md-content layout-fill>
+<md-content layout-fill
+    md-swipe-right="show('left')"
+    md-swipe-left="show('right')">
     <nav-toolbar ></nav-toolbar>
     <div layout='column'
         layout-align='top center'

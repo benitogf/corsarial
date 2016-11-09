@@ -46,7 +46,7 @@ angular.module('app.tags', [
         keyword: utils.keywordCheck
       }
     })
-    .when('/notes/edit:noteId', {
+    .when('/notes/edit/:id', {
       template: require('./notes/new-edit/note.html'),
       controller: 'EditNoteController',
       resolve: {

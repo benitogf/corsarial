@@ -2,9 +2,11 @@ var utils = {
   translateProvider: translateProvider,
   routeParamsProvider: routeParamsProvider,
   mdSidenavProvider: mdSidenavProvider,
+  mdToastProvider: mdToastProvider,
   i18nServiceProvider: i18nServiceProvider,
   timeoutProvider: timeoutProvider,
   mdUtilProvider: mdUtilProvider,
+  warehouseProvider: warehouseProvider,
   canvasGetCtx: canvasGetCtx,
   MutationObserver: MutationObserver,
   getSelection: getSelection
@@ -42,6 +44,16 @@ function canvasGetCtx () {
       fill: function () {}
     }
   }
+}
+function warehouseProvider ($provide) {
+  $provide.factory('Warehouse', function () {
+    return {
+      getHub: function () { return },
+      getItem: function () { return },
+      createItem: function () { return },
+      updateItem: function () { return }
+    }
+  })
 }
 function mdUtilProvider ($provide) {
   $provide.factory('$mdUtil', function () {
@@ -86,6 +98,11 @@ function mdSidenavProvider ($provide) {
         }
       }
     }
+  })
+}
+function mdToastProvider ($provide) {
+  $provide.factory('$mdToast', function () {
+    return {}
   })
 }
 function timeoutProvider ($provide) {

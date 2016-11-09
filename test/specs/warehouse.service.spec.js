@@ -8,6 +8,10 @@ describe('Warehouse service', function () {
     name: 'A new test name',
     content: content
   }
+  var fakeItem = {
+    name: 'A fake name',
+    content: ''
+  }
   var testHubKey = 'testHub'
   var newTestHubKey = 'newTestHub'
   var testKeyword = 'testKeyword1'
@@ -67,13 +71,14 @@ describe('Warehouse service', function () {
     expect(item).to.eq(false)
   })
   it('should update an item', function () {
-    var newItemId = wh.updateItem(testId, newTestItem)
+    newTestItem.id = testId
+    var newItemId = wh.updateItem(newTestItem)
     var item = wh.getItem(testId)
     expect(newItemId).to.eq(newTestId)
     expect(item).to.eq(false)
   })
   it('should fail to modify a nonexistent item', function () {
-    var newItemId = wh.updateItem('fakeId', newTestItem)
+    var newItemId = wh.updateItem(fakeItem)
     expect(newItemId).to.eq(false)
   })
   it('should reject same name items', function () {

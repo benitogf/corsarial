@@ -43,11 +43,10 @@ md-data-grid {
     }
     md-list-item {
         margin: 1px 8px;
-        md-checkbox:last-of-type {
-          margin-bottom: 0;
-          pointer-events: none;
-        }
     }
+    md-checkbox.list-checkbox {
+      margin-bottom: 0;
+    }    
     .md-chips {
       box-shadow: 0 0;
       md-chip {

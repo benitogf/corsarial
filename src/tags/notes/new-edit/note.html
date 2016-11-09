@@ -26,7 +26,7 @@
         <md-input-container class="md-block" md-form-error>
           <md-quill name="content"
               ng-model="note.content"
-              maxlength="150"
+              max-length="150"
               required></md-quill>
           <div ng-messages="noteForm.content.$error"
               ng-if="noteForm.content.$touched">

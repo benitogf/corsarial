@@ -2,6 +2,7 @@
     role="navigation">
     <ul class="nav-menu">
       <li ng-repeat="section in nav.sections"
+          ng-if="(section.hub && hub) || !section.hub"
           ng-class="{'parentActive' : isSectionOpen(section)}"
           class="parent-list-item {{section.className || ''}}">
           <h2 ng-if="section.type === 'heading'"

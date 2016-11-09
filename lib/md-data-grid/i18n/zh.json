@@ -4,6 +4,10 @@
         "SELECT_ALL": "全选",
         "UNSELECT_ALL": "取消所有",
         "SEARCH_ITEMS": "搜索项目",
+        "FILTER": {
+          "ADD": "Add filter",
+          "INVALID": "Please fill the filter subject"
+        },
         "NO_ITEMS_FOUND": "没有项目匹配 \"{{search}}\" 发现。 创建一个新的 ！",
         "NO_DATA_FOUND": "抱歉， 没有找到数据",
         "DATE": {

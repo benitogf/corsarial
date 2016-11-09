@@ -3,6 +3,7 @@ describe('Notes: new', function () {
   var $rootScope
   var scope
   beforeEach(function () {
+    angular.mock.module('app.nav', mockUtils.warehouseProvider)
     angular.mock.module('app.notes', mockUtils.routeParamsProvider)
     angular.mock.inject(function ($injector) {
       $rootScope = $injector.get('$rootScope')

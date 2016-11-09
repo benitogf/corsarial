@@ -8,11 +8,15 @@ function HubService ($rootScope, $location, $q, $mdDialog, $mdToast, Warehouse) 
     showDialog: showDialog
   }
 
-  function dialogControl ($scope, $translate, $mdDialog, item, action) {
+  function dialogControl ($scope, $timeout, $translate, $mdDialog, item, action) {
     $scope.submit = submit
     $scope.hub = item
     $scope.action = action
     $scope.disabledName = (action !== 'CREATE')
+    $scope.loading = true
+    $timeout(function () {
+      $scope.loading = false
+    }, 1000)
 
     function submit () {
       var status = false

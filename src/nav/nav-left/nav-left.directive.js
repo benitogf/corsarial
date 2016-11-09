@@ -12,11 +12,15 @@ function navLeft () {
   return directive
 }
 
-function NavLeftController ($scope, $timeout, $mdSidenav, $location, NavService) {
+function NavLeftController ($scope, $timeout, $mdSidenav, $location, NavService, Warehouse) {
   $scope.isSectionOpen = isSectionOpen
   $scope.nav = NavService
   $scope.$on('$routeChangeSuccess', function () {
     NavService.getPageByUrl($location.$$path)
+  })
+  $scope.hub = !!Warehouse.getHub()
+  $scope.$on('hub-change', function (ev, status) {
+    $scope.hub = status
   })
   $scope.close = function () {
     return $mdSidenav('left').close()

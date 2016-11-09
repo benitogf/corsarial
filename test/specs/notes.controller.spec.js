@@ -4,6 +4,7 @@ describe('Notes', function () {
   var scope
   beforeEach(function () {
     angular.mock.module('app.notes')
+    angular.mock.module('app.nav', mockUtils.warehouseProvider)
     angular.mock.module('app.notes', mockUtils.translateProvider)
     angular.mock.inject(function ($injector) {
       $rootScope = $injector.get('$rootScope')

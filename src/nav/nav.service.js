@@ -15,6 +15,7 @@ function NavService ($rootScope) {
       {
         name: '',
         type: 'heading',
+        hub: true,
         children: [
           {
             name: 'NAV.NOTES',

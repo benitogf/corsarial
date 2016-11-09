@@ -19,7 +19,7 @@
         layout-margin
         class="md-whiteframe-1dp">
         <md-input-container>
-            <md-select ng-model="vm.filterField" aria-label="Filter field">
+            <md-select ng-model="vm.filterField" ng-change="changeFilterField()" aria-label="Filter field">
                 <md-option
                     ng-repeat="field in allFields"
                     ng-value="field" translate>{{(vm.options.layout.labels[field]) ? vm.options.layout.labels[field] : field}}</md-option>
@@ -42,18 +42,18 @@
           md-input-name="autocompleteField"
           md-no-cache="false"
           md-selected-item="vm.selectedItem"
-          md-search-text-change="searchTextChange(searchText)"
-          md-search-text="searchText"
+          md-search-text-change="searchTextChange(vm.searchText)"
+          md-search-text="vm.searchText"
           md-selected-item-change="selectedItemChange(vm.item)"
-          md-items="item in querySearch(searchText)"
-          md-item-text="item[vm.options.layout.title]"
+          md-items="item in querySearch(vm.searchText)"
+          md-item-text="getField(item, vm.filterField)"
           md-min-length="2"
           placeholder="{{'GRID.SEARCH_ITEMS' | translate}}">
           <md-item-template>
-            <span md-highlight-text="searchText" md-highlight-flags="^i">{{(Array.isArray(item[vm.filterField])) ? item[vm.options.layout.title] + ' - ' + item[vm.filterField].join(', ') : item[vm.options.layout.title] + ' - ' + item[vm.filterField]}}</span>
+            <span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{(Array.isArray(item[vm.filterField])) ? item[vm.options.layout.title] + ' - ' + item[vm.filterField].join(', ') : item[vm.options.layout.title] + ' - ' + item[vm.filterField]}}</span>
           </md-item-template>
           <md-not-found>
-            <a ng-click="newItem(searchText)" translate translate-value-search="{{searchText}}">GRID.NO_ITEMS_FOUND</a>
+            <a ng-click="newItem(vm.searchText)" translate translate-value-search="{{vm.searchText}}">GRID.NO_ITEMS_FOUND</a>
           </md-not-found>
         </md-autocomplete>
         <md-content
@@ -61,15 +61,47 @@
           flex
           layout="row"
           class="md-block date-filter-container">
-          <md-datepicker ng-model="dateFrom" md-placeholder="{{'GRID.DATE.FROM' | translate}}"
+          <md-datepicker ng-model="vm.dateFrom" md-placeholder="{{'GRID.DATE.FROM' | translate}}"
               md-open-on-focus
               flex="grow"
+              ng-change="changeDateFrom()"
               md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
-          <md-datepicker ng-model="dateTo" md-placeholder="{{'GRID.DATE.TO' | translate}}"
+          <md-datepicker ng-model="vm.dateTo" md-placeholder="{{'GRID.DATE.TO' | translate}}"
               md-open-on-focus
               flex="grow"
-              md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
+              ng-disabled="!vm.dateFrom"
+              md-min-date="vm.dateFrom" md-max-date="maxDate"></md-datepicker>
         </md-content>
+        <md-content flex=20
+          flex-xs=100>
+        <md-button ng-click="addFilter()"
+          layout-fill
+          class="md-raised md-primary">
+          <span translate>GRID.FILTER.ADD</span>
+        </md-button>
+        </md-content>
+    </md-content>
+    <md-content layout="row"
+      layout-xs="column"
+      layout-align="start stretch"
+      flex
+      ng-if="filters.length > 0"
+      layout-align-xs="center stretch"
+      layout-margin>
+      <md-chips class="custom-chips"
+           name="filters"
+           readonly="true"
+           md-removable="true"
+           ng-model="filters">
+         <md-chip-template>
+           <span>
+             <strong>{{$chip.label}}</strong>
+           </span>
+         </md-chip-template>
+         <button md-chip-remove class="md-primary" type="button">
+           <md-icon md-svg-icon="img/icons/close.svg"></md-icon>
+         </button>
+      </md-chips>
     </md-content>
     <md-content
         ng-if="vm.options.withSelector"
@@ -82,8 +114,7 @@
               ng-checked="allChecked()"
               md-indeterminate="isIndeterminate()"
               ng-click="toggleAll()"
-              style="margin-bottom: 0"
-              class="md-primary">
+              class="md-primary list-checkbox">
             <span ng-if="allChecked()" translate>GRID.UNSELECT_ALL</span>
             <span ng-if="!allChecked()" translate>GRID.SELECT_ALL</span>
           </md-checkbox>
@@ -116,11 +147,12 @@
                 <b>{{item[vm.options.layout.title]}}</b>
                 <div ng-repeat="description in vm.options.layout.description">
                   <span ng-if="!vm.options.layout.formats[description]">{{item[description]}}</span>
-                  <md-chips ng-if="vm.options.layout.formats[description] === 'tags'" ng-repeat="tag in item[description] track by $index">
+                  <md-chips ng-if="vm.options.layout.formats[description] === 'tags'"
+                    ng-repeat="tag in item[description] track by $index">
                     <md-chip>{{tag}}</md-chip>
                   </md-chips>
                   <span ng-if="vm.options.layout.formats[description] === 'date'">{{item[description] | amFromUnix | amLocal | amDateFormat:'MM.DD.YYYY HH:mm:ss'}}</span>
-                  <md-checkbox ng-if="vm.options.layout.formats[description] === 'check'" aria-label="item check" ng-disabled="true" ng-model="item[description]">
+                  <md-checkbox class="list-checkbox" ng-if="vm.options.layout.formats[description] === 'check'" aria-label="item check" ng-disabled="true" ng-model="item[description]">
                   <md-divider hide show-xs></md-divider>
                 </div>
                 <div ng-if="vm.options.layout.corner">{{item[vm.options.layout.corner]}}</div>

@@ -3,7 +3,7 @@
 angular.module('app.notes')
     .controller('NewNoteController', NewNoteController)
 
-function NewNoteController ($rootScope, $scope, $log, $routeParams) {
+function NewNoteController ($rootScope, $scope, $location, $routeParams, Warehouse) {
   $scope.header = 'NOTES.NEW'
   $scope.saveNote = saveNote
   $scope.note = {
@@ -22,6 +22,8 @@ function NewNoteController ($rootScope, $scope, $log, $routeParams) {
       $rootScope.$broadcast('show-form-errors')
       return false
     } else {
+      Warehouse.createItem($scope.note)
+      $location.path('/notes')
       return true
     }
   }
