@@ -5,8 +5,8 @@
         "UNSELECT_ALL": "取消所有",
         "SEARCH_ITEMS": "搜索项目",
         "FILTER": {
-          "ADD": "Add filter",
-          "INVALID": "Please fill the filter subject"
+          "ADD": "添加过滤器",
+          "UPDATED": "过滤器已更新"
         },
         "NO_ITEMS_FOUND": "没有项目匹配 \"{{search}}\" 发现。 创建一个新的 ！",
         "NO_DATA_FOUND": "抱歉， 没有找到数据",

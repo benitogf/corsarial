@@ -72,7 +72,7 @@
                   ng-model="hub.keyword"
                   required/>
               <div class="hint"
-                  ng-if="!hubForm.keyword.$touched && !hub.keyword"
+                  ng-if="!hubForm.keyword.$touched && hub.keyword === ''"
                   translate>HUB.KEYWORD.HINT</div>
               <div ng-messages="hubForm.keyword.$error">
                   <div ng-if="hubForm.keyword.$error.required"

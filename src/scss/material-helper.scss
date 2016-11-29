@@ -100,12 +100,12 @@ md-toolbar {
     }
 }
 md-fab-toolbar md-toolbar .md-toolbar-tools {
-  padding: 0 0;
   @include respond-to(handhelds) { margin-top: 3px; }
   @include respond-to(small-screens) { margin-top: 10px; }
   @include respond-to(medium-screens) { margin-top: 10px; }
   @include respond-to(wide-screens) { margin-top: 3px; }
-  @include respond-to(xwide-screens) { margin-top: 3px; }
+  @include respond-to(xwide-screens) { margin-top: 3px; }  
+  padding: 0 0;
 }
 // md-backdrop, md-sidenav
 md-backdrop, md-sidenav {

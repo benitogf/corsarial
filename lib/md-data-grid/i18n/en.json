@@ -6,9 +6,9 @@
         "SEARCH_ITEMS": "Search items",
         "FILTER": {
           "ADD": "Add filter",
-          "INVALID": "Please fill the filter subject"
+          "UPDATED": "The filter has been updated"
         },
-        "NO_ITEMS_FOUND": "No items matching \"{{search}}\" were found. Create a new one!",
+        "NO_ITEMS_FOUND": "No items matching \"{{search}}\" were found. Create one?",
         "NO_DATA_FOUND": "There seems to be no data on this table, sorry about that",
         "DATE": {
           "DATE": "Select date",

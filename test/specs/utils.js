@@ -3,6 +3,7 @@ var utils = {
   routeParamsProvider: routeParamsProvider,
   mdSidenavProvider: mdSidenavProvider,
   mdToastProvider: mdToastProvider,
+  mdDialogProvider: mdDialogProvider,
   i18nServiceProvider: i18nServiceProvider,
   timeoutProvider: timeoutProvider,
   mdUtilProvider: mdUtilProvider,
@@ -102,6 +103,11 @@ function mdSidenavProvider ($provide) {
 }
 function mdToastProvider ($provide) {
   $provide.factory('$mdToast', function () {
+    return {}
+  })
+}
+function mdDialogProvider ($provide) {
+  $provide.factory('$mdDialog', function () {
     return {}
   })
 }
