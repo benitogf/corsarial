@@ -4,7 +4,7 @@ angular.module('app.notes', [])
     .controller('NotesController', NotesController)
 
 function NotesController ($rootScope, $scope, $q, $location, $translate, Warehouse) {
-  $scope.hub = Warehouse.getHub();
+  $scope.hub = Warehouse.getHub()
   $scope.options = {
     withSelector: true,
     withSearch: true,
