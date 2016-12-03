@@ -22,7 +22,6 @@ describe('Navigator right', function () {
     nav = element.scope()
   })
   it('should have a controller', function () {
-    nav.vm.savePreferences()
     expect(nav.vm).to.be.an.instanceOf(Object)
   })
 })
