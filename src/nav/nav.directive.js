@@ -11,7 +11,7 @@ function mdNav () {
   }
 }
 
-function NavController ($scope, $mdSidenav) {
+function NavController ($scope, $mdSidenav, $translate) {
   $scope.toggleLeft = buildToggler('left')
   $scope.toggleRight = buildToggler('right')
 
@@ -33,7 +33,8 @@ function NavController ($scope, $mdSidenav) {
   function buildToggler (navID) {
     return function (section) {
       if (section) {
-        $scope.leftSection = section
+        $scope.section = section
+        $scope.lang = $translate.use()
         $scope.header = 'NAV.' + _.toUpper(section)
       }
       return $mdSidenav(navID).toggle()

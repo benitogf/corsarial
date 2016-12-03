@@ -7,6 +7,7 @@ plugins/*
 www/index.html
 www/js/*.js
 www/js/localStorageTemp
+www/js/sessionStorageTemp
 www/css/index.css
 .vs/*
 bld/*

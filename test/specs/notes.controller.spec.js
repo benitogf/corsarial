@@ -6,6 +6,7 @@ describe('Notes', function () {
     angular.mock.module('app.notes')
     angular.mock.module('app.notes', mockUtils.warehouseProvider)
     angular.mock.module('app.notes', mockUtils.translateProvider)
+    angular.mock.module('app.notes', mockUtils.stateProvider)
     angular.mock.inject(function ($injector) {
       $rootScope = $injector.get('$rootScope')
       $controller = $injector.get('$controller')

@@ -1,5 +1,8 @@
-<md-toolbar class="md-primary md-hue-2">
-  <div class="md-toolbar-tools" translate>HUB.HUBS</div>
-</md-toolbar>
-<md-divider></md-divider>
-<md-data-grid options="options" class="content"></md-data-grid>
+<md-tabs md-dynamic-height md-border-bottom>
+  <md-tab label="{{'HUB.HUBS' | translate}}">
+    <md-content class="md-padding">
+      <md-loader></md-loader>
+      <md-data-grid options="options" class="content"></md-data-grid>
+    </md-content>
+  </md-tab>
+</md-tabs>

@@ -4,7 +4,8 @@ describe('Notes: new', function () {
   var scope
   beforeEach(function () {
     angular.mock.module('app.notes', mockUtils.warehouseProvider)
-    angular.mock.module('app.notes', mockUtils.routeParamsProvider)
+    angular.mock.module('app.notes', mockUtils.stateParamsProvider)
+    angular.mock.module('app.notes', mockUtils.stateProvider)
     angular.mock.inject(function ($injector) {
       $rootScope = $injector.get('$rootScope')
       $controller = $injector.get('$controller')

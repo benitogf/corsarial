@@ -23,7 +23,7 @@ function NavService ($rootScope) {
             pages: [
               {
                 name: 'NAV.NOTES.NEW',
-                url: preUrl + '/notes/new',
+                url: preUrl + '/note/new',
                 type: 'link'
               },
               {

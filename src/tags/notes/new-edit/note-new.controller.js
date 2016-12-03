@@ -3,7 +3,7 @@
 angular.module('app.notes')
     .controller('NewNoteController', NewNoteController)
 
-function NewNoteController ($rootScope, $scope, $location, $routeParams, Warehouse) {
+function NewNoteController ($rootScope, $scope, $location, $stateParams, Warehouse) {
   $scope.header = 'NOTES.NEW'
   $scope.saveNote = saveNote
   $scope.note = {
@@ -13,8 +13,8 @@ function NewNoteController ($rootScope, $scope, $location, $routeParams, Warehou
     },
     tags: []
   }
-  if ($routeParams.name) {
-    $scope.note.name = $routeParams.name
+  if ($stateParams.name) {
+    $scope.note.name = $stateParams.name
   }
 
   function saveNote () {

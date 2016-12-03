@@ -160,7 +160,7 @@
                 <div ng-if="vm.options.layout.corner">{{item[vm.options.layout.corner]}}</div>
             </div>
             <!-- <md-icon class="md-secondary" ng-click="editItem(item)" aria-label="Edit" md-svg-icon="img/icons/launch.svg"></md-icon> -->
-            <md-menu>
+            <md-menu ng-if="vm.options.layout.menu">
               <md-button
                   ng-click="$mdOpenMenu()"
                   class="md-icon-button"

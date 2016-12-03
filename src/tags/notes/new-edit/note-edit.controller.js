@@ -3,10 +3,10 @@
 angular.module('app.notes')
     .controller('EditNoteController', EditNoteController)
 
-function EditNoteController ($rootScope, $scope, $location, $routeParams, Warehouse) {
+function EditNoteController ($rootScope, $scope, $location, $stateParams, Warehouse) {
   $scope.header = 'NOTES.EDIT'
   $scope.saveNote = saveNote
-  $scope.note = Warehouse.getItem($routeParams.id)
+  $scope.note = Warehouse.getItem($stateParams.id)
   if (!$scope.note) {
     $location.path('/404')
   }

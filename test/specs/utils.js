@@ -1,6 +1,7 @@
 var utils = {
   translateProvider: translateProvider,
-  routeParamsProvider: routeParamsProvider,
+  stateParamsProvider: stateParamsProvider,
+  stateProvider: stateProvider,
   mdSidenavProvider: mdSidenavProvider,
   mdToastProvider: mdToastProvider,
   mdDialogProvider: mdDialogProvider,
@@ -131,11 +132,20 @@ function translateProvider ($provide) {
     }
   })
 }
-function routeParamsProvider ($provide) {
-  $provide.factory('$routeParams', function () {
+function stateParamsProvider ($provide) {
+  $provide.factory('$stateParams', function () {
     return {
       name: 'test',
       id: 1
+    }
+  })
+}
+function stateProvider ($provide) {
+  $provide.factory('$state', function () {
+    return {
+      go: function () {
+        return
+      }
     }
   })
 }

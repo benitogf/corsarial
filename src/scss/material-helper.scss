@@ -86,7 +86,7 @@ md-chips md-chips-wrap.md-removable md-chip md-chip-template {
 }
 // md-fab
 md-fab-trigger {
-  top: 0.6em;
+  top: 0.7em;
 }
 // md-toolbar
 md-toolbar {
@@ -99,12 +99,16 @@ md-toolbar {
         }
     }
 }
+md-tabs md-ink-bar {
+  color: $highlight-color;
+  background-color: $highlight-color;
+}
 md-fab-toolbar md-toolbar .md-toolbar-tools {
-  @include respond-to(handhelds) { margin-top: 3px; }
-  @include respond-to(small-screens) { margin-top: 10px; }
+  @include respond-to(handhelds) { margin-top: 6px; }
+  @include respond-to(small-screens) { margin-top: 6px; }
   @include respond-to(medium-screens) { margin-top: 10px; }
   @include respond-to(wide-screens) { margin-top: 3px; }
-  @include respond-to(xwide-screens) { margin-top: 3px; }  
+  @include respond-to(xwide-screens) { margin-top: 1px; }
   padding: 0 0;
 }
 // md-backdrop, md-sidenav

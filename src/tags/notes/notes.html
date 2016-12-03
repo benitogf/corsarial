@@ -1,13 +1,9 @@
-<md-content layout-fill>
-    <md-subheader class="md-primary">
-        <div flex layout="row" layout-wrap>
-           <div flex="20">
-               <span translate>NOTES</span> -
-               <span>{{hub}}<span>
-           </div>
-           <div flex="80"></div>
-       </div>
-    </md-subheader>
-    <md-divider></md-divider>
-    <md-data-grid options="options" class="content"></md-data-grid>
-</md-content>
+<md-tabs md-dynamic-height md-border-bottom md-selected="1">
+  <md-tab label="<" ui-sref="hubs"></md-tab>
+  <md-tab label="{{hub}}">
+    <md-content class="md-padding">
+      <md-loader></md-loader>
+      <md-data-grid options="options" class="content"></md-data-grid>
+    </md-content>
+  </md-tab>
+</md-tabs>

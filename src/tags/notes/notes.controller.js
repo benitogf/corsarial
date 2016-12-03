@@ -3,7 +3,7 @@
 angular.module('app.notes', [])
     .controller('NotesController', NotesController)
 
-function NotesController ($rootScope, $scope, $q, $location, $translate, Warehouse) {
+function NotesController ($rootScope, $scope, $q, $state, $translate, Warehouse) {
   $scope.hub = Warehouse.getHub()
   $scope.options = {
     withSelector: true,
@@ -31,16 +31,17 @@ function NotesController ($rootScope, $scope, $q, $location, $translate, Warehou
     controllerAction: {
       editItem: editItem,
       newItem: addItem,
-      deleteItems: deleteItems
+      deleteItems: deleteItems,
+      rowClick: editItem
     }
   }
 
   function editItem (data) {
-    $location.path('/notes/edit/' + data.id)
+    $state.go('note-edit', { id: data.id })
   }
 
   function addItem (name) {
-    $location.path('/notes/new').search({name: name})
+    $state.go('note-new', { name: name })
   }
 
   function deleteItems (items) {

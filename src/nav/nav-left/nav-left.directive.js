@@ -15,7 +15,7 @@ function navLeft () {
 function NavLeftController ($scope, $timeout, $mdSidenav, $location, NavService, Warehouse) {
   $scope.isSectionOpen = isSectionOpen
   $scope.nav = NavService
-  $scope.$on('$routeChangeSuccess', function () {
+  $scope.$on('$stateChangeSuccess', function () {
     NavService.getPageByUrl($location.$$path)
   })
   $scope.hub = !!Warehouse.getHub()

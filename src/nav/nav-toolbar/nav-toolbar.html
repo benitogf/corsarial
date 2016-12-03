@@ -11,18 +11,23 @@
             md-direction="left">
             <md-fab-trigger>
               <md-button aria-label="User" class="md-icon-button">
-                <md-icon md-svg-src="img/icons/more.svg"></md-icon>
+                <md-icon md-svg-src="img/icons/left-arrow.svg"></md-icon>
               </md-button>
             </md-fab-trigger>
             <md-toolbar>
                 <md-fab-actions class="md-toolbar-tools">
+                    <md-button ng-click=""
+                        aria-label="close"
+                        class="md-icon-button">
+                        <md-icon md-svg-icon="img/icons/right-arrow.svg"></md-icon>
+                    </md-button>
                     <md-button ng-click="toggleRight('preferences')"
-                        aria-label="comment"
+                        aria-label="preferences"
                         class="md-icon-button">
                         <md-icon md-svg-src="img/icons/wrench.svg"></md-icon>
                     </md-button>
                     <md-button ng-click="toggleRight('notifications')"
-                        aria-label="More"
+                        aria-label="notifications"
                         class="md-icon-button">
                         <md-icon md-svg-icon="img/icons/message.svg"></md-icon>
                     </md-button>
