@@ -14,6 +14,8 @@
 [david-dep-image]: https://david-dm.org/benitogf/corsarial/master/dev-status.svg
 [david-dep-url]: https://david-dm.org/benitogf/corsarial/master?type=dev
 
+![ico](/www/img/logo.png?raw=true "ico")
+
 [Cor](http://cordova.apache.org/) `s`ample `a`ngular mate`rial`
 
 ## installation
@@ -56,9 +58,7 @@ npm run server
 ## unit test
 
 ```bash
-npm run build-specs
 npm run specs
-npm run specs-cov
 ```
 
 Coverage report will be generated on coverage/lcov-report/index.html
