@@ -5,7 +5,7 @@ require('./loader/loader.directive')
 require('../../lib/warehouse/warehouse.service')
 require('../../lib/md-quill/md-quill')
 require('../../lib/md-form-error/md-form-error')
-require('../../lib/md-data-grid/md-data-grid')
+require('../../lib/md-grid/md-grid')
 require('../../lib/md-d3-graph/md-d3-graph')
 
 angular.module('app.root', [
@@ -16,7 +16,7 @@ angular.module('app.root', [
   'mdLoader',
   'warehouse',
   'mdQuill',
-  'mdDataGrid',
+  'mdGrid',
   'mdD3Graph',
   'mdFormError'
 ])

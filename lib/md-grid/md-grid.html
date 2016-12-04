@@ -19,10 +19,10 @@
         class="md-whiteframe-1dp">
         <md-input-container>
             <md-select ng-model="vm.sortOrder" aria-label="Sort order">
-                <md-option value="ASC">
+                <md-option value="asc">
                     <md-icon md-svg-icon="img/icons/up-arrow.svg"></md-icon>
                 </md-option>
-                <md-option value="DSC">
+                <md-option value="desc">
                     <md-icon md-svg-icon="img/icons/down-arrow.svg"></md-icon>
                 </md-option>
             </md-select>
@@ -94,8 +94,8 @@
            ng-model="filters">
          <md-chip-template>
            <span>
-             <md-icon ng-if="$chip.order === 'ASC'" md-svg-icon="img/icons/up-arrow.svg"></md-icon>
-             <md-icon ng-if="$chip.order === 'DSC'" md-svg-icon="img/icons/down-arrow.svg"></md-icon>
+             <md-icon ng-if="$chip.order === 'asc'" md-svg-icon="img/icons/up-arrow.svg"></md-icon>
+             <md-icon ng-if="$chip.order === 'desc'" md-svg-icon="img/icons/down-arrow.svg"></md-icon>
              <b>{{$chip.label}}</b>
            </span>
          </md-chip-template>
@@ -130,7 +130,7 @@
             <span translate>GRID.NO_DATA_FOUND</span>
         </md-list-item>
         <md-list-item
-            ng-repeat="item in vm.items"
+            ng-repeat="item in vm.items | mdGridFilter: filters"
             class="md-whiteframe-1dp"
             ng-click="rowClick(item)">
             <md-checkbox
@@ -152,7 +152,7 @@
                     ng-repeat="tag in item[description] track by $index">
                     <md-chip>{{tag}}</md-chip>
                   </md-chips>
-                  <span ng-if="vm.options.layout.formats[description] === 'date'" am-time-ago="item[description] | amFromUnix | amLocal"></span>
+                  <span ng-if="vm.options.layout.formats[description] === 'date'" am-time-ago="item[description] | amFromUnix"></span>
                   <md-checkbox class="list-checkbox" ng-if="vm.options.layout.formats[description] === 'check'" aria-label="item check" ng-disabled="true" ng-model="item[description]">
                   <md-divider hide show-xs></md-divider>
                 </div>

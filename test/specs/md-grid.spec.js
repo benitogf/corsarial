@@ -22,12 +22,12 @@ describe('Data grid', function () {
   ]
   var $q
   beforeEach(function () {
-    angular.mock.module('mdDataGrid')
-    angular.mock.module('mdDataGrid', mockUtils.i18nServiceProvider)
-    angular.mock.module('mdDataGrid', mockUtils.translateProvider)
-    angular.mock.module('mdDataGrid', mockUtils.mdToastProvider)
-    angular.mock.module('mdDataGrid', mockUtils.momentProvider)
-    angular.mock.module('mdDataGrid', mockUtils.formatsProvider)
+    angular.mock.module('mdGrid')
+    angular.mock.module('mdGrid', mockUtils.i18nServiceProvider)
+    angular.mock.module('mdGrid', mockUtils.translateProvider)
+    angular.mock.module('mdGrid', mockUtils.mdToastProvider)
+    angular.mock.module('mdGrid', mockUtils.momentProvider)
+    angular.mock.module('mdGrid', mockUtils.formatsProvider)
     angular.mock.inject(function ($injector) {
       $rootScope = $injector.get('$rootScope')
       $compile = $injector.get('$compile')
@@ -46,13 +46,13 @@ describe('Data grid', function () {
     }
     scope = $rootScope.$new()
     scope.options = options
-    element = angular.element('<md-data-grid options="options"></md-data-grid>')
+    element = angular.element('<md-grid options="options"></md-grid>')
     $compile(element)(scope)
     $rootScope.$digest()
     grid = element.isolateScope()
   })
   it('should be in descendent order', function () {
-    expect(grid.vm.sortOrder).to.eq('DSC')
+    expect(grid.vm.sortOrder).to.eq('asc')
   })
   it('should select an item', function () {
     grid.toggle(items[0])
