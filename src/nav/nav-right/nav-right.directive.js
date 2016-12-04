@@ -13,7 +13,7 @@ function navRight () {
   return directive
 }
 
-function NavRightController ($scope, $mdSidenav, i18nService, $translate) {
+function NavRightController ($rootScope, $mdSidenav, i18nService, $translate, amMoment) {
   var vm = this
   vm.languages = i18nService.languages
   vm.selectedLang = $translate.use()
@@ -21,5 +21,7 @@ function NavRightController ($scope, $mdSidenav, i18nService, $translate) {
 
   function changeLang () {
     $translate.use(vm.selectedLang)
+    amMoment.changeLocale(vm.selectedLang)
+    $rootScope.$broadcast('grid-reload')
   }
 }

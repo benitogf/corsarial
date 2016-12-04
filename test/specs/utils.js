@@ -2,6 +2,8 @@ var utils = {
   translateProvider: translateProvider,
   stateParamsProvider: stateParamsProvider,
   stateProvider: stateProvider,
+  momentProvider: momentProvider,
+  amMomentProvider: amMomentProvider,
   mdSidenavProvider: mdSidenavProvider,
   mdToastProvider: mdToastProvider,
   mdDialogProvider: mdDialogProvider,
@@ -9,6 +11,7 @@ var utils = {
   timeoutProvider: timeoutProvider,
   mdUtilProvider: mdUtilProvider,
   warehouseProvider: warehouseProvider,
+  formatsProvider: formatsProvider,
   canvasGetCtx: canvasGetCtx,
   MutationObserver: MutationObserver,
   getSelection: getSelection
@@ -147,6 +150,21 @@ function stateProvider ($provide) {
         return
       }
     }
+  })
+}
+function momentProvider ($provide) {
+  $provide.factory('moment', function () {
+    return {}
+  })
+}
+function amMomentProvider ($provide) {
+  $provide.factory('amMoment', function () {
+    return {}
+  })
+}
+function formatsProvider ($provide) {
+  $provide.factory('FORMATS', function () {
+    return {}
   })
 }
 if (typeof module !== 'undefined') {

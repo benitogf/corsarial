@@ -10,7 +10,7 @@
         "DETAILS": "Details"
     },
     "LANGUAGES": {
-        "EN": "English",
-        "ZH": "Chinese"
+        "en-gb": "English",
+        "zh-cn": "Chinese"
     }
 }

@@ -9,6 +9,7 @@ describe('Navigator right', function () {
     angular.mock.module('app.nav', mockUtils.mdUtilProvider)
     angular.mock.module('app.nav', mockUtils.i18nServiceProvider)
     angular.mock.module('app.nav', mockUtils.translateProvider)
+    angular.mock.module('app.nav', mockUtils.amMomentProvider)
     angular.mock.inject(function ($injector) {
       $rootScope = $injector.get('$rootScope')
       $compile = $injector.get('$compile')

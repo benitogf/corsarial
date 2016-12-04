@@ -3,9 +3,8 @@
       ng-if="vm.options.withCreate"
       layout-padding
       layout="row"
-      layout-align="center stretch">
+      layout-align="start">
         <md-button ng-click="createItem()"
-          layout-fill
           class="md-raised md-primary">
           <span translate>{{vm.options.layout.labels.create}}</span>
         </md-button>
@@ -153,7 +152,7 @@
                     ng-repeat="tag in item[description] track by $index">
                     <md-chip>{{tag}}</md-chip>
                   </md-chips>
-                  <span ng-if="vm.options.layout.formats[description] === 'date'">{{item[description] | amFromUnix | amLocal | amDateFormat:'MM.DD.YYYY HH:mm:ss'}}</span>
+                  <span ng-if="vm.options.layout.formats[description] === 'date'" am-time-ago="item[description] | amFromUnix | amLocal"></span>
                   <md-checkbox class="list-checkbox" ng-if="vm.options.layout.formats[description] === 'check'" aria-label="item check" ng-disabled="true" ng-model="item[description]">
                   <md-divider hide show-xs></md-divider>
                 </div>

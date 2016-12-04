@@ -16,7 +16,6 @@ before_script:
   - sleep 3 # give Web server some time
   - npm run platform browser
   - npm run build browser
-  - npm run specs-build
 
 script:
   - npm run hint

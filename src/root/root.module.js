@@ -20,3 +20,11 @@ angular.module('app.root', [
   'mdD3Graph',
   'mdFormError'
 ])
+.constant('moment', require('moment-timezone'))
+.constant('FORMATS', {
+  DATE: 'DD.MM.YYYY',
+  MOMENT: 'DD.MM.YYYY HH:mm:ss'
+})
+.run(function (amMoment, $translate) {
+  amMoment.changeLocale($translate.use())
+})

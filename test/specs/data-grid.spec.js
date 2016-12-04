@@ -26,6 +26,8 @@ describe('Data grid', function () {
     angular.mock.module('mdDataGrid', mockUtils.i18nServiceProvider)
     angular.mock.module('mdDataGrid', mockUtils.translateProvider)
     angular.mock.module('mdDataGrid', mockUtils.mdToastProvider)
+    angular.mock.module('mdDataGrid', mockUtils.momentProvider)
+    angular.mock.module('mdDataGrid', mockUtils.formatsProvider)
     angular.mock.inject(function ($injector) {
       $rootScope = $injector.get('$rootScope')
       $compile = $injector.get('$compile')
