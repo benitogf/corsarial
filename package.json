@@ -62,7 +62,7 @@
     "angular-cookies": "^1.5.8",
     "angular-material": "^1.1.1",
     "angular-messages": "^1.5.8",
-    "angular-mocks": "^1.5.8",
+    "angular-mocks": "^1.6.0",
     "angular-moment": "^1.0.0-beta.6",
     "angular-translate": "^2.12.1",
     "angular-translate-storage-cookie": "^2.12.1",
