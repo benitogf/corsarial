@@ -52,7 +52,7 @@ describe('Data grid', function () {
     grid = element.isolateScope()
   })
   it('should be in descendent order', function () {
-    expect(grid.vm.sortOrder).to.eq('asc')
+    expect(grid.sortOrder).to.eq('asc')
   })
   it('should select an item', function () {
     grid.toggle(items[0])
@@ -66,12 +66,12 @@ describe('Data grid', function () {
   })
   it('should select all items', function () {
     grid.toggleAll()
-    expect(grid.vm.selected.length).to.eq(items.length)
+    expect(grid.selected.length).to.eq(items.length)
   })
   it('should deselect all items', function () {
     grid.toggleAll()
     grid.toggleAll()
-    expect(grid.vm.selected.length).to.eq(0)
+    expect(grid.selected.length).to.eq(0)
   })
   it('should find an item', function () {
     grid.querySearch('cub').then(function (res) {

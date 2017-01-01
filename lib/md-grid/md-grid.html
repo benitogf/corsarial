@@ -1,16 +1,16 @@
 <md-content>
     <md-content
-      ng-if="vm.options.withCreate"
+      ng-if="options.withCreate"
       layout-padding
       layout="row"
       layout-align="start">
         <md-button ng-click="createItem()"
           class="md-raised md-primary">
-          <span translate>{{vm.options.layout.labels.create}}</span>
+          <span translate>{{options.layout.labels.create}}</span>
         </md-button>
     </md-content>
     <md-content
-        ng-if="vm.options.withSearch"
+        ng-if="options.withSearch"
         layout="row"
         layout-xs="column"
         layout-align="space-around center"
@@ -18,7 +18,7 @@
         layout-margin
         class="md-whiteframe-1dp">
         <md-input-container>
-            <md-select ng-model="vm.sortOrder" aria-label="Sort order">
+            <md-select ng-model="sortOrder" aria-label="Sort order">
                 <md-option value="asc">
                     <md-icon md-svg-icon="img/icons/up-arrow.svg"></md-icon>
                 </md-option>
@@ -28,48 +28,48 @@
             </md-select>
         </md-input-container>
         <md-input-container>
-            <md-select ng-model="vm.filterField" ng-change="changeFilterField()" aria-label="Filter field">
+            <md-select ng-model="search.field" ng-change="changeFilterField()" aria-label="Filter field">
                 <md-option
                     ng-repeat="field in allFields"
-                    ng-value="field" translate>{{(vm.options.layout.labels[field]) ? vm.options.layout.labels[field] : field}}</md-option>
+                    ng-value="field" translate>{{(options.layout.labels[field]) ? options.layout.labels[field] : field}}</md-option>
             </md-select>
         </md-input-container>
         <md-autocomplete
-          ng-if="!vm.options.layout.formats[vm.filterField] || vm.options.layout.formats[vm.filterField] === 'tags'"
+          ng-if="!options.layout.formats[search.field] || options.layout.formats[search.field] === 'tags'"
           flex
           class="md-block"
           md-input-name="autocompleteField"
           md-no-cache="false"
-          md-selected-item="vm.selectedItem"
-          md-search-text-change="searchTextChange(vm.searchText)"
-          md-search-text="vm.searchText"
-          md-selected-item-change="selectedItemChange(vm.item)"
-          md-items="item in querySearch(vm.searchText)"
-          md-item-text="getField(item, vm.filterField)"
+          md-selected-item="selectedItem"
+          md-search-text-change="searchTextChange(search.text)"
+          md-search-text="search.text"
+          md-selected-item-change="selectedItemChange(item)"
+          md-items="item in querySearch(search.text)"
+          md-item-text="getField(item, search.field)"
           md-min-length="2"
           placeholder="{{'GRID.SEARCH_ITEMS' | translate}}">
           <md-item-template>
-            <span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{(Array.isArray(item[vm.filterField])) ? item[vm.options.layout.title] + ' - ' + item[vm.filterField].join(', ') : item[vm.options.layout.title] + ' - ' + item[vm.filterField]}}</span>
+            <span md-highlight-text="searchText" md-highlight-flags="^i">{{(Array.isArray(item[search.field])) ? item[options.layout.title] + ' - ' + item[search.field].join(', ') : item[options.layout.title] + ' - ' + item[search.field]}}</span>
           </md-item-template>
           <md-not-found>
-            <a ng-click="newItem(vm.searchText)" translate translate-value-search="{{vm.searchText}}">GRID.NO_ITEMS_FOUND</a>
+            <a ng-click="newItem(searchText)" translate translate-value-search="{{searchText}}">GRID.NO_ITEMS_FOUND</a>
           </md-not-found>
         </md-autocomplete>
         <md-content
-          ng-if="vm.options.layout.formats[vm.filterField] === 'date'"
+          ng-if="options.layout.formats[search.field] === 'date'"
           flex
           layout="row"
           class="md-block date-filter-container">
-          <md-datepicker ng-model="vm.dateFrom" md-placeholder="{{'GRID.DATE.FROM' | translate}}"
+          <md-datepicker ng-model="dateFrom" md-placeholder="{{'GRID.DATE.FROM' | translate}}"
               md-open-on-focus
               flex="grow"
               ng-change="changeDateFrom()"
               md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
-          <md-datepicker ng-model="vm.dateTo" md-placeholder="{{'GRID.DATE.TO' | translate}}"
+          <md-datepicker ng-model="dateTo" md-placeholder="{{'GRID.DATE.TO' | translate}}"
               md-open-on-focus
               flex="grow"
-              ng-disabled="!vm.dateFrom"
-              md-min-date="vm.dateFrom" md-max-date="maxDate"></md-datepicker>
+              ng-disabled="!dateFrom"
+              md-min-date="dateFrom" md-max-date="maxDate"></md-datepicker>
         </md-content>
         <md-content flex=20
           flex-xs=100>
@@ -105,7 +105,7 @@
       </md-chips>
     </md-content>
     <md-content
-        ng-if="vm.options.withSelector"
+        ng-if="options.withSelector"
         layout="row"
         layout-align="space-between center"
         layout-margin
@@ -120,21 +120,21 @@
             <span ng-if="!allChecked()" translate>GRID.SELECT_ALL</span>
           </md-checkbox>
         </md-input-container>
-        <md-button aria-label="Delete" ng-click="deleteItems(vm.selected)"><span translate>COMMON.DELETE</span> ({{vm.selected.length}})</md-button>
+        <md-button aria-label="Delete" ng-click="deleteItems(selected)"><span translate>COMMON.DELETE</span> ({{selected.length}})</md-button>
     </md-content>
     <md-list>
         <md-list-item
-            ng-if="!vm.items || vm.items.length === 0"
+            ng-if="!items || items.length === 0"
             flex
             layout-padding>
             <span translate>GRID.NO_DATA_FOUND</span>
         </md-list-item>
         <md-list-item
-            ng-repeat="item in vm.items | mdGridFilter: filters"
+            ng-repeat="item in items | mdGridFilter: filters"
             class="md-whiteframe-1dp"
             ng-click="rowClick(item)">
             <md-checkbox
-                ng-if="vm.options.withSelector"
+                ng-if="options.withSelector"
                 ng-checked="exists(item)"
                 class="md-primary"
                 ng-click="toggle(item)"
@@ -145,21 +145,20 @@
                 layout-align="space-between center"
                 flex
                 layout-padding>
-                <b>{{item[vm.options.layout.title]}}</b>
-                <div ng-repeat="description in vm.options.layout.description">
-                  <span ng-if="!vm.options.layout.formats[description]">{{item[description]}}</span>
-                  <md-chips ng-if="vm.options.layout.formats[description] === 'tags'"
+                <b>{{item[options.layout.title]}}</b>
+                <div ng-repeat="description in options.layout.description">
+                  <span ng-if="!options.layout.formats[description]">{{item[description]}}</span>
+                  <md-chips ng-if="options.layout.formats[description] === 'tags'"
                     ng-repeat="tag in item[description] track by $index">
                     <md-chip>{{tag}}</md-chip>
                   </md-chips>
-                  <span ng-if="vm.options.layout.formats[description] === 'date'" am-time-ago="item[description] | amFromUnix"></span>
-                  <md-checkbox class="list-checkbox" ng-if="vm.options.layout.formats[description] === 'check'" aria-label="item check" ng-disabled="true" ng-model="item[description]">
+                  <span ng-if="options.layout.formats[description] === 'date'" am-time-ago="item[description] | amFromUnix"></span>
+                  <md-checkbox class="list-checkbox" ng-if="options.layout.formats[description] === 'check'" aria-label="item check" ng-disabled="true" ng-model="item[description]">
                   <md-divider hide show-xs></md-divider>
                 </div>
-                <div ng-if="vm.options.layout.corner">{{item[vm.options.layout.corner]}}</div>
+                <div ng-if="options.layout.corner">{{item[options.layout.corner]}}</div>
             </div>
-            <!-- <md-icon class="md-secondary" ng-click="editItem(item)" aria-label="Edit" md-svg-icon="img/icons/launch.svg"></md-icon> -->
-            <md-menu ng-if="vm.options.layout.menu">
+            <md-menu ng-if="options.layout.menu">
               <md-button
                   ng-click="$mdOpenMenu()"
                   class="md-icon-button"
@@ -167,8 +166,8 @@
                   <md-icon md-svg-icon='img/icons/more_vert.svg'></md-icon>
               </md-button>
               <md-menu-content width="2">
-                <md-menu-item ng-repeat="menu in vm.options.layout.menu">
-                  <md-button ng-click="vm.options.controllerAction[menu.action](item)">
+                <md-menu-item ng-repeat="menu in options.layout.menu">
+                  <md-button ng-click="options.controllerAction[menu.action](item)">
                     <spam translate>{{menu.label}}</span>
                   </md-button>
                 </md-menu-item>

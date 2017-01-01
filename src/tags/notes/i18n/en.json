@@ -17,7 +17,7 @@
         },
         "TAGS": {
             "TAGS": "Tags",
-            "HINT": "Tags can be usefull to categorize your notes.",
+            "HINT": "Press enter to add a tags.",
             "MAX_LENGTH": "Tags are limited to 3 per note"
         }
     }

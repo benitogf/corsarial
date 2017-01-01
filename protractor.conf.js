@@ -1,5 +1,5 @@
 exports.config = {
-
+  directConnect: true,
   framework: 'mocha',
 
   specs: [
@@ -9,8 +9,6 @@ exports.config = {
   capabilities: {
     'browserName': 'firefox'
   },
-
-  directConnect: true,
 
   mochaOpts: {
     reporter: 'spec',

@@ -11,11 +11,11 @@ describe('e2e tests', function () {
     browser.get('http://localhost:9000')
   })
 
-  it('should wait for route loading', function (done) {
-    expect(element(by.id('loading')).isDisplayed()).to.eventually.eq(false).notify(done)
-  })
+  // it('should wait for route loading', function (done) {
+  //   expect(element(by.class('loading')).isDisplayed()).to.eventually.eq(false).notify(done)
+  // })
 
-  it.only('should wait to finish loading', function (done) {
+  it('should wait to finish loading', function (done) {
     var el = element(by.id('loading'))
     expect(browser.wait(EC.not(EC.visibilityOf(el)))).to.eventually.eq(true).notify(done)
   })
