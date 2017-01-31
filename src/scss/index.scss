@@ -8,15 +8,15 @@ $break-large: 960px;
 $break-xlarge: 1200px;
 
 @import 'mixins';
-@import './node_modules/angular-material/angular-material.scss';
-@import './lib/md-grid/md-grid';
-@import './lib/md-d3-graph/md-d3-graph';
-@import './lib/md-quill/md-quill';
+@import 'angular-material/angular-material.scss';
+@import 'md-grid/md-grid';
+@import 'md-d3-graph/md-d3-graph';
+@import 'md-quill/md-quill';
 @import 'material-helper';
-@import './src/root/loader/loader';
-@import './src/nav/nav';
-@import './src/tags/error/error';
-@import './src/tags/notes/notes';
+@import 'root/loader/loader';
+@import 'nav/nav';
+@import 'tags/error/error';
+@import 'tags/notes/notes';
 
 @include scrollbar(.5em, $highlight-color);
 
