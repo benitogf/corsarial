@@ -7,7 +7,7 @@ exports.config = {
   ],
 
   capabilities: {
-    'browserName': 'firefox'
+    browserName: 'firefox'
   },
 
   mochaOpts: {
