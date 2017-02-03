@@ -7,17 +7,31 @@ describe('Data grid', function () {
   var options = {
     layout: {
       title: 'name',
-      description: ['content']
+      description: ['tags', 'content'],
+      labels: {
+        name: 'NAME',
+        tags: 'TAGS',
+        content: 'CONTENT',
+        created: 'CREATED'
+      },
+      formats: {
+        tags: 'tags',
+        created: 'date'
+      }
     }
   }
   var items = [
     {
       name: 'isoscesles',
-      content: 'A triangle'
+      content: 'A triangle',
+      tags: ['triangle', 'not a square'],
+      created: 1
     },
     {
       name: 'cube',
-      content: 'A poligon'
+      content: 'A poligon',
+      tags: ['poligon'],
+      created: 2
     }
   ]
   var $q
@@ -66,6 +80,7 @@ describe('Data grid', function () {
   })
   it('should select all items', function () {
     grid.toggleAll()
+    $rootScope.$broadcast('grid-reload')
     expect(grid.selected.length).to.eq(items.length)
   })
   it('should deselect all items', function () {
@@ -77,5 +92,33 @@ describe('Data grid', function () {
     grid.querySearch('cub').then(function (res) {
       expect(grid.querySearch('cub')).to.eq(items[1])
     })
+  })
+  it('should filter list by array or text field', function () {
+    grid.changeFilterField()
+    grid.selectedItem = items[0]
+    grid.search.field = 'tags'
+    grid.search.text = 'tri'
+    grid.addFilter()
+    $rootScope.$digest()
+    grid.selectedItem = null
+    grid.search.field = 'content'
+    grid.search.text = 'tri'
+    grid.addFilter()
+    $rootScope.$digest()
+    expect(grid.filters[0].field).to.eq('tags')
+  })
+  it('should filter list by date field', function () {
+    grid.search.field = 'created'
+    grid.addFilter()
+    $rootScope.$digest()
+    grid.dateFrom = 1
+    grid.changeDateFrom()
+    grid.addFilter()
+    $rootScope.$digest()
+    grid.dateFrom = 1
+    grid.dateTo = 2
+    grid.addFilter()
+    $rootScope.$digest()
+    expect(grid.filters[0].field).to.eq('created')
   })
 })

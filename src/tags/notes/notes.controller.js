@@ -3,7 +3,8 @@
 angular.module('app.notes', [])
     .controller('NotesController', NotesController)
 
-function NotesController ($rootScope, $scope, $q, $state, $translate, Warehouse) {
+function NotesController ($rootScope, $scope, $q, $state, $translate, $timeout, Warehouse) {
+  utils.delayView($rootScope, $q, $timeout)
   $scope.hub = Warehouse.getHub()
   $scope.options = {
     withSelector: true,
@@ -26,11 +27,16 @@ function NotesController ($rootScope, $scope, $q, $state, $translate, Warehouse)
       menu: [{
         label: 'COMMON.EDIT',
         action: 'editItem'
+      },
+      {
+        label: 'COMMON.DELETE',
+        action: 'deleteItem'
       }]
     },
     controllerAction: {
       editItem: editItem,
       newItem: addItem,
+      deleteItem: deleteItem,
       deleteItems: deleteItems,
       rowClick: editItem
     }
@@ -47,6 +53,11 @@ function NotesController ($rootScope, $scope, $q, $state, $translate, Warehouse)
   function deleteItems (items) {
     var itemIds = _.map(items, 'id')
     Warehouse.deleteItems(itemIds)
+    $rootScope.$broadcast('grid-reload')
+  }
+
+  function deleteItem (item) {
+    Warehouse.deleteItems([item.id])
     $rootScope.$broadcast('grid-reload')
   }
 

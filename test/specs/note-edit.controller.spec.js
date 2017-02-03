@@ -5,6 +5,7 @@ describe('Notes: edit', function () {
   beforeEach(function () {
     angular.mock.module('app.notes', mockUtils.warehouseProvider)
     angular.mock.module('app.notes', mockUtils.stateParamsProvider)
+    angular.mock.module('app.notes', mockUtils.stateProvider)
     angular.mock.inject(function ($injector) {
       $rootScope = $injector.get('$rootScope')
       $controller = $injector.get('$controller')
@@ -21,7 +22,8 @@ describe('Notes: edit', function () {
   })
   it('should validate', function () {
     scope.noteForm = {
-      $invalid: true
+      $invalid: true,
+      $error: ['required']
     }
     expect(scope.saveNote()).to.eq(false)
     scope.noteForm.$invalid = false

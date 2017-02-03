@@ -27,15 +27,10 @@ describe('Graph', function () {
     expect(graph.draw).to.be.an.instanceOf(Function)
   })
   it('should draw', function () {
-    graph.maxDistance = 2
-    graph.minDistance = 1
-    graph.canvas.clientWidth = 2
-    graph.canvas.clientHeight = 2
-    graph.n = 10
     graph.init()
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 50; i++) {
       graph.draw()
     }
-    expect(graph.particles.length).to.eq(graph.n)
+    expect(graph.orbs.length).to.eq(graph.orbCount)
   })
 })

@@ -99,9 +99,17 @@ md-toolbar {
         }
     }
 }
-md-tabs md-ink-bar {
-  color: $highlight-color;
-  background-color: $highlight-color;
+md-nav-bar {
+  .md-button.md-accent {
+    color: $highlight-color;
+  }
+  md-nav-ink-bar {
+    color: $highlight-color;
+    background-color: $highlight-color;
+  }
+}
+.md-nav-item:first-of-type {
+    margin: 0;
 }
 md-fab-toolbar md-toolbar .md-toolbar-tools {
   @include respond-to(handhelds) { margin-top: 6px; }
@@ -114,4 +122,11 @@ md-fab-toolbar md-toolbar .md-toolbar-tools {
 // md-backdrop, md-sidenav
 md-backdrop, md-sidenav {
   position: fixed;
+}
+// https://github.com/angular/material/issues/10145
+.md-swipe-horizontal, .md-swipe-horizontal * {
+   touch-action: pan-y;
+}
+.md-swipe-vertical, .md-swipe-vertical * {
+   touch-action : pan-x;
 }

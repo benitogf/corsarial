@@ -21,9 +21,12 @@ describe('Notes', function () {
   it('should have a getData method', function () {
     expect(scope.options.getData).to.be.an.instanceOf(Function)
   })
-  it('should have new and edit methods', function () {
+  it('should have methods', function () {
+    scope.options.getData()
     scope.options.controllerAction.newItem({ id: '1' })
     scope.options.controllerAction.editItem({ id: '1' })
+    scope.options.controllerAction.deleteItem({ id: '1' })
+    scope.options.controllerAction.deleteItems([])
     expect(scope.options.controllerAction.newItem).to.be.an.instanceOf(Function)
     expect(scope.options.controllerAction.editItem).to.be.an.instanceOf(Function)
   })

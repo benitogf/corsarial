@@ -22,6 +22,7 @@ describe('Navigator left', function () {
   })
   it('should have a controller', function () {
     nav.close()
+    $rootScope.$broadcast('hub-change', false)
     expect(nav).to.be.an.instanceOf(Object)
   })
   it('should check the open section', function () {

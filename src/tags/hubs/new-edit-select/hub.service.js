@@ -3,12 +3,12 @@
 angular.module('app.hubs')
   .factory('HubService', HubService)
 
-function HubService ($rootScope, $location, $q, $mdDialog, $mdToast, Warehouse) {
+function HubService ($rootScope, $state, $q, $translate, $mdDialog, $mdToast, Warehouse) {
   return {
     showDialog: showDialog
   }
 
-  function dialogControl ($scope, $timeout, $translate, $mdDialog, item, action) {
+  function dialogControl ($scope, $timeout, item, action) {
     $scope.submit = submit
     $scope.hub = item
     $scope.action = action
@@ -27,7 +27,7 @@ function HubService ($rootScope, $location, $q, $mdDialog, $mdToast, Warehouse) 
           case 'CREATE':
             status = Warehouse.createHub($scope.hub.name, $scope.hub.keyword)
             if (status) {
-              $location.path('/notes')
+              $state.go('notes')
               $mdDialog.hide($translate.instant('HUB.CREATED'))
             } else {
               showToast($translate.instant('HUB.NAME.DUPLICATED'))
@@ -36,7 +36,7 @@ function HubService ($rootScope, $location, $q, $mdDialog, $mdToast, Warehouse) 
           case 'SELECT':
             status = Warehouse.selectHub($scope.hub.name, $scope.hub.keyword)
             if (status) {
-              $location.path('/notes')
+              $state.go('notes')
               $mdDialog.hide($translate.instant('HUB.SELECTED'))
             } else {
               showToast($translate.instant('HUB.KEYWORD.WRONG'))
@@ -79,8 +79,8 @@ function HubService ($rootScope, $location, $q, $mdDialog, $mdToast, Warehouse) 
     }
   }
 
-  function showDialog (item, action) {
-    $mdDialog.show({
+  function showDialog (item, action, fullscreen) {
+    return $mdDialog.show({
       controller: dialogControl,
       template: require('./hub.html'),
       parent: angular.element(document.body),
@@ -89,13 +89,13 @@ function HubService ($rootScope, $location, $q, $mdDialog, $mdToast, Warehouse) 
         action: action
       },
       clickOutsideToClose: false,
-      fullscreen: false // Only for -xs, -sm breakpoints.
+      fullscreen: fullscreen // Only for -xs, -sm breakpoints.
     })
     .then(showToast)
   }
 
   function showToast (message) {
-    $mdToast.show(
+    return $mdToast.show(
       $mdToast.simple()
         .textContent(message)
         .position('bottom right')

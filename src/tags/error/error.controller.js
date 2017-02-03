@@ -5,5 +5,4 @@ angular.module('app.error', [])
 
 function ErrorController ($scope, $log) {
   $log.warn('url not found')
-  $scope.homeUrl = angular.element('#appData').data('preurl') + '/'
 }

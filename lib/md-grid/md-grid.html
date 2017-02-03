@@ -1,15 +1,5 @@
 <md-content>
     <md-content
-      ng-if="options.withCreate"
-      layout-padding
-      layout="row"
-      layout-align="start">
-        <md-button ng-click="createItem()"
-          class="md-raised md-primary">
-          <span translate>{{options.layout.labels.create}}</span>
-        </md-button>
-    </md-content>
-    <md-content
         ng-if="options.withSearch"
         layout="row"
         layout-xs="column"
@@ -160,7 +150,7 @@
             </div>
             <md-menu ng-if="options.layout.menu">
               <md-button
-                  ng-click="$mdOpenMenu()"
+                  ng-click="$mdMenu.open()"
                   class="md-icon-button"
                   aria-label="Open row interactions menu">
                   <md-icon md-svg-icon='img/icons/more_vert.svg'></md-icon>

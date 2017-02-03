@@ -20,7 +20,8 @@ function NavController ($scope, $mdSidenav, $translate) {
   }
 
   $scope.show = function (nav) {
-    $scope['toggle' + _.capitalize(nav)]('preferences')
+    var section = (nav === 'right') ? 'preferences' : null
+    $scope['toggle' + _.capitalize(nav)](section)
   }
 
   $scope.isOpenRight = function () {

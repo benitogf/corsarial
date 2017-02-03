@@ -1,6 +1,6 @@
 <md-button ng-class="{'active' : isSelected()}"
-    ng-href="{{section.url}}"
+    ui-sref="{{section.state}}"
     ng-click="select(section)"
     ng-disabled="isSelected()">
-    <span translate>{{section.name}}</span>
+    <span translate>{{section.label}}</span>
 </md-button>

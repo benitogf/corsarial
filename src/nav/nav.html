@@ -10,7 +10,7 @@
     <nav-left></nav-left>
 </md-sidenav>
 <md-sidenav md-component-id="right"
-    class="md-sidenav-right md-whiteframe-z2"
+    class="md-sidenav-right md-swipe-horizontal md-whiteframe-z2"
     md-swipe-right="hide('right')">
     <md-toolbar class="md-theme-light">
         <h1 class="md-toolbar-tools" translate>{{header}}</h1>
@@ -18,8 +18,8 @@
     <nav-right></nav-right>
 </md-sidenav>
 <md-content layout-fill
-    md-swipe-right="show('left')"
-    md-swipe-left="show('right')">
+    class="md-swipe-horizontal"
+    md-swipe-right="show('left')">
     <nav-toolbar ></nav-toolbar>
     <ui-view></ui-view>
 </md-content>

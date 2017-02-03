@@ -8,11 +8,12 @@ global.sessionStorage = new LocalStorage('./www/js/sessionStorageTemp')
 global.document = jsdom('<html><head></head><body><script></script></body></html>')
 global.window = document.defaultView
 global.$ = global.window.$ = global.window.jQuery = require('jquery');
-(new Function('window', 'document', angular))(window, document); // eslint-disable-line
-global.angular = window.angular
+(new Function('window', angular))(global.window); // eslint-disable-line
+global.window.angular.bootstrap = false
+global.angular = global.window.angular
 global._ = require('lodash')
 global.d3 = require('d3')
-global.mockUtils = require('./specs/utils')
+global.mockUtils = global.utils = require('./specs/utils')
 global.window.mocha = require('mocha')
 global.navigator = { platform: 'jsdom' }
 global.Node = global.window.Node

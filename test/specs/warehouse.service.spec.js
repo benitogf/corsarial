@@ -15,6 +15,7 @@ describe('Warehouse service', function () {
   var testHubKey = 'testHub'
   var newTestHubKey = 'newTestHub'
   var testKeyword = 'testKeyword1'
+  var newTestKeyword = 'newTestKeyword1'
   var testId = '6e6a5910ea9537a7d02e44975f4765726c4a0237c7132d3ea4cf33be76ce678b'
   var newTestId = '3941b238daab168b5b742ef81603cd2c71fb83aa75b0a8044cc414561d7bf81a'
   var wh
@@ -28,12 +29,15 @@ describe('Warehouse service', function () {
     var status = wh.selectHub(testHubKey, testKeyword)
     if (status) {
       wh.deleteHub(testHubKey)
+      wh.deleteHub(newTestHubKey)
     }
+    var preSession = wh.getItems()
     wh.createHub(testHubKey, testKeyword)
     var hubs = wh.getHubs()
+    expect(preSession).to.eq(false)
     expect(_.map(hubs, 'id').indexOf(testHubKey)).to.not.be.eq(-1)
   })
-  it('should fail to create the same hub', function () {
+  it('should fail to create a duplicated hub', function () {
     var sameKey = wh.createHub(testHubKey, testKeyword)
     expect(sameKey).to.eq(false)
   })
@@ -88,6 +92,7 @@ describe('Warehouse service', function () {
     expect(itemId).to.eq(testId)
   })
   it('should remove an item', function () {
+    wh.createItem(newTestItem)
     wh.deleteItems([testId])
     var item = wh.getItem(testId)
     expect(item).to.eq(false)
@@ -101,7 +106,13 @@ describe('Warehouse service', function () {
     expect(otherItem).to.eq(false)
   })
   it('should remove hubs', function () {
+    wh.createHub(testHubKey, testKeyword)
+    wh.createHub(newTestHubKey, newTestKeyword)
+    var newRemovedKey = wh.deleteHub(newTestHubKey)
+    wh.selectHub(testHubKey, testKeyword)
     var removedKey = wh.deleteHub(testHubKey)
+    wh.selectHub(testHubKey, 'fakeKey')
+    expect(newRemovedKey).to.eq(newTestHubKey)
     expect(removedKey).to.eq(testHubKey)
   })
 })

@@ -1,5 +1,5 @@
 .noteForm {
-    margin: 32px auto;
+    margin: 0px auto;
     @include respond-to(handhelds) { width: 86%; }
     @include respond-to(small-screens) { width: 80%; }
     @include respond-to(medium-screens) { width: 78%; }
@@ -8,7 +8,7 @@
     h2 {
         margin-bottom: 40px;
     }
-    & > md-input-container {
-        margin-bottom: 40px;
-    }
+}
+.noteContent {
+  overflow: inherit;
 }

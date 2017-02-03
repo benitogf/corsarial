@@ -25,4 +25,9 @@ describe('Navigator right', function () {
   it('should have a controller', function () {
     expect(nav.vm).to.be.an.instanceOf(Object)
   })
+  it('should change language', function () {
+    nav.vm.selectedLang = 'zh'
+    nav.vm.changeLang()
+    expect(nav.vm.selectedLang).to.eq('zh')
+  })
 })

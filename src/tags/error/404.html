@@ -1,16 +1,16 @@
-<md-content layout-fill>
+<md-content>
     <md-subheader class="md-primary">
         <div flex layout="row" layout-wrap>
            <div flex="80">
                <span class="error-msg" translate>ERROR</span>
            </div>
            <div flex="20" layout="row" layout-align="end center">
-               <md-button class="btn-text-low" ng-href="{{homeUrl}}">
+               <md-button class="btn-text-low md-raised md-primary" ui-sref="hubs">
                    <span translate>ERROR.BACK_HOME</span>
                </md-button>
            </div>
        </div>
     </md-subheader>
     <md-divider></md-divider>
-    <md-d3-graph flex layout-fill></md-d3-graph>
+    <md-d3-graph></md-d3-graph>
 </md-content>

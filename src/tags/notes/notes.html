@@ -1,10 +1,11 @@
-<md-tabs md-dynamic-height md-border-bottom md-selected="1">
-  <md-tab label="<" ui-sref="hubs"></md-tab>
-  <md-tab label="{{hub}}">
-    <md-content class="md-padding">
-      <md-loader></md-loader>
-      <md-grid options="options" class="content"></md-grid>
-    </md-content>
-  </md-tab>
-  <md-tab label="{{ 'NOTES.NEW' | translate }}" ui-sref="note-new"></md-tab>
-</md-tabs>
+<md-nav-bar
+  md-selected-nav-item="'notes'"
+  nav-bar-aria-label="navigation links">
+  <md-nav-item md-nav-sref="hubs"><</md-nav-item>
+  <md-nav-item md-nav-sref="notes" name="notes">{{hub}}</md-nav-item>
+  <md-nav-item md-nav-sref="note-new">{{ 'NOTES.NEW' | translate }}</md-nav-item>
+</md-nav-bar>
+<md-content class="md-padding">
+  <md-loader></md-loader>
+  <md-grid options="options" class="content"></md-grid>
+</md-content>

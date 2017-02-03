@@ -1,20 +1,25 @@
 'use strict'
 
 module.exports = {
-  delayLoad: function ($rootScope, $q, $timeout, $mdSidenav) {
+  delayLoad: function ($rootScope, $q, $mdSidenav) {
+    var delay = $q.defer()
+    $q.all([$mdSidenav('right').close(), $mdSidenav('left').close()]).then(function () {
+      delay.resolve()
+    })
+    return delay.promise
+  },
+  delayView: function ($rootScope, $q, $timeout) {
     var delay = $q.defer()
     $rootScope.loading = true
     $timeout(function () {
-      $q.all([$mdSidenav('right').close(), $mdSidenav('left').close()]).then(function () {
-        $rootScope.loading = false
-        delay.resolve()
-      })
+      $rootScope.loading = false
+      delay.resolve()
     }, 1000)
     return delay.promise
   },
-  keywordCheck: function (Warehouse, $location) {
+  keywordCheck: function (Warehouse, $state) {
     if (!Warehouse.getHub()) {
-      $location.path('/')
+      $state.go('hubs', { reload: true })
     }
     return Warehouse.getHub()
   },

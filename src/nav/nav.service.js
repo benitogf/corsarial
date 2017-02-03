@@ -8,27 +8,30 @@ function NavService ($rootScope) {
   var self = {
     sections: [
       {
-        name: 'NAV.HUBS',
+        label: 'NAV.HUBS',
         url: preUrl + '/',
+        state: 'hubs',
         type: 'link'
       },
       {
-        name: '',
+        label: '',
         type: 'heading',
-        hub: true,
+        restrict: true,
         children: [
           {
-            name: 'NAV.NOTES',
+            label: 'NAV.NOTES',
             type: 'toggle',
             pages: [
               {
-                name: 'NAV.NOTES.NEW',
+                label: 'NAV.NOTES.NEW',
                 url: preUrl + '/note/new',
+                state: 'note-new',
                 type: 'link'
               },
               {
-                name: 'NAV.NOTES.SEARCH',
+                label: 'NAV.NOTES.SEARCH',
                 url: preUrl + '/notes',
+                state: 'notes',
                 type: 'link'
               }
             ]

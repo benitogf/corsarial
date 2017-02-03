@@ -2,28 +2,12 @@ md-d3-graph {
     width: inherit;
     height: inherit;
     padding: 0 !important;
-    md-content {
-        overflow: hidden;
-    }
-    .graph {
-        // transform: perspective(0px) rotateX(0deg);
-        // transform-style: preserve-3d;
-        // animation: flop 60s ease-in-out alternate infinite;
-        position: fixed;
-        @keyframes flop {
-            25% {
-              transform: perspective(400px) rotateY(-15deg);
-            }
-            75% {
-              transform: perspective(400px) rotateY(15deg);
-            }
-            50% {
-              transform: perspective(0px) rotateY(0deg);
-            }
-            0% {
-              transform: perspective(0px) rotateY(0deg);
-            }
-        }
-
+    canvas {
+      bottom: 0;
+    	left: 0;
+    	margin: auto;
+    	position: fixed;
+    	right: 0;
+    	top: 100px;
     }
 }

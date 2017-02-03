@@ -2,13 +2,13 @@
     role="navigation">
     <ul class="nav-menu">
       <li ng-repeat="section in nav.sections"
-          ng-if="(section.hub && hub) || !section.hub"
+          ng-if="(section.restrict && hub) || !section.restrict"
           ng-class="{'parentActive' : isSectionOpen(section)}"
           class="parent-list-item {{section.className || ''}}">
           <h2 ng-if="section.type === 'heading'"
-              id="heading_{{ section.name }}"
+              id="heading_{{ section.label }}"
               class="menu-heading md-subhead"
-              translate>{{section.name}}</h2>
+              translate>{{section.label}}</h2>
           <nav-link section="section"
               ng-if="section.type === 'link'"></nav-link>
           <nav-toggle section="section"

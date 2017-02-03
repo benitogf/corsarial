@@ -3,7 +3,11 @@
 angular.module('app.hubs', [])
     .controller('HubsController', HubsController)
 
-function HubsController ($rootScope, $scope, $q, $location, Warehouse, HubService) {
+function HubsController ($rootScope, $scope, $q, $state, $timeout, $mdMedia, Warehouse, HubService) {
+  var media = 'max-width: 700px'
+  utils.delayView($rootScope, $q, $timeout)
+  $scope.activeTab = 'hubs'
+  $scope.createItem = createItem
   $scope.options = {
     withCreate: true,
     getData: getItems,
@@ -31,7 +35,6 @@ function HubsController ($rootScope, $scope, $q, $location, Warehouse, HubServic
       }]
     },
     controllerAction: {
-      createItem: createItem,
       editItem: editItem,
       deleteItem: deleteItem,
       rowClick: selectItem
@@ -41,29 +44,41 @@ function HubsController ($rootScope, $scope, $q, $location, Warehouse, HubServic
     HubService.showDialog({
       name: '',
       keyword: ''
-    }, 'CREATE')
+    }, 'CREATE', $mdMedia(media))
+    .catch(function () {
+      $scope.activeTab = 'hubs'
+    })
   }
   function editItem (item) {
     HubService.showDialog({
       name: item.id,
       keyword: ''
-    }, 'EDIT')
+    }, 'EDIT', $mdMedia(media))
+    .catch(function () {
+      $scope.activeTab = 'hubs'
+    })
   }
   function selectItem (item) {
     if (item.selected) {
-      $location.path('/notes')
+      $state.go('notes')
     } else {
       HubService.showDialog({
         name: item.id,
         keyword: ''
-      }, 'SELECT')
+      }, 'SELECT', $mdMedia(media))
+      .catch(function () {
+        $scope.activeTab = 'hubs'
+      })
     }
   }
   function deleteItem (item) {
     HubService.showDialog({
       name: item.id,
       keyword: ''
-    }, 'DELETE')
+    }, 'DELETE', $mdMedia(media))
+    .catch(function () {
+      $scope.activeTab = 'hubs'
+    })
   }
   function getItems () {
     return $q(function (resolve) {

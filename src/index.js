@@ -22,3 +22,6 @@ angular.module('app', [
   // required for nwjs, android protocols
   $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|http|file|chrome-extension):/)
 })
+.config(function ($mdInkRippleProvider) {
+  $mdInkRippleProvider.disableInkRipple()
+})

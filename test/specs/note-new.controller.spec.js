@@ -22,7 +22,8 @@ describe('Notes: new', function () {
   })
   it('should validate', function () {
     scope.noteForm = {
-      $invalid: true
+      $invalid: true,
+      $error: ['required']
     }
     expect(scope.saveNote()).to.eq(false)
     scope.noteForm.$invalid = false

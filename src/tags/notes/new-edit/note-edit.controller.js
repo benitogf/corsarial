@@ -3,21 +3,28 @@
 angular.module('app.notes')
     .controller('EditNoteController', EditNoteController)
 
-function EditNoteController ($rootScope, $scope, $location, $stateParams, Warehouse) {
+function EditNoteController ($rootScope, $scope, $q, $state, $stateParams, $timeout, Warehouse) {
+  utils.delayView($rootScope, $q, $timeout)
   $scope.header = 'NOTES.EDIT'
   $scope.saveNote = saveNote
   $scope.note = Warehouse.getItem($stateParams.id)
   if (!$scope.note) {
-    $location.path('/404')
+    $state.go('error')
+  }
+
+  function validForm () {
+    // https://github.com/angular/material/issues/8476
+    var error = Object.keys($scope.noteForm.$error) || []
+    return $scope.noteForm.$invalid && !((error.indexOf('md-max-chips') !== -1) && (error.length === 1))
   }
 
   function saveNote () {
-    if ($scope.noteForm.$invalid) {
+    if (validForm()) {
       $rootScope.$broadcast('show-form-errors')
       return false
     } else {
       Warehouse.updateItem($scope.note)
-      $location.path('/notes')
+      $state.go('notes')
       return true
     }
   }

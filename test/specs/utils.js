@@ -7,6 +7,7 @@ var utils = {
   mdSidenavProvider: mdSidenavProvider,
   mdToastProvider: mdToastProvider,
   mdDialogProvider: mdDialogProvider,
+  mdMediaProvider: mdMediaProvider,
   i18nServiceProvider: i18nServiceProvider,
   timeoutProvider: timeoutProvider,
   mdUtilProvider: mdUtilProvider,
@@ -14,12 +15,16 @@ var utils = {
   formatsProvider: formatsProvider,
   canvasGetCtx: canvasGetCtx,
   MutationObserver: MutationObserver,
-  getSelection: getSelection
+  getSelection: getSelection,
+  delayView: delayView
 }
 function getSelection () {
   return {
     getRangeAt: function () {}
   }
+}
+function delayView () {
+  return
 }
 function MutationObserver () {
   // https://github.com/tmpvar/jsdom/issues/639
@@ -54,9 +59,26 @@ function warehouseProvider ($provide) {
   $provide.factory('Warehouse', function () {
     return {
       getHub: function () { return },
+      getHubs: function () {
+        return [
+          { id: 0 },
+          { id: 1 }
+        ]
+      },
       getItem: function () { return },
+      getItems: function () {
+        return [
+          { id: 0, content: { text: '0' } },
+          { id: 1, content: { text: '1' } }
+        ]
+      },
       createItem: function () { return },
-      updateItem: function () { return }
+      createHub: function (status) { return status },
+      selectHub: function (status) { return status },
+      updateHub: function (status) { return status },
+      deleteHub: function (status) { return status },
+      updateItem: function () { return },
+      deleteItems: function () { return }
     }
   })
 }
@@ -107,12 +129,46 @@ function mdSidenavProvider ($provide) {
 }
 function mdToastProvider ($provide) {
   $provide.factory('$mdToast', function () {
-    return {}
+    return {
+      show: function () {},
+      simple: function () {
+        return {
+          textContent: function () {
+            return {
+              position: function () {
+                return {
+                  hideDelay: function () {}
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   })
 }
 function mdDialogProvider ($provide) {
   $provide.factory('$mdDialog', function () {
-    return {}
+    return {
+      hide: function () {},
+      cancel: function () {},
+      show: function (options) {
+        return {
+          then: function (cb) {
+            cb()
+            return {
+              control: options.controller,
+              catch: function (cb) { cb() }
+            }
+          }
+        }
+      }
+    }
+  })
+}
+function mdMediaProvider ($provide) {
+  $provide.factory('$mdMedia', function () {
+    return function () { return }
   })
 }
 function timeoutProvider ($provide) {
@@ -154,12 +210,19 @@ function stateProvider ($provide) {
 }
 function momentProvider ($provide) {
   $provide.factory('moment', function () {
-    return {}
+    return function () {
+      return {
+        unix: function () {},
+        format: function () {}
+      }
+    }
   })
 }
 function amMomentProvider ($provide) {
   $provide.factory('amMoment', function () {
-    return {}
+    return {
+      changeLocale: function () {}
+    }
   })
 }
 function formatsProvider ($provide) {

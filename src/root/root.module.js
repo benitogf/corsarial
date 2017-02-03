@@ -7,8 +7,10 @@ require('../../lib/md-quill/md-quill')
 require('../../lib/md-form-error/md-form-error')
 require('../../lib/md-grid/md-grid')
 require('../../lib/md-d3-graph/md-d3-graph')
+require('angular-ui-router')
 
 angular.module('app.root', [
+  'ui.router',
   'angularMoment',
   'i18n',
   'app.nav',
@@ -25,6 +27,10 @@ angular.module('app.root', [
   DATE: 'DD.MM.YYYY',
   MOMENT: 'DD.MM.YYYY HH:mm:ss'
 })
-.run(function (amMoment, $translate) {
+.run(function (amMoment, $translate, $transitions, $location) {
   amMoment.changeLocale($translate.use())
+  $transitions.onSuccess({ }, function (trans) {
+    var NavService = trans.injector().get('NavService')
+    NavService.getPageByUrl($location.$$path)
+  })
 })
