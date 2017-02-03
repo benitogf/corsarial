@@ -2,9 +2,6 @@
 
 require('./*/*.js', { mode: 'expand' })
 require('./**/*.js', { mode: 'expand' })
-// require('./*/*.js', { mode: 'expand' })
-// require('./*/*/*.js', { mode: 'expand' })
-// require('./*/*/*/*.js', { mode: 'expand' })
 
 angular.module('app.tags', [
   'app.error',
