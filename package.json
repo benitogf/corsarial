@@ -15,7 +15,7 @@
   "license": "MIT",
   "author": "Benito Gomez <benitogf@outlook.com>",
   "repository": "benitogf/corsarial",
-  "main": "index.html",
+  "main": "index.html#!/",
   "window": {
     "title": "Corsarial",
     "icon": "img/logo.png",

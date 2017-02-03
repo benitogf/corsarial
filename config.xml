@@ -15,7 +15,7 @@
   <author email="benitogf@outlook.com" href="http://cordova.io">Benito Gomez</author>
   <hook type="before_build" src="hooks/build.js" />
   <hook type="before_run" src="hooks/build.js" />
-  <content src="index.html" />
+  <content src="index.html#!/" />
   <access origin="*" />
   <allow-intent href="http://*/*" />
   <allow-intent href="https://*/*" />
