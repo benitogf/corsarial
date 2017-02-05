@@ -1,9 +1,9 @@
 'use strict'
 
 angular.module('app.notes')
-    .controller('EditNoteController', EditNoteController)
+    .controller('NotesEditController', NotesEditController)
 
-function EditNoteController ($rootScope, $scope, $q, $state, $stateParams, $timeout, Warehouse) {
+function NotesEditController ($rootScope, $scope, $q, $state, $stateParams, $timeout, Warehouse) {
   utils.delayView($rootScope, $q, $timeout)
   $scope.header = 'NOTES.EDIT'
   $scope.saveNote = saveNote
@@ -24,7 +24,7 @@ function EditNoteController ($rootScope, $scope, $q, $state, $stateParams, $time
       return false
     } else {
       Warehouse.updateItem($scope.note)
-      $state.go('notes')
+      $state.go('notes.list')
       return true
     }
   }

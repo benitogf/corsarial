@@ -36,20 +36,30 @@ angular.module('app.tags', [
         delay: utils.delayLoad
       }
     })
-    .state('note-new', {
-      url: '/note/new?name',
-      template: require('./notes/new-edit/note.html'),
-      controller: 'NewNoteController',
+    .state('notes.list', {
+      section: '',
+      url: '/list',
+      template: require('./notes/list/notes-list.html'),
+      controller: 'NotesListController',
+      resolve: {
+        profile: utils.keywordCheck,
+        delay: utils.delayLoad
+      }
+    })
+    .state('notes.new', {
+      url: '/new?name',
+      template: require('./notes/form/note-form.html'),
+      controller: 'NotesNewController',
       resolve: {
           // cause a 1 second delay
         delay: utils.delayLoad,
         keyword: utils.keywordCheck
       }
     })
-    .state('note-edit', {
-      url: '/note/edit/:id',
-      template: require('./notes/new-edit/note.html'),
-      controller: 'EditNoteController',
+    .state('notes.edit', {
+      url: '/edit/:id',
+      template: require('./notes/form/note-form.html'),
+      controller: 'NotesEditController',
       resolve: {
           // cause a 1 second delay
         delay: utils.delayLoad,

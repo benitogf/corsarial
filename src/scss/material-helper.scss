@@ -10,7 +10,11 @@
     line-height: 14px;
     transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
     /* Set our own color */
-    color: grey; }
+    color: grey;
+    &.chip {
+      bottom: -20px;
+    }
+}
 .hint-warn {
     /* Position the hint */
     position: inherit;
@@ -19,10 +23,11 @@
     bottom: 0px;
     /* Copy styles from ng-messages */
     font-size: 12px;
-    line-height: 14px;
+    line-height: 20px !important;
     transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
     /* Set our own color */
-    color: orange; }
+    color: orange !important;
+}
 .hint.ng-hide,
 .hint.ng-enter,
 .hint.ng-leave.ng-leave-active {
@@ -34,17 +39,14 @@
     bottom: 7px;
     opacity: 1;
 }
-
-.md-chips {
-    height: 2em;
-}
-.md-chips .md-chip-input-container:not(:first-child) {
-    margin: 4px 4px 0 0;
-}
-.md-chips md-chip {
-    margin: 4px 4px 0 0;
-}
 // md-chips
+.md-chips md-chip {
+    margin: 6px 4px 0 0;
+}
+.md-chip-input-container {
+  height: 1.8em;
+  width: 100%;
+}
 md-chips md-chip {
    position: relative;
 }

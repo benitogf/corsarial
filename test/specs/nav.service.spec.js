@@ -7,8 +7,8 @@ describe('Navigator service', function () {
     })
   })
   it('should get a nested page by url', function () {
-    nav.getPageByUrl('/notes')
-    expect(nav.selectedPage.url).to.eq('/notes')
+    nav.getPageByUrl('/notes/list')
+    expect(nav.selectedPage.url).to.eq('/notes/list')
   })
   it('should get a section page by url', function () {
     nav.getPageByUrl('/')

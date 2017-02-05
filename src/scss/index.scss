@@ -25,6 +25,9 @@ body{
   color: $text-color;
   background-color: $back-color;
 }
+.navContent {
+  overflow: inherit;
+}
 .content {
     margin: 0 auto;
     @include respond-to(wide-screens) {

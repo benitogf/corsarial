@@ -1,9 +1,9 @@
 'use strict'
 
 angular.module('app.notes')
-    .controller('NewNoteController', NewNoteController)
+    .controller('NotesNewController', NotesNewController)
 
-function NewNoteController ($rootScope, $scope, $q, $state, $stateParams, $timeout, Warehouse) {
+function NotesNewController ($rootScope, $scope, $q, $state, $stateParams, $timeout, Warehouse) {
   utils.delayView($rootScope, $q, $timeout)
   $scope.header = 'NOTES.NEW'
   $scope.saveNote = saveNote
@@ -31,7 +31,7 @@ function NewNoteController ($rootScope, $scope, $q, $state, $stateParams, $timeo
       return false
     } else {
       Warehouse.createItem($scope.note)
-      $state.go('notes')
+      $state.go('notes.list')
       return true
     }
   }

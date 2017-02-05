@@ -24,14 +24,14 @@ function NavService ($rootScope) {
             pages: [
               {
                 label: 'NAV.NOTES.NEW',
-                url: preUrl + '/note/new',
-                state: 'note-new',
+                url: preUrl + '/notes/new',
+                state: 'notes.new',
                 type: 'link'
               },
               {
                 label: 'NAV.NOTES.SEARCH',
-                url: preUrl + '/notes',
-                state: 'notes',
+                url: preUrl + '/notes/list',
+                state: 'notes.list',
                 type: 'link'
               }
             ]

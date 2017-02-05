@@ -1,4 +1,4 @@
-describe('Notes: edit', function () {
+describe('Notes: new', function () {
   var $controller
   var $rootScope
   var scope
@@ -13,7 +13,7 @@ describe('Notes: edit', function () {
   })
   beforeEach(function () {
     scope = $rootScope.$new()
-    $controller('EditNoteController', {
+    $controller('NotesNewController', {
       $scope: scope
     })
   })

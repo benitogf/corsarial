@@ -27,10 +27,15 @@ angular.module('app.root', [
   DATE: 'DD.MM.YYYY',
   MOMENT: 'DD.MM.YYYY HH:mm:ss'
 })
-.run(function (amMoment, $translate, $transitions, $location) {
+.run(function ($rootScope, $translate, $transitions, $location, $state, amMoment) {
   amMoment.changeLocale($translate.use())
   $transitions.onSuccess({ }, function (trans) {
     var NavService = trans.injector().get('NavService')
-    NavService.getPageByUrl($location.$$path)
+    if (trans.$to().name === 'notes') {
+      $state.go('notes.list')
+    } else {
+      $rootScope.navItem = trans.$to().name
+      NavService.getPageByUrl($location.$$path)
+    }
   })
 })

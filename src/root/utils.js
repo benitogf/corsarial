@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = {
-  delayLoad: function ($rootScope, $q, $mdSidenav) {
+  delayLoad: function ($rootScope, $q, $timeout, $mdSidenav, $state) {
     var delay = $q.defer()
     $q.all([$mdSidenav('right').close(), $mdSidenav('left').close()]).then(function () {
       delay.resolve()
