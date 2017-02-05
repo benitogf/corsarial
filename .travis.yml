@@ -4,7 +4,7 @@ node_js:
   - "6"
 
 addons:
-  firefox: "latest"
+  firefox: "51.0.1"
 
 install:
   - npm install -g cordova
