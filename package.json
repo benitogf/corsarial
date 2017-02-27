@@ -64,7 +64,7 @@
     "angular-messages": "^1.6.2",
     "angular-mocks": "^1.6.2",
     "angular-moment": "^1.0.0-beta.6",
-    "angular-translate": "^2.12.1",
+    "angular-translate": "^2.15.0",
     "angular-translate-storage-cookie": "^2.12.1",
     "angular-translate-storage-local": "^2.12.1",
     "angular-ui-router": "^1.0.0-rc.1",
