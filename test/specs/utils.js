@@ -23,9 +23,7 @@ function getSelection () {
     getRangeAt: function () {}
   }
 }
-function delayView () {
-  return
-}
+function delayView () {}
 function MutationObserver () {
   // https://github.com/tmpvar/jsdom/issues/639
   return {
@@ -58,27 +56,27 @@ function canvasGetCtx () {
 function warehouseProvider ($provide) {
   $provide.factory('Warehouse', function () {
     return {
-      getHub: function () { return },
+      getHub: function () { },
       getHubs: function () {
         return [
           { id: 0 },
           { id: 1 }
         ]
       },
-      getItem: function () { return },
+      getItem: function () {},
       getItems: function () {
         return [
           { id: 0, content: { text: '0' } },
           { id: 1, content: { text: '1' } }
         ]
       },
-      createItem: function () { return },
+      createItem: function () {},
       createHub: function (status) { return status },
       selectHub: function (status) { return status },
       updateHub: function (status) { return status },
       deleteHub: function (status) { return status },
-      updateItem: function () { return },
-      deleteItems: function () { return }
+      updateItem: function () {},
+      deleteItems: function () {}
     }
   })
 }
@@ -168,7 +166,7 @@ function mdDialogProvider ($provide) {
 }
 function mdMediaProvider ($provide) {
   $provide.factory('$mdMedia', function () {
-    return function () { return }
+    return function () {}
   })
 }
 function timeoutProvider ($provide) {
@@ -182,9 +180,7 @@ function then (cb) {
 function translateProvider ($provide) {
   $provide.factory('$translate', function () {
     return {
-      use: function () {
-        return
-      },
+      use: function () {},
       instant: function (text) {
         return text
       }
@@ -203,7 +199,6 @@ function stateProvider ($provide) {
   $provide.factory('$state', function () {
     return {
       go: function () {
-        return
       }
     }
   })
