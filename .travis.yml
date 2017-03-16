@@ -2,13 +2,18 @@ language: node_js
 sudo: false
 node_js:
   - "6"
-
+  
+cache:
+  directories:
+    - $(npm config get prefix)/bin/hotpot
+    - $(npm config get prefix)/bin/cordova
+    
 addons:
   firefox: "51.0.1"
 
 install:
-  - npm install -g cordova
-  - npm install -g hotpot
+  - npm list -g cordova --depth=0 || npm install -g cordova
+  - npm list -g hotpot --depth=0 || npm install -g hotpot
   - npm install
 
 before_script:
