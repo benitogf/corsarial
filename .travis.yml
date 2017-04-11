@@ -9,7 +9,7 @@ cache:
     - $(npm config get prefix)/bin/cordova
     
 addons:
-  firefox: "51.0.1"
+  firefox: "52.0.2"
 
 install:
   - npm list -g cordova --depth=0 || npm install -g cordova
