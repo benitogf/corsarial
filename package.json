@@ -72,7 +72,7 @@
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "clipboard": "^1.6.1",
-    "coveralls": "^2.13.0",
+    "coveralls": "^2.13.1",
     "d3": "^4.8.0",
     "istanbul": "^0.4.5",
     "jquery": "^3.2.1",
