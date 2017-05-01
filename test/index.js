@@ -1,7 +1,7 @@
 var chai = require('chai')
 var fs = require('fs')
 var angular = fs.readFileSync('./node_modules/angular/angular.js', 'utf-8')
-var jsdom = require('jsdom').jsdom
+var jsdom = require('jsdom/lib/old-api.js').jsdom
 var LocalStorage = require('node-localstorage').LocalStorage
 global.localStorage = new LocalStorage('./www/js/localStorageTemp')
 global.sessionStorage = new LocalStorage('./www/js/sessionStorageTemp')
