@@ -1,22 +1,24 @@
 language: node_js
-sudo: false
+sudo: required
 node_js:
   - "6"
-  
+
 cache:
   directories:
     - $(npm config get prefix)/bin/hotpot
     - $(npm config get prefix)/bin/cordova
-    
-addons:
-  firefox: "52.0.2"
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install chromium-chromedriver
 
 install:
-  - npm list -g cordova --depth=0 || npm install -g cordova
-  - npm list -g hotpot --depth=0 || npm install -g hotpot
+  - npm install -g cordova
+  - npm install -g hotpot
   - npm install
 
 before_script:
+  - "export PATH=$PATH:/usr/lib/chromium-browser/"
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
