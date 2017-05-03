@@ -67,7 +67,7 @@
     "angular-translate": "^2.15.1",
     "angular-translate-storage-cookie": "^2.15.1",
     "angular-translate-storage-local": "^2.15.1",
-    "angular-ui-router": "^1.0.0-rc.1",
+    "angular-ui-router": "^1.0.0",
     "browserify-aes": "^1.0.6",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
