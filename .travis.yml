@@ -22,12 +22,14 @@ before_script:
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
   - npm start &
+  - npm run drive &
   - sleep 3 # give Web server some time
   - npm run platform browser
   - npm run build browser
 
 script:
   - npm run hint
+  - npm run lint
   - npm run specs
   - npm test
 

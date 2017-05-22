@@ -7,7 +7,7 @@ require('../../lib/md-quill/md-quill')
 require('../../lib/md-form-error/md-form-error')
 require('../../lib/md-grid/md-grid')
 require('../../lib/md-d3-graph/md-d3-graph')
-require('angular-ui-router')
+require('@uirouter/angularjs')
 
 angular.module('app.root', [
   'ui.router',
