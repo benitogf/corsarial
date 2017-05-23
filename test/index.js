@@ -26,4 +26,4 @@ global.window.sessionStorage = global.sessionStorage
 global.expect = chai.expect
 global.beforeEach = window.beforeEach = window.mocha.beforeEach
 global.afterEach = window.afterEach = window.mocha.afterEach
-require('../www/js/index.specs.js')
+require('./../www/js/index.specs.js')
