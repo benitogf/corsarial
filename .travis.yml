@@ -10,7 +10,7 @@ cache:
     - $(npm config get prefix)/bin/cordova
 
 addons:
-  firefox: "53.0"
+  firefox: "53.0.3"
 
 install:
   - npm install -g cordova
@@ -22,8 +22,9 @@ before_script:
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
   - npm start &
+  - sleep 6 # give Web server and selenium some time
   - npm run drive &
-  - sleep 3 # give Web server some time
+  - sleep 3 # give Web server and selenium some time
   - npm run platform browser
   - npm run build browser
 
