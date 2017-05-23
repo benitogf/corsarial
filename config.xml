@@ -1,47 +1,48 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <widget id="com.rando.corsarial" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Corsarial</name>
-  <server>
-    <host>localhost</host>
-    <port>9000</port>
-  </server>
-  <client>
-    <host>localhost</host>
-    <port>9000</port>
-    <gapi>gapi</gapi>
-    <ganalytics>ganalytics</ganalytics>
-  </client>
-  <description>Cordova app sample with angular material.</description>
-  <author email="benitogf@outlook.com" href="http://cordova.io">Benito Gomez</author>
-  <hook type="before_build" src="hooks/build.js" />
-  <hook type="before_run" src="hooks/build.js" />
-  <content src="index.html#!/" />
-  <access origin="*" />
-  <allow-intent href="http://*/*" />
-  <allow-intent href="https://*/*" />
-  <allow-intent href="tel:*" />
-  <allow-intent href="sms:*" />
-  <allow-intent href="mailto:*" />
-  <allow-intent href="geo:*" />
-  <preference name="windows-target-version" value="10" />
-  <platform name="firefoxos">
-    <icon src="www/img/logo.png" width="128" height="128" />
-  </platform>
-  <platform name="android">
-    <allow-intent href="market:*" />
-    <icon src="www/img/logo.png" width="128" height="128" density="mdpi" />
-  </platform>
-  <platform name="windows">
-    <icon src="www/img/logo.png" width="128" height="128" />
-  </platform>
-  <platform name="wp8">
-    <icon src="www/img/logo.png" width="128" height="128" />
-  </platform>
-  <platform name="ios">
-    <allow-intent href="itms:*" />
-    <allow-intent href="itms-apps:*" />
-    <icon src="www/img/logo.png" width="128" height="128" />
-  </platform>
-  <plugin name="cordova-plugin-dialogs" spec="~1.2.1" />
-  <plugin name="cordova-plugin-whitelist" spec="~1.2.2" />
+    <name>Corsarial</name>
+    <server>
+        <host>localhost</host>
+        <port>9000</port>
+    </server>
+    <client>
+        <host>localhost</host>
+        <port>9000</port>
+        <gapi>gapi</gapi>
+        <ganalytics>ganalytics</ganalytics>
+    </client>
+    <description>Cordova app sample with angular material.</description>
+    <author email="benitogf@outlook.com" href="http://cordova.io">Benito Gomez</author>
+    <hook src="hooks/build.js" type="before_build" />
+    <hook src="hooks/build.js" type="before_run" />
+    <content src="index.html#!/" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <preference name="windows-target-version" value="10" />
+    <platform name="firefoxos">
+        <icon height="128" src="www/img/logo.png" width="128" />
+    </platform>
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <icon density="mdpi" height="128" src="www/img/logo.png" width="128" />
+    </platform>
+    <platform name="windows">
+        <icon height="128" src="www/img/logo.png" width="128" />
+    </platform>
+    <platform name="wp8">
+        <icon height="128" src="www/img/logo.png" width="128" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+        <icon height="128" src="www/img/logo.png" width="128" />
+    </platform>
+    <engine name="browser" spec="^4.1.0" />
+    <plugin name="cordova-plugin-dialogs" spec="^1.2.1" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.2.2" />
 </widget>
