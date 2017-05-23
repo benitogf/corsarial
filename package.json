@@ -46,7 +46,7 @@
     "hint": "standard --verbose | snazzy",
     "specs-build": "hotpot specs",
     "specs-coverage": "remap-istanbul -i coverage/coverage.json --exclude node_modules,spec.js,json,html,module.js -o coverage/lcov-report -t html",
-    "specs-remap": "istanbul cover --print none node_modules/mocha/bin/_mocha -- -R spec",
+    "specs-remap": "istanbul cover --print none node_modules/mocha/bin/_mocha ./test/index.js -- -R spec",
     "specs": "npm run specs-build && npm run specs-remap && npm run specs-coverage",
     "coverage": "remap-istanbul -i coverage/coverage.json --exclude node_modules,spec.js,json,html,module.js -t text-lcov | coveralls",
     "drive": "./node_modules/.bin/selenium-standalone start",
