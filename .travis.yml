@@ -1,6 +1,6 @@
 language: node_js
 dist: trusty
-sudo: false
+sudo: true
 node_js:
   - "6"
 
@@ -13,7 +13,7 @@ addons:
 
 install:
   - npm install -g cordova
-  - npm install -g hotpot
+  - sudo npm install -g hotpot
   - npm install
 
 before_script:
