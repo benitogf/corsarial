@@ -27,6 +27,7 @@ before_script:
   - npm run build browser
   - nohup npm start &
   - sleep 3 # give Web server and selenium some time
+  - cat nohup.out
 
 script:
   - npm run hint
