@@ -6,7 +6,6 @@ node_js:
 
 cache:
   directories:
-    - $(npm config get prefix)/bin/hotpot
     - $(npm config get prefix)/bin/cordova
 
 addons:
@@ -27,7 +26,6 @@ before_script:
   - npm run build browser
   - nohup npm start &
   - sleep 3 # give Web server and selenium some time
-  - cat nohup.out
 
 script:
   - npm run hint
