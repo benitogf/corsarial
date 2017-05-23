@@ -1,5 +1,6 @@
 var chai = require('chai')
 var fs = require('fs')
+var path = require('path')
 var angular = fs.readFileSync('./node_modules/angular/angular.js', 'utf-8')
 var jsdom = require('jsdom/lib/old-api.js').jsdom
 var LocalStorage = require('node-localstorage').LocalStorage
@@ -26,4 +27,4 @@ global.window.sessionStorage = global.sessionStorage
 global.expect = chai.expect
 global.beforeEach = window.beforeEach = window.mocha.beforeEach
 global.afterEach = window.afterEach = window.mocha.afterEach
-require('./../www/js/index.specs.js')
+require(path.join(process.cwd(), '/www/js/index.specs.js'))
