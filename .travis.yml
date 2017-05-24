@@ -7,10 +7,6 @@ node_js:
 addons:
   firefox: "53.0.3"
 
-before_install:
-  - npm install -g cordova
-  - npm install -g hotpot
-
 install:
   - npm install
 
