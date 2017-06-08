@@ -2,7 +2,6 @@
 
 [![Build Status][build-image]][build-url]
 [![CoverageStatus][coverage-image]][coverage-url]
-[![daviddep][david-dep-image]][david-dep-url]
 [![standardjs][standardjs-image]][standardjs-url]
 
 [build-url]: https://travis-ci.org/benitogf/corsarial
@@ -11,8 +10,6 @@
 [coverage-url]: https://coveralls.io/github/benitogf/corsarial?branch=master
 [standardjs-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square
 [standardjs-url]: http://standardjs.com/
-[david-dep-image]: https://david-dm.org/benitogf/corsarial/master/dev-status.svg
-[david-dep-url]: https://david-dm.org/benitogf/corsarial/master?type=dev
 
 ![ico](/www/img/logo.png?raw=true "ico")
 
@@ -105,31 +102,3 @@ linux:
 ```bash
 nwbuild.sh
 ```
-
-## [docker](https://docs.docker.com/)
-
-install locally
-
-Follow the installation and configuration steps to build the browser platform.
-
-build the image
-
-In the installation folder
-
-```bash
-docker build -t <your username>/<your app name> .
-```
-
-verify
-
-```bash
-docker images
-```
-
-Run the image
-
-```bash
-docker run -p 9001:9000 -d <your username>/<your app name>
-```
-
-And the app should be running on port 9001
