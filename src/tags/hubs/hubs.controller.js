@@ -71,7 +71,7 @@ function HubsController ($rootScope, $scope, $q, $translate, $state, $timeout, $
           $scope.activeTab = 'hubs'
         })
       } else {
-        status = Warehouse.selectHub('public', 'public')
+        var status = Warehouse.selectHub('public', 'public')
         if (status) {
           $state.go('notes')
         } else {
