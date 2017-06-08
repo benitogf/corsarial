@@ -28,6 +28,8 @@ before_script:
 script:
   - npm run hint
   - npm run lint
+  - npm run specs
+  - npm test
 
 after_success:
   - npm run coverage
