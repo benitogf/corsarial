@@ -3,7 +3,7 @@
 angular.module('app.hubs', [])
     .controller('HubsController', HubsController)
 
-function HubsController ($rootScope, $scope, $q, $state, $timeout, $mdMedia, Warehouse, HubService) {
+function HubsController ($rootScope, $scope, $q, $translate, $state, $timeout, $mdMedia, Warehouse, HubService) {
   var media = 'max-width: 700px'
   utils.delayView($rootScope, $q, $timeout)
   $scope.activeTab = 'hubs'
@@ -62,13 +62,22 @@ function HubsController ($rootScope, $scope, $q, $state, $timeout, $mdMedia, War
     if (item.selected) {
       $state.go('notes')
     } else {
-      HubService.showDialog({
-        name: item.id,
-        keyword: ''
-      }, 'SELECT', $mdMedia(media))
-      .catch(function () {
-        $scope.activeTab = 'hubs'
-      })
+      if (item.id !== 'public') {
+        HubService.showDialog({
+          name: item.id,
+          keyword: ''
+        }, 'SELECT', $mdMedia(media))
+        .catch(function () {
+          $scope.activeTab = 'hubs'
+        })
+      } else {
+        status = Warehouse.selectHub('public', 'public')
+        if (status) {
+          $state.go('notes')
+        } else {
+          HubService.showToast($translate.instant('HUB.KEYWORD.WRONG'))
+        }
+      }
     }
   }
   function deleteItem (item) {

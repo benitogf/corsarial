@@ -9,6 +9,7 @@ addons:
 
 install:
   - npm install
+  - npm run drive:get
 
 before_script:
   - "export DISPLAY=:99.0"

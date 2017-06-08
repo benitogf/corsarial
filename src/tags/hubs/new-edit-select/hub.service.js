@@ -5,7 +5,8 @@ angular.module('app.hubs')
 
 function HubService ($rootScope, $state, $q, $translate, $mdDialog, $mdToast, Warehouse) {
   return {
-    showDialog: showDialog
+    showDialog: showDialog,
+    showToast: showToast
   }
 
   function dialogControl ($scope, $timeout, item, action) {

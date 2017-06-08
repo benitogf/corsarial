@@ -137,7 +137,7 @@
                 layout-padding>
                 <b>{{item[options.layout.title]}}</b>
                 <div ng-repeat="description in options.layout.description">
-                  <span ng-if="!options.layout.formats[description]">{{item[description]}}</span>
+                  <span ng-if="!options.layout.formats[description]">{{item[description] | limitTo:100}}{{item[description].length > 100 ? '...' : ''}}</span>
                   <md-chips ng-if="options.layout.formats[description] === 'tags'"
                     ng-repeat="tag in item[description] track by $index">
                     <md-chip>{{tag}}</md-chip>
