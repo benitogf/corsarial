@@ -4,6 +4,7 @@ describe('Data grid', function () {
   var scope
   var $rootScope
   var $compile
+  var wh
   var options = {
     layout: {
       title: 'name',
@@ -42,18 +43,17 @@ describe('Data grid', function () {
     angular.mock.module('mdGrid', mockUtils.mdToastProvider)
     angular.mock.module('mdGrid', mockUtils.momentProvider)
     angular.mock.module('mdGrid', mockUtils.formatsProvider)
+    angular.mock.module('mdGrid', mockUtils.warehouseProvider)
     angular.mock.inject(function ($injector) {
       $rootScope = $injector.get('$rootScope')
       $compile = $injector.get('$compile')
       $q = $injector.get('$q')
+      $timeout = $injector.get('$timeout')
+      wh = $injector.get('Warehouse')
     })
   })
   beforeEach(function () {
-    options.getData = function () {
-      return $q(function (resolve) {
-        resolve(items)
-      })
-    }
+    options.getData = wh.getItems
     options.controllerAction = {
       editItem: function () {},
       newItem: function () {}
@@ -64,6 +64,7 @@ describe('Data grid', function () {
     $compile(element)(scope)
     $rootScope.$digest()
     grid = element.isolateScope()
+    grid.refresh.bind(items)()
   })
   it('should be in descendent order', function () {
     expect(grid.sortOrder).to.eq('asc')

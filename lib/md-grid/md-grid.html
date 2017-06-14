@@ -95,7 +95,7 @@
       </md-chips>
     </md-content>
     <md-content
-        ng-if="options.withSelector"
+        ng-if="options.withSelector && items"
         layout="row"
         layout-align="space-between center"
         layout-margin
@@ -116,10 +116,13 @@
         <md-list-item
             ng-if="!items || items.length === 0"
             flex
+            class="md-whiteframe-1dp"
             layout-padding>
-            <span translate>GRID.NO_DATA_FOUND</span>
+            <md-progress-linear ng-if="!items" flex md-mode="indeterminate"></md-progress-linear>
+            <span ng-if="items.length === 0" translate>GRID.NO_DATA_FOUND</span>
         </md-list-item>
         <md-list-item
+            ng-if="items"
             ng-repeat="item in items | mdGridFilter: filters"
             class="md-whiteframe-1dp"
             ng-click="rowClick(item)">

@@ -5,6 +5,7 @@ window._ = require('lodash')
 window.moment = require('moment')
 window.d3 = require('d3')
 window.angular = require('angular')
+window.Dexie = require('dexie')
 window.utils = require('./root/utils')
 
 require('angular-aria')

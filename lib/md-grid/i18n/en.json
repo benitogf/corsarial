@@ -9,7 +9,7 @@
           "UPDATED": "The filter has been updated"
         },
         "NO_ITEMS_FOUND": "No items matching \"{{search}}\" were found. Create one?",
-        "NO_DATA_FOUND": "There seems to be no data on this table, sorry about that",
+        "NO_DATA_FOUND": "Nothing to see here yet",
         "DATE": {
           "DATE": "Select date",
           "FROM": "From",

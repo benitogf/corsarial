@@ -26,43 +26,45 @@ function HubService ($rootScope, $state, $q, $translate, $mdDialog, $mdToast, Wa
       } else {
         switch (action) {
           case 'CREATE':
-            status = Warehouse.createHub($scope.hub.name, $scope.hub.keyword)
-            if (status) {
+            return Warehouse.createHub($scope.hub.name, $scope.hub.keyword).then(function () {
               $state.go('notes')
-              $mdDialog.hide($translate.instant('HUB.CREATED'))
-            } else {
-              showToast($translate.instant('HUB.NAME.DUPLICATED'))
-            }
-            break
+              return $mdDialog.hide($translate.instant('HUB.CREATED'))
+            }).catch(function (err) {
+              showToast($translate.instant('HUB.NAME.DUPLICATED')  + '[' + err + ']')
+            })
           case 'SELECT':
-            status = Warehouse.selectHub($scope.hub.name, $scope.hub.keyword)
-            if (status) {
+            $scope.loading = true
+            return Warehouse.selectHub($scope.hub.name, $scope.hub.keyword).then(function () {
               $state.go('notes')
-              $mdDialog.hide($translate.instant('HUB.SELECTED'))
-            } else {
-              showToast($translate.instant('HUB.KEYWORD.WRONG'))
-            }
-            break
+              return $mdDialog.hide($translate.instant('HUB.SELECTED'))
+            }).catch(function (err) {
+              $scope.loading = false
+              showToast($translate.instant('HUB.KEYWORD.WRONG') + '[' + err + ']')
+            })
           case 'EDIT':
-            status = Warehouse.selectHub($scope.hub.name, $scope.hub.keyword)
-            if (status) {
-              Warehouse.updateHub($scope.hub.name, $scope.hub.newName)
-              $rootScope.$broadcast('grid-reload')
-              $mdDialog.hide($translate.instant('HUB.UPDATED'))
-            } else {
-              showToast($translate.instant('HUB.KEYWORD.WRONG'))
-            }
-            break
+            $scope.loading = true
+            return Warehouse.selectHub($scope.hub.name, $scope.hub.keyword).then(function () {
+              return Warehouse.updateHub($scope.hub.name, $scope.hub.newName).then(function () {
+                $rootScope.$broadcast('grid-reload')
+                $scope.loading = false
+                return $mdDialog.hide($translate.instant('HUB.UPDATED'))
+              })
+            }).catch(function (err) {
+              $scope.loading = false
+              showToast($translate.instant('HUB.KEYWORD.WRONG')  + '[' + err + ']')
+            })
           case 'DELETE':
-            status = Warehouse.selectHub($scope.hub.name, $scope.hub.keyword)
-            if (status) {
-              Warehouse.deleteHub($scope.hub.name)
-              $rootScope.$broadcast('grid-reload')
-              $mdDialog.hide($translate.instant('HUB.DELETED'))
-            } else {
-              showToast($translate.instant('HUB.KEYWORD.WRONG'))
-            }
-            break
+            $scope.loading = true
+            return Warehouse.selectHub($scope.hub.name, $scope.hub.keyword).then(function () {
+              return Warehouse.deleteHub($scope.hub.name).then(function () {
+                $rootScope.$broadcast('grid-reload')
+                $scope.loading = false
+                return $mdDialog.hide($translate.instant('HUB.DELETED'))
+              })
+            }).catch(function (err) {
+              $scope.loading = false
+              showToast($translate.instant('HUB.KEYWORD.WRONG') + '[' + err + ']')
+            })
         }
       }
     }

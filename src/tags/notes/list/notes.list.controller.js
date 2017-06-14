@@ -52,23 +52,35 @@ function NotesListController ($rootScope, $scope, $q, $state, $translate, $timeo
 
   function deleteItems (items) {
     var itemIds = _.map(items, 'id')
-    Warehouse.deleteItems(itemIds)
-    $rootScope.$broadcast('grid-reload')
+    if (itemIds.length > 0) {
+      $rootScope.loading = true
+      return Warehouse.deleteItems(itemIds).then(function (res) {
+        return $rootScope.$broadcast('grid-reload')
+      }).catch(function (err) {
+        return $rootScope.$broadcast('grid-reload')
+      })
+    }
   }
 
   function deleteItem (item) {
-    Warehouse.deleteItems([item.id])
-    $rootScope.$broadcast('grid-reload')
+    $rootScope.loading = true
+    return Warehouse.deleteItems([item.id]).then(function () {
+      return $rootScope.$broadcast('grid-reload')
+    }).catch(function () {
+      return $rootScope.$broadcast('grid-reload')
+    })
   }
 
   function getItems () {
-    return $q(function (resolve) {
-      var items = []
-      Warehouse.getItems().forEach(function (item) {
+    $rootScope.loading = true
+    return Warehouse.getItems().then(function (items) {
+      items.forEach(function (item) {
         item.content = item.content.text
-        items.push(item)
       })
-      resolve(items)
+      $rootScope.loading = false
+      return items
+    }).catch(function () {
+      $state.go('hubs')
     })
   }
 }

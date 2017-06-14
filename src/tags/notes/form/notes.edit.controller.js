@@ -4,12 +4,16 @@ angular.module('app.notes')
     .controller('NotesEditController', NotesEditController)
 
 function NotesEditController ($rootScope, $scope, $q, $state, $stateParams, $timeout, Warehouse) {
-  utils.delayView($rootScope, $q, $timeout)
   $scope.header = 'NOTES.EDIT'
   $scope.saveNote = saveNote
-  $scope.note = Warehouse.getItem($stateParams.id)
-  if (!$scope.note) {
+  Warehouse.getItem($stateParams.id).then(function (data) {
+    $timeout(load.bind(data), 0)
+  }).catch(function () {
     $state.go('error')
+  })
+
+  function load () {
+    $scope.note = this
   }
 
   function validForm () {
@@ -23,9 +27,11 @@ function NotesEditController ($rootScope, $scope, $q, $state, $stateParams, $tim
       $rootScope.$broadcast('show-form-errors')
       return false
     } else {
-      Warehouse.updateItem($scope.note)
-      $state.go('notes.list')
-      return true
+      $rootScope.loading = true
+      return Warehouse.updateItem($scope.note).then(function () {
+        $state.go('notes.list')
+        return true
+      })
     }
   }
 }

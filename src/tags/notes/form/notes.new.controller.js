@@ -30,9 +30,11 @@ function NotesNewController ($rootScope, $scope, $q, $state, $stateParams, $time
       $rootScope.$broadcast('show-form-errors')
       return false
     } else {
-      Warehouse.createItem($scope.note)
-      $state.go('notes.list')
-      return true
+      $rootScope.loading = true
+      return Warehouse.createItem($scope.note).then(function() {
+        $state.go('notes.list')
+        return true
+      })
     }
   }
 }

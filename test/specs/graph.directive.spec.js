@@ -31,6 +31,6 @@ describe('Graph', function () {
     for (var i = 0; i < 50; i++) {
       graph.draw()
     }
-    expect(graph.orbs.length).to.eq(graph.orbCount)
+    expect(graph.tick).to.eq(50)
   })
 })

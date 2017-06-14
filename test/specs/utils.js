@@ -56,27 +56,35 @@ function canvasGetCtx () {
 function warehouseProvider ($provide) {
   $provide.factory('Warehouse', function () {
     return {
-      getHub: function () { },
-      getHubs: function () {
-        return [
+      getHub: function () { return { then: function(cb) {
+        cb({ id: 0 })
+        return { catch: function () {} }
+      } } },
+      getHubs: function () { return { then: function(cb) {
+        cb([
           { id: 0 },
           { id: 1 }
-        ]
-      },
-      getItem: function () {},
-      getItems: function () {
-        return [
+        ])
+        return { catch: function () {} }
+      } } },
+      getItem: function () { return { then: function(cb) {
+        cb({ id: 0, content: { text: '0' } })
+        return { catch: function () {} }
+      } } },
+      getItems: function () { return { then: function(cb) {
+        cb([
           { id: 0, content: { text: '0' } },
           { id: 1, content: { text: '1' } }
-        ]
-      },
-      createItem: function () {},
-      createHub: function (status) { return status },
-      selectHub: function (status) { return status },
-      updateHub: function (status) { return status },
-      deleteHub: function (status) { return status },
-      updateItem: function () {},
-      deleteItems: function () {}
+        ])
+        return { catch: function () {} }
+      } } },
+      createItem: function () { return { then: then } },
+      createHub: function () { return { then: then } },
+      selectHub: function () { return { then: then } },
+      updateHub: function () { return { then: then } },
+      deleteHub: function () { return { then: then } },
+      updateItem: function () { return { then: then } },
+      deleteItems: function () { return { then: then } }
     }
   })
 }
@@ -176,6 +184,7 @@ function timeoutProvider ($provide) {
 }
 function then (cb) {
   cb()
+  return { catch: function (cb) { cb() } }
 }
 function translateProvider ($provide) {
   $provide.factory('$translate', function () {

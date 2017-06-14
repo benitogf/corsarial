@@ -16,5 +16,6 @@ taco.json
 *.jsproj
 *.jsproj.user
 *.sln
+*.sqlite
 info.txt
 !.gitkeep

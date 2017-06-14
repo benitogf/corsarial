@@ -27,6 +27,6 @@ describe('Notes: new', function () {
     }
     expect(scope.saveNote()).to.eq(false)
     scope.noteForm.$invalid = false
-    expect(scope.saveNote()).to.eq(true)
+    expect(scope.saveNote()).to.not.eq(false)
   })
 })

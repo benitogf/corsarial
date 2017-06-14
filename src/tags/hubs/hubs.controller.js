@@ -71,12 +71,12 @@ function HubsController ($rootScope, $scope, $q, $translate, $state, $timeout, $
           $scope.activeTab = 'hubs'
         })
       } else {
-        var status = Warehouse.selectHub('public', 'public')
-        if (status) {
-          $state.go('notes')
-        } else {
+        $rootScope.loading = true
+        return Warehouse.selectHub('public', 'public').then(function () {
+          return $state.go('notes')
+        }).catch(function (err) {
           HubService.showToast($translate.instant('HUB.KEYWORD.WRONG'))
-        }
+        })
       }
     }
   }
@@ -90,8 +90,25 @@ function HubsController ($rootScope, $scope, $q, $translate, $state, $timeout, $
     })
   }
   function getItems () {
-    return $q(function (resolve) {
-      resolve(Warehouse.getHubs())
+    var selected = Warehouse.getHub()
+    return $q(function (resolve, reject) {
+      Warehouse.getHubs().then(function (hubs) {
+        if (_.map(hubs, 'id').indexOf('public') === -1) {
+          Warehouse.createHub('public', 'public').then(function (moreHubs) {
+            return Warehouse.getHubs().then(function (moreHubs) {
+               moreHubs.forEach(function (hub) {
+                 hub.selected = selected === hub.id
+               })
+               resolve(moreHubs)
+            })
+          }).catch(reject)
+        } else {
+          hubs.forEach(function (hub) {
+            hub.selected = selected === hub.id
+          })
+          resolve(hubs)
+        }
+      })
     })
   }
 }
