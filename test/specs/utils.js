@@ -33,23 +33,22 @@ function MutationObserver () {
     takeRecords: function () { return [] }
   }
 }
-function ObEn (obj) {
-  var ownProps = Object.keys( obj ),
-     i = ownProps.length,
-     resArray = new Array(i); // preallocate the Array
+function ObEntries (obj) {
+  var ownProps = Object.keys(obj)
+  var i = ownProps.length
+  var resArray = new Array(i) // preallocate the Array
 
-  while (i--)
-     resArray[i] = [ownProps[i], obj[ownProps[i]]];
-  return resArray;
+  while (i--) { resArray[i] = [ownProps[i], obj[ownProps[i]]] }
+  return resArray
 }
-function ObVa (obj) {
-  var vals = [];
-	for (var key in obj) {
-		if (has(obj, key) && isEnumerable(obj, key)) {
-			vals.push(obj[key]);
-		}
-	}
-	return vals;
+function ObValues (obj) {
+  var vals = []
+  for (var key in obj) {
+    if (obj[key]) {
+      vals.push(obj[key])
+    }
+  }
+  return vals
 }
 function canvasGetCtx () {
   return function () {
