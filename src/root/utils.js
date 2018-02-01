@@ -27,11 +27,6 @@ module.exports = {
     document.location.reload()
   },
   errorHandler: function (message) {
-    navigator.notification.alert(
-             message, // message
-             utils.errorConfirm, // callback to invoke with index of button pressed
-             'Error', // title
-             'Restart' // buttonLabels
-        )
+    navigator.notification.alert(message, utils.errorConfirm, 'Error', 'Restart')
   }
 }

@@ -35,7 +35,6 @@ describe('Data grid', function () {
       created: 2
     }
   ]
-  var $q
   beforeEach(function () {
     angular.mock.module('mdGrid')
     angular.mock.module('mdGrid', mockUtils.i18nServiceProvider)
@@ -47,8 +46,6 @@ describe('Data grid', function () {
     angular.mock.inject(function ($injector) {
       $rootScope = $injector.get('$rootScope')
       $compile = $injector.get('$compile')
-      $q = $injector.get('$q')
-      $timeout = $injector.get('$timeout')
       wh = $injector.get('Warehouse')
     })
   })

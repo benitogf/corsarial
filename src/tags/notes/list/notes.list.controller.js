@@ -56,7 +56,7 @@ function NotesListController ($rootScope, $scope, $q, $state, $translate, $timeo
       $rootScope.loading = true
       return Warehouse.deleteItems(itemIds).then(function (res) {
         return $rootScope.$broadcast('grid-reload')
-      }).catch(function (err) {
+      }).catch(function () {
         return $rootScope.$broadcast('grid-reload')
       })
     }

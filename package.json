@@ -1,126 +1,127 @@
 {
-  "name": "Corsarial",
-  "version": "1.1.3",
-  "description": "Cordova app boilerplate for angular material",
-  "keywords": [
-    "cordova",
-    "angular",
-    "material",
-    "hotpot",
-    "mocha",
-    "jsdom",
-    "boilerplate"
-  ],
-  "license": "MIT",
-  "author": "Benito Gomez <benitogf@outlook.com>",
-  "repository": "benitogf/corsarial",
-  "main": "index.html#!/",
-  "window": {
-    "title": "Corsarial",
-    "icon": "img/logo.png",
-    "min_width": 960,
-    "min_height": 700
-  },
-  "standard": {
-    "globals": [
-      "angular",
-      "$",
-      "_",
-      "d3",
-      "utils",
-      "mockUtils",
-      "chai",
-      "expect"
+    "name": "Corsarial",
+    "version": "1.1.6",
+    "description": "Cordova app boilerplate for angular material",
+    "keywords": [
+        "cordova",
+        "angular",
+        "material",
+        "hotpot",
+        "mocha",
+        "jsdom",
+        "boilerplate"
     ],
-    "env": {
-      "browser": true,
-      "node": true,
-      "mocha": true
+    "license": "MIT",
+    "author": "Benito Gomez <benitogf@outlook.com>",
+    "repository": "benitogf/corsarial",
+    "main": "index.html#!/",
+    "window": {
+        "title": "Corsarial",
+        "icon": "img/logo.png",
+        "min_width": 960,
+        "min_height": 700
     },
-    "ignore": [
-      "test/e2e/*"
-    ]
-  },
-  "scripts": {
-    "hint": "standard --verbose | snazzy",
-    "specs-build": "hotpot specs",
-    "specs-coverage": "remap-istanbul -i coverage/coverage.json --exclude node_modules,spec.js,json,html,module.js -o coverage/lcov-report -t html",
-    "specs-remap": "istanbul cover --print none node_modules/mocha/bin/_mocha ./test/index.js -R",
-    "specs": "npm run specs-build && npm run specs-remap && npm run specs-coverage",
-    "coverage": "remap-istanbul -i coverage/coverage.json --exclude node_modules,spec.js,json,html,module.js -t text-lcov | coveralls",
-    "drive": "./node_modules/.bin/selenium-standalone start",
-    "drive:get": "./node_modules/.bin/selenium-standalone install",
-    "build-nw": "cordova build browser --config=nw",
-    "build": "cordova build",
-    "platform": "cordova platform add",
-    "start": "hotpot",
-    "server": "node index.js",
-    "mocha": "./node_modules/.bin/_mocha ./test/index.js -R spec",
-    "test": "./node_modules/.bin/_mocha ./test/e2e/*.test.js --compilers js:babel-register --ui tdd --full-trace",
-    "lint": "./node_modules/.bin/eslint ./test/e2e"
-  },
-  "devDependencies": {
-    "babel-eslint": "^7.1.1",
-    "babel-plugin-transform-flow-strip-types": "^6.22.0",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-preset-env": "^1.5.2",
-    "babel-register": "^6.16.3",
-    "chai": "^4.0.2",
-    "coveralls": "^2.13.1",
-    "eslint": "^3.19.0",
-    "eslint-config-standard": "^6.2.1",
-    "eslint-plugin-flowtype": "^2.34.0",
-    "eslint-plugin-promise": "^3.4.2",
-    "eslint-plugin-standard": "^3.0.1",
-    "indexeddbshim": "^3.0.1",
-    "istanbul": "^0.4.5",
-    "jsdom": "^11.0.0",
-    "mocha": "^3.4.2",
-    "node-localstorage": "^1.3.0",
-    "remap-istanbul": "^0.9.5",
-    "selenium-standalone": "^6.4.1",
-    "selenium-webdriver": "^3.4.0",
-    "snazzy": "^7.0.0",
-    "standard": "^10.0.2"
-  },
-  "dependencies": {
-    "@uirouter/angularjs": "^1.0.3",
-    "angular": "^1.6.4",
-    "angular-animate": "^1.6.4",
-    "angular-aria": "^1.6.4",
-    "angular-cookies": "^1.6.4",
-    "angular-material": "^1.1.4",
-    "angular-messages": "^1.6.4",
-    "angular-mocks": "^1.6.4",
-    "angular-moment": "^1.0.0-beta.6",
-    "angular-translate": "^2.15.1",
-    "angular-translate-storage-cookie": "^2.15.1",
-    "angular-translate-storage-local": "^2.15.1",
-    "bluebird": "^3.5.0",
-    "browserify-aes": "^1.0.6",
-    "clipboard": "^1.7.1",
-    "cordova-browser": "^4.1.0",
-    "cordova-plugin-dialogs": "^1.3.3",
-    "cordova-plugin-whitelist": "^1.3.2",
-    "d3": "^4.8.0",
-    "dexie": "^1.5.1",
-    "jquery": "^3.2.1",
-    "jsonpack": "^1.1.5",
-    "lodash": "^4.17.4",
-    "lz-string": "^1.4.4",
-    "moment": "^2.18.1",
-    "moment-timezone": "^0.5.13",
-    "quill": "^1.2.6",
-    "quill-image-drop-module": "^1.0.3",
-    "sha.js": "^2.4.5"
-  },
-  "cordova": {
-    "plugins": {
-      "cordova-plugin-dialogs": {},
-      "cordova-plugin-whitelist": {}
+    "standard": {
+        "globals": [
+            "angular",
+            "$",
+            "_",
+            "d3",
+            "utils",
+            "mockUtils",
+            "chai",
+            "expect"
+        ],
+        "env": {
+            "browser": true,
+            "node": true,
+            "mocha": true
+        },
+        "ignore": [
+            "test/e2e/*"
+        ]
     },
-    "platforms": [
-      "browser"
-    ]
-  }
+    "scripts": {
+        "hint": "standard --verbose | snazzy",
+        "hint:fix": "standard --fix",
+        "specs-build": "hotpot specs",
+        "specs-coverage": "remap-istanbul -i coverage/coverage.json --exclude node_modules,spec.js,json,html,module.js -o coverage/lcov-report -t html",
+        "specs-remap": "istanbul cover --print none node_modules/mocha/bin/_mocha ./test/index.js -R",
+        "specs": "npm run specs-build && npm run specs-remap && npm run specs-coverage",
+        "coverage": "remap-istanbul -i coverage/coverage.json --exclude node_modules,spec.js,json,html,module.js -t text-lcov | coveralls",
+        "drive": "./node_modules/.bin/selenium-standalone start",
+        "drive:get": "./node_modules/.bin/selenium-standalone install",
+        "build-nw": "cordova build browser --config=nw",
+        "build": "cordova build",
+        "platform": "cordova platform add",
+        "start": "hotpot",
+        "server": "node index.js",
+        "mocha": "./node_modules/.bin/_mocha ./test/index.js -R spec",
+        "test": "./node_modules/.bin/_mocha ./test/e2e/*.test.js --compilers js:babel-register --ui tdd --full-trace"
+    },
+    "devDependencies": {
+        "babel-eslint": "^7.2.3",
+        "babel-plugin-transform-flow-strip-types": "^6.22.0",
+        "babel-plugin-transform-object-rest-spread": "^6.26.0",
+        "babel-preset-env": "^1.6.1",
+        "babel-register": "^6.26.0",
+        "chai": "^4.1.2",
+        "coveralls": "^3.0.0",
+        "eslint": "^4.16.0",
+        "eslint-config-standard": "^6.2.1",
+        "eslint-plugin-flowtype": "^2.41.1",
+        "eslint-plugin-promise": "^3.6.0",
+        "eslint-plugin-standard": "^3.0.1",
+        "indexeddbshim": "^3.4.0",
+        "istanbul": "^0.4.5",
+        "jsdom": "^11.6.1",
+        "mocha": "^5.0.0",
+        "node-localstorage": "^1.3.0",
+        "remap-istanbul": "^0.9.5",
+        "selenium-standalone": "^6.12.0",
+        "selenium-webdriver": "^3.6.0",
+        "snazzy": "^7.0.0",
+        "standard": "^10.0.2"
+    },
+    "dependencies": {
+        "@uirouter/angularjs": "^1.0.13",
+        "add": "^2.0.6",
+        "angular": "^1.6.8",
+        "angular-animate": "^1.6.8",
+        "angular-aria": "^1.6.8",
+        "angular-cookies": "^1.6.8",
+        "angular-material": "^1.1.6",
+        "angular-messages": "^1.6.8",
+        "angular-mocks": "^1.6.8",
+        "angular-moment": "^1.2.0",
+        "angular-translate": "^2.17.0",
+        "angular-translate-storage-cookie": "^2.17.0",
+        "angular-translate-storage-local": "^2.17.0",
+        "bluebird": "^3.5.0",
+        "browserify-aes": "^1.0.6",
+        "clipboard": "^1.7.1",
+        "cordova-browser": "^5.0.3",
+        "cordova-plugin-dialogs": "^2.0.1",
+        "cordova-plugin-whitelist": "^1.3.2",
+        "d3": "^4.8.0",
+        "dexie": "^1.5.1",
+        "jquery": "^3.3.1",
+        "jsonpack": "^1.1.5",
+        "lodash": "^4.17.4",
+        "lz-string": "^1.4.4",
+        "moment": "^2.20.1",
+        "moment-timezone": "^0.5.14",
+        "quill": "^1.3.5",
+        "quill-image-drop-module": "^1.0.3",
+        "sha.js": "^2.4.10"
+    },
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-dialogs": {},
+            "cordova-plugin-whitelist": {}
+        },
+        "platforms": [
+            "browser"
+        ]
+    }
 }

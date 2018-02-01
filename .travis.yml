@@ -21,13 +21,11 @@ before_script:
   - sleep 3
   - npm run platform browser
   - npm run build browser
-  - nohup npm start &
+  - nohup npm run serve &
   - sleep 3
-  - cat nohup.out
 
 script:
   - npm run hint
-  - npm run lint
   - npm run specs
   - npm test
 

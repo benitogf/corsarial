@@ -9,7 +9,7 @@ global.d3 = require('d3')
 global.localStorage = new LocalStorage('./www/js/localStorageTemp')
 global.sessionStorage = new LocalStorage('./www/js/sessionStorageTemp')
 global.document = jsdom('<html><head></head><body><script></script></body></html>')
-global.window = document.defaultView;
+global.window = document.defaultView
 global.$ = global.window.$ = global.window.jQuery = global.jQuery = require('jquery')
 global.mockUtils = global.utils = require('./specs/utils')
 global.window.mocha = require('mocha')
@@ -24,11 +24,13 @@ global.window.sessionStorage = global.sessionStorage
 global.expect = chai.expect
 global.beforeEach = window.beforeEach = window.mocha.beforeEach
 global.afterEach = window.afterEach = window.mocha.afterEach
-require('indexeddbshim')(global, {checkOrigin: false});
+global.Object.entries = global.utils.ObEntries
+global.Object.values = global.utils.ObValues
+require('indexeddbshim')(global, {checkOrigin: false}); // eslint-disable-line
 (new Function('window', angular))(global.window); // eslint-disable-line
 global.window.angular.bootstrap = false
 global.angular = global.window.angular
 global.Dexie = global.window.Dexie = require('dexie')
-Dexie.dependencies.indexedDB = global.indexedDB;
-Dexie.dependencies.IDBKeyRange = global.IDBKeyRange;
+window.Dexie.dependencies.indexedDB = global.indexedDB
+window.Dexie.dependencies.IDBKeyRange = global.IDBKeyRange
 require(path.join(process.cwd(), '/www/js/index.specs.js'))

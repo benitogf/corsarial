@@ -2,6 +2,9 @@ node_modules
 coverage
 .coveralls.yml
 npm-debug.log
+deploy.*
+hillary.yml
+www.zip
 platforms/*
 plugins/*
 www/index.html

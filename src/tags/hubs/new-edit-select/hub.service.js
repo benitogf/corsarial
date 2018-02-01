@@ -20,7 +20,6 @@ function HubService ($rootScope, $state, $q, $translate, $mdDialog, $mdToast, Wa
     }, 1000)
 
     function submit () {
-      var status = false
       if ($scope.hubForm.$invalid) {
         $rootScope.$broadcast('show-form-errors')
       } else {
@@ -30,7 +29,7 @@ function HubService ($rootScope, $state, $q, $translate, $mdDialog, $mdToast, Wa
               $state.go('notes')
               return $mdDialog.hide($translate.instant('HUB.CREATED'))
             }).catch(function (err) {
-              showToast($translate.instant('HUB.NAME.DUPLICATED')  + '[' + err + ']')
+              showToast($translate.instant('HUB.NAME.DUPLICATED') + '[' + err + ']')
             })
           case 'SELECT':
             $scope.loading = true
@@ -51,7 +50,7 @@ function HubService ($rootScope, $state, $q, $translate, $mdDialog, $mdToast, Wa
               })
             }).catch(function (err) {
               $scope.loading = false
-              showToast($translate.instant('HUB.KEYWORD.WRONG')  + '[' + err + ']')
+              showToast($translate.instant('HUB.KEYWORD.WRONG') + '[' + err + ']')
             })
           case 'DELETE':
             $scope.loading = true

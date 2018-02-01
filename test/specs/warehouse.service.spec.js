@@ -47,10 +47,10 @@ describe('Warehouse service', function () {
       var hubIds = _.map(hubs, 'id')
       if (hubIds.indexOf(testHubKey) !== -1) {
         return wh.selectHub(testHubKey, testKeyword).then(function (items) {
-          return wh.deleteHub(testHubKey).then(function(result) {
+          return wh.deleteHub(testHubKey).then(function (result) {
             done()
           })
-        }).catch(function (err) {
+        }).catch(function () {
           done()
         })
       } else {
@@ -63,10 +63,10 @@ describe('Warehouse service', function () {
       var hubIds = _.map(hubs, 'id')
       if (hubIds.indexOf(newTestHubKey) !== -1) {
         return wh.selectHub(newTestHubKey, newTestKeyword).then(function (items) {
-          return wh.deleteHub(newTestHubKey).then(function(result) {
+          return wh.deleteHub(newTestHubKey).then(function (result) {
             done()
           })
-        }).catch(function (err) {
+        }).catch(function () {
           done()
         })
       } else {
@@ -111,7 +111,7 @@ describe('Warehouse service', function () {
     }).catch(done)
   })
   it('should update an item', function (done) {
-    otherItem = _.clone(newTestItem)
+    var otherItem = _.clone(newTestItem)
     otherItem.id = testId
     wh.updateItem(otherItem).then(function (newId) {
       expect(newId[2]).to.eq(newTestId)
@@ -181,10 +181,10 @@ describe('Warehouse service', function () {
       var hubIds = _.map(hubs, 'id')
       if (hubIds.indexOf(testHubKey) !== -1) {
         return wh.selectHub(testHubKey, testKeyword).then(function (items) {
-          return wh.deleteHub(testHubKey).then(function(result) {
+          return wh.deleteHub(testHubKey).then(function (result) {
             done()
           })
-        }).catch(function (err) {
+        }).catch(function () {
           done()
         })
       } else {
@@ -197,10 +197,10 @@ describe('Warehouse service', function () {
       var hubIds = _.map(hubs, 'id')
       if (hubIds.indexOf(newTestHubKey) !== -1) {
         return wh.selectHub(newTestHubKey, newTestKeyword).then(function (items) {
-          return wh.deleteHub(newTestHubKey).then(function(result) {
+          return wh.deleteHub(newTestHubKey).then(function (result) {
             done()
           })
-        }).catch(function (err) {
+        }).catch(function () {
           done()
         })
       } else {

@@ -31,7 +31,7 @@ function NotesNewController ($rootScope, $scope, $q, $state, $stateParams, $time
       return false
     } else {
       $rootScope.loading = true
-      return Warehouse.createItem($scope.note).then(function() {
+      return Warehouse.createItem($scope.note).then(function () {
         $state.go('notes.list')
         return true
       })

@@ -74,7 +74,7 @@ function HubsController ($rootScope, $scope, $q, $translate, $state, $timeout, $
         $rootScope.loading = true
         return Warehouse.selectHub('public', 'public').then(function () {
           return $state.go('notes')
-        }).catch(function (err) {
+        }).catch(function () {
           HubService.showToast($translate.instant('HUB.KEYWORD.WRONG'))
         })
       }
@@ -96,10 +96,10 @@ function HubsController ($rootScope, $scope, $q, $translate, $state, $timeout, $
         if (_.map(hubs, 'id').indexOf('public') === -1) {
           Warehouse.createHub('public', 'public').then(function (moreHubs) {
             return Warehouse.getHubs().then(function (moreHubs) {
-               moreHubs.forEach(function (hub) {
-                 hub.selected = selected === hub.id
-               })
-               resolve(moreHubs)
+              moreHubs.forEach(function (hub) {
+                hub.selected = selected === hub.id
+              })
+              resolve(moreHubs)
             })
           }).catch(reject)
         } else {

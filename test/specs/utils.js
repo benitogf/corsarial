@@ -15,6 +15,8 @@ var utils = {
   formatsProvider: formatsProvider,
   canvasGetCtx: canvasGetCtx,
   MutationObserver: MutationObserver,
+  ObEntries: ObEntries,
+  ObValues: ObValues,
   getSelection: getSelection,
   delayView: delayView
 }
@@ -30,6 +32,24 @@ function MutationObserver () {
     observe: function () { return [] },
     takeRecords: function () { return [] }
   }
+}
+function ObEn (obj) {
+  var ownProps = Object.keys( obj ),
+     i = ownProps.length,
+     resArray = new Array(i); // preallocate the Array
+
+  while (i--)
+     resArray[i] = [ownProps[i], obj[ownProps[i]]];
+  return resArray;
+}
+function ObVa (obj) {
+  var vals = [];
+	for (var key in obj) {
+		if (has(obj, key) && isEnumerable(obj, key)) {
+			vals.push(obj[key]);
+		}
+	}
+	return vals;
 }
 function canvasGetCtx () {
   return function () {
@@ -56,28 +76,44 @@ function canvasGetCtx () {
 function warehouseProvider ($provide) {
   $provide.factory('Warehouse', function () {
     return {
-      getHub: function () { return { then: function(cb) {
-        cb({ id: 0 })
-        return { catch: function () {} }
-      } } },
-      getHubs: function () { return { then: function(cb) {
-        cb([
-          { id: 0 },
-          { id: 1 }
-        ])
-        return { catch: function () {} }
-      } } },
-      getItem: function () { return { then: function(cb) {
-        cb({ id: 0, content: { text: '0' } })
-        return { catch: function () {} }
-      } } },
-      getItems: function () { return { then: function(cb) {
-        cb([
-          { id: 0, content: { text: '0' } },
-          { id: 1, content: { text: '1' } }
-        ])
-        return { catch: function () {} }
-      } } },
+      getHub: function () {
+        return {
+          then: function (cb) {
+            cb({ id: 0 }) // eslint-disable-line
+            return {
+              catch: function () {}
+            }
+          }
+        }
+      },
+      getHubs: function () {
+        return {
+          then: function (cb) {
+            cb([ { id: 0 }, { id: 1 } ])  // eslint-disable-line
+            return {
+              catch: function () {}
+            }
+          }
+        }
+      },
+      getItem: function () {
+        return {
+          then: function (cb) {
+            cb({ id: 0, content: { text: '0' } }) // eslint-disable-line
+            return {
+              catch: function () {}
+            }
+          }
+        }
+      },
+      getItems: function () {
+        return {
+          then: function (cb) {
+            cb([ { id: 0, content: { text: '0' } }, { id: 1, content: { text: '1' } } ]) // eslint-disable-line
+            return { catch: function () {} }
+          }
+        }
+      },
       createItem: function () { return { then: then } },
       createHub: function () { return { then: then } },
       selectHub: function () { return { then: then } },
